@@ -8,7 +8,7 @@ namespace Library.Domain.Models
     {
         public Guid Id { get; set; }
         public File File { get; set; }
-        public Employee Employee { get; set; }
+        public Person Person { get; set; }
         public FileAction Action { get; set; }
         public DateTime ActionDate { get; set; }
     }
