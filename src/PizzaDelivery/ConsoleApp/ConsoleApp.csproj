@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PizzaDelivery.Domain\PizzaDelivery.Domain.csproj" />
+    <ProjectReference Include="..\PizzaDelivery.Services\PizzaDelivery.Services.csproj" />
+  </ItemGroup>
+
+</Project>
