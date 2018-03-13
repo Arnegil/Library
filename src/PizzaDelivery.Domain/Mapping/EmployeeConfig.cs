@@ -4,6 +4,7 @@ using System.Text;
 using PizzaDelivery.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using PizzaDelivery.Domain.Models.Persons;
 
 namespace PizzaDelivery.Domain.Mapping
 {

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
-namespace PizzaDelivery.Domain.Models
+namespace PizzaDelivery.Domain.Models.Orders
 {
     public class OrderPosition
     {

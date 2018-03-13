@@ -1,5 +1,6 @@
 ﻿using System;
 using PizzaDelivery.Domain.Models;
+using PizzaDelivery.Domain.Models.Persons;
 
 namespace PizzaDelivery.Services.Interfaces
 {

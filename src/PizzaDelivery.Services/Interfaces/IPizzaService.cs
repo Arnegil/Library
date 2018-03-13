@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using PizzaDelivery.Domain.Models;
+using PizzaDelivery.Domain.Models.Orders;
 
 namespace PizzaDelivery.Services.Interfaces
 {

@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
-using Remotion.Linq.Clauses.Expressions;
+using PizzaDelivery.Domain.Models.Orders;
 
-namespace PizzaDelivery.Domain.Models
+namespace PizzaDelivery.Domain.Models.Persons
 {
     public class Client
     {

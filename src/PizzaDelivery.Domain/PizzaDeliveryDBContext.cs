@@ -4,6 +4,8 @@ using System.Text;
 using PizzaDelivery.Domain.Mapping;
 using PizzaDelivery.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using PizzaDelivery.Domain.Models.Orders;
+using PizzaDelivery.Domain.Models.Persons;
 
 namespace PizzaDelivery.Domain
 {

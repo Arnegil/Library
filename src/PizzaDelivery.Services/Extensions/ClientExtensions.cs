@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using PizzaDelivery.Domain.Models;
+using PizzaDelivery.Domain.Models.Orders;
+using PizzaDelivery.Domain.Models.Persons;
 
 namespace PizzaDelivery.Services.Extensions
 {

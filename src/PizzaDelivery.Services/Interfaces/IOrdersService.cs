@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using PizzaDelivery.Domain.Models;
+using PizzaDelivery.Domain.Models.Orders;
 
 namespace PizzaDelivery.Services.Interfaces
 {

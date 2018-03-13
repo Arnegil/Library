@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
+using PizzaDelivery.Domain.Models.Persons;
 
-namespace PizzaDelivery.Domain.Models
+namespace PizzaDelivery.Domain.Models.Orders
 {
     public class Order
     {
