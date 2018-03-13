@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PizzaDelivery.Services", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{3C63ECDE-7EC7-40D8-B941-337F53740DD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaDelivery", "PizzaDelivery\PizzaDelivery.csproj", "{26619B8F-D21B-421D-B6F6-47DB7D690C18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PizzaDelivery", "PizzaDelivery\PizzaDelivery.csproj", "{26619B8F-D21B-421D-B6F6-47DB7D690C18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaDelivery.ViewModel", "PizzaDelivery.ViewModel\PizzaDelivery.ViewModel.csproj", "{8C567449-708A-406F-A302-9F17FAB03F86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{26619B8F-D21B-421D-B6F6-47DB7D690C18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26619B8F-D21B-421D-B6F6-47DB7D690C18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26619B8F-D21B-421D-B6F6-47DB7D690C18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C567449-708A-406F-A302-9F17FAB03F86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C567449-708A-406F-A302-9F17FAB03F86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C567449-708A-406F-A302-9F17FAB03F86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C567449-708A-406F-A302-9F17FAB03F86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

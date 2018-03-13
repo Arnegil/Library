@@ -18,6 +18,6 @@ namespace PizzaDelivery.Domain.Models.Orders
 
         [Required]
         [MinLength(0)]
-        public int Cost { get; set; }
+        public decimal Cost { get; set; }
     }
 }
