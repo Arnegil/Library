@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using PizzaDelivery.Domain.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PizzaDelivery.Domain.Models.Persons;
 
-namespace PizzaDelivery.Domain.Mapping
+namespace PizzaDelivery.Domain.Configuration
 {
     public class ClientConfig : IEntityTypeConfiguration<Client>
     {

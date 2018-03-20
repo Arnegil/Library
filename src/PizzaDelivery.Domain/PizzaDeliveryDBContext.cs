@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using PizzaDelivery.Domain.Mapping;
 using PizzaDelivery.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using PizzaDelivery.Domain.Configuration;
 using PizzaDelivery.Domain.Models.Orders;
 using PizzaDelivery.Domain.Models.Persons;
 
