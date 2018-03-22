@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using PizzaDelivery.Domain.Models;
 using PizzaDelivery.Domain.Models.Orders;
 
 namespace PizzaDelivery.Services.Interfaces
@@ -13,5 +12,6 @@ namespace PizzaDelivery.Services.Interfaces
         void CreatePizza(Pizza newPizza);
         void UpdatePizza(Pizza newPizza);
         void DeletePizza(Guid pizzaId);
+        IEnumerable<Pizza> GetAllPizzas();
     }
 }

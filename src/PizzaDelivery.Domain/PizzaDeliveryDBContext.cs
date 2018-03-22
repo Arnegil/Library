@@ -14,15 +14,16 @@ namespace PizzaDelivery.Domain
         public DbSet<Person> Persons { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<Pizza> Books { get; set; }
-        public DbSet<OrderPosition> Stores { get; set; }
-        public DbSet<Order> BooksIssuing { get; set; }
+        public DbSet<Pizza> Pizzas { get; set; }
+        public DbSet<OrderPosition> OrderPositions { get; set; }
+        public DbSet<Order> Orders { get; set; }
         
 
         public PizzaDeliveryDBContext(DbContextOptions<PizzaDeliveryDBContext> options) : base(options)
         {
+            DBInitializer.Initialize(this);
         }
-        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new PersonConfig());

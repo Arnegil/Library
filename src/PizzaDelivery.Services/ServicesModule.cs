@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using PizzaDelivery.Domain;
+using PizzaDelivery.Services.Interfaces;
+using PizzaDelivery.Services.ServicesImpl;
 
 namespace PizzaDelivery.Services
 {
@@ -12,7 +14,7 @@ namespace PizzaDelivery.Services
         {
             DomainServicesModule.ConfigureServices(services);
 
-            //services.AddTransient<IClientService>(provider => new ClientService());
+            services.AddTransient<IPizzaService>(provider => new PizzaService(provider.GetService<PizzaDeliveryDBContext>()));
         }
     }
 }

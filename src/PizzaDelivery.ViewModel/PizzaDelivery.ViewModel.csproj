@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ServicesIml\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\PizzaDelivery.Services\PizzaDelivery.Services.csproj" />
   </ItemGroup>
 

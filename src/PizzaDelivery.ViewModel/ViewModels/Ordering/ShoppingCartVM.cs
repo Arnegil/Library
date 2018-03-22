@@ -8,5 +8,10 @@ namespace PizzaDelivery.ViewModel.ViewModels.Ordering
         public List<OrderPositionVM> Products { get; set; }
 
         public decimal SumOrderPrice => Products.Sum(x => x.Count * x.Pizza.Cost);
+
+        public ShoppingCartVM()
+        {
+            Products = new List<OrderPositionVM>();
+        }
     }
 }

@@ -16,17 +16,22 @@ namespace PizzaDelivery.Controllers
         private readonly IPizzaPageVMService _pizzaPageVmService;
         private readonly IShoppingCardVMService _shoppingCardVmService;
 
-        public MainController()
+        public MainController(IPizzaPageVMService pizzaPageVmService, IShoppingCardVMService shoppingCardVmService)
         {
-            _pizzaPageVmService = HttpContext.RequestServices.GetService<IPizzaPageVMService>();
-            _shoppingCardVmService = HttpContext.RequestServices.GetService<IShoppingCardVMService>();
-        }
+            if (pizzaPageVmService == null)
+                throw new ArgumentNullException(nameof(pizzaPageVmService));
+            if (shoppingCardVmService == null)
+                throw new ArgumentNullException(nameof(shoppingCardVmService));
 
+            _pizzaPageVmService = pizzaPageVmService;
+            _shoppingCardVmService = shoppingCardVmService;
+        }
+        
         public IActionResult Index()
         {
             var model = _pizzaPageVmService.GetPizzaPage(1);
 
-            return View(model);
+            return View("Main", model);
         }
 
         public IActionResult PizzaSection()

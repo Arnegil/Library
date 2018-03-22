@@ -14,7 +14,7 @@ namespace PizzaDelivery.Domain.Models.Orders
 
         [Required]
         [StringLength(100)]
-        public string Description { get; set; }
+        public string Recipe { get; set; }
 
         [Required]
         [MinLength(0)]
