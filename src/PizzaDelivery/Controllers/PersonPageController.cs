@@ -11,33 +11,53 @@ namespace PizzaDelivery.Controllers
 {
     public class PersonPageController : Controller
     {
-        private readonly IOrderVMService _orderVmService;
+        private readonly IPesonalPageVMService _pesonalPageVmService;
 
         public PersonPageController()
         {
-            _orderVmService = HttpContext.RequestServices.GetService<IOrderVMService>();
+            _pesonalPageVmService = HttpContext.RequestServices.GetService<IPesonalPageVMService>();
         }
 
         public IActionResult Index()
         {
-            throw new NotImplementedException();
+            return PersonalInfoPage();
         }
 
-        public IActionResult ClientPage()
+        public IActionResult PersonalInfoPage()
         {
-            throw new NotImplementedException();
-        }
-
-        public IActionResult OperatorPage()
-        {
-            var model = _orderVmService.GetNewOrdersForOperator();
+            var model = _pesonalPageVmService.GetPersonalInfo();
 
             return View(model);
         }
 
-        public IActionResult DeliverymanPage()
+        public IActionResult OrderHistoryPage()
         {
-            var model = _orderVmService.GetNewOrdersForDeliveryman();
+            var model = _pesonalPageVmService.GetOrderHistory();
+
+            return View(model);
+        }
+
+
+
+        public IActionResult NewOrdersPage()
+        {
+            var model = _pesonalPageVmService.GetNewOrders();
+
+            return View(model);
+        }
+
+        public IActionResult PersonalOrdersPage()
+        {
+            var model = _pesonalPageVmService.GetPersonalOrders();
+
+            return View(model);
+        }
+
+
+
+        public IActionResult OrdersToDeliveryPage()
+        {
+            var model = _pesonalPageVmService.GetOrdersToDelivery();
 
             return View(model);
         }

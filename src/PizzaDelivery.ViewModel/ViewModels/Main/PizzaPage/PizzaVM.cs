@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PizzaDelivery.ViewModel.ViewModels.Food
+namespace PizzaDelivery.ViewModel.ViewModels.Main.PizzaPage
 {
     public class PizzaVM
     {
@@ -8,7 +8,7 @@ namespace PizzaDelivery.ViewModel.ViewModels.Food
         
         public string Name { get; set; }
         
-        public string Description { get; set; }
+        public string Recipe { get; set; }
         
         public decimal Cost { get; set; }
     }

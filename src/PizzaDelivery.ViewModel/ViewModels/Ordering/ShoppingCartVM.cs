@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace PizzaDelivery.ViewModel.ViewModels.Client
+namespace PizzaDelivery.ViewModel.ViewModels.Ordering
 {
     public class ShoppingCartVM
     {
         public List<OrderPositionVM> Products { get; set; }
 
-        public decimal OrderPrice => Products.Sum(x => x.Count * x.Pizza.Cost);
+        public decimal SumOrderPrice => Products.Sum(x => x.Count * x.Pizza.Cost);
     }
 }

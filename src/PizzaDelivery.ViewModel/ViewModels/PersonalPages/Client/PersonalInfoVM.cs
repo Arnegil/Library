@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace PizzaDelivery.ViewModel.ViewModels.Client
+namespace PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client
 {
-    public class RegistrationVM
+    public class PersonalInfoVM
     {
         public string LastName { get; set; }
         
@@ -15,5 +15,7 @@ namespace PizzaDelivery.ViewModel.ViewModels.Client
         public string PhoneNumber { get; set; }
         
         public string Email { get; set; }
+
+        public int BonusPoints { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using PizzaDelivery.ViewModel.ViewModels.Client;
+using PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client;
 
 namespace PizzaDelivery.ViewModel.Interfaces
 {

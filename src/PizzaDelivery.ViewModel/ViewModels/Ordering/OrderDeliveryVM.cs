@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PizzaDelivery.ViewModel.ViewModels
+﻿namespace PizzaDelivery.ViewModel.ViewModels.Ordering
 {
     public class OrderDeliveryVM
     {
@@ -11,5 +7,9 @@ namespace PizzaDelivery.ViewModel.ViewModels
         public string DeliveryAddress { get; set; }
 
         public string ClientPhoneNumber { get; set; }
+
+        public string StoreAddress { get; set; }
+
+        public bool ShipmenAtOwnExpense { get; set; }
     }
 }

@@ -5,9 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using PizzaDelivery.ViewModel.Interfaces;
+using PizzaDelivery.ViewModel.Interfaces.Ordering;
+using PizzaDelivery.ViewModel.ViewModels.Ordering;
 
-namespace PizzaDelivery.Controllers
+namespace PizzaDelivery.Controllers.Ordering
 {
     public class ShoppingCardController : Controller
     {
@@ -27,8 +28,9 @@ namespace PizzaDelivery.Controllers
             return View(model);
         }
 
-        public IActionResult GoToDelivery()
+        public IActionResult GoToDelivery(ShoppingCartVM shoppingCart)
         {
+            _shoppingCardVmService.SaveShoppingCard(shoppingCart);
             var model = _deliveryVmService.GetDeliveryInformation();
 
             return View(model);

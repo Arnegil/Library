@@ -1,16 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using PizzaDelivery.ViewModel.ViewModels.Client;
 
-namespace PizzaDelivery.ViewModel.ViewModels
+namespace PizzaDelivery.ViewModel.ViewModels.Ordering
 {
     public class OrderVM
     {
         public Guid Id { get; set; }
 
+        public string Number { get; set; }
+
         public ShoppingCartVM ShoppingCart { get; set; }
 
         public OrderDeliveryVM OrderDelivery { get; set; }
+
+        public PaymentVM Payment { get; set; }        
     }
 }
