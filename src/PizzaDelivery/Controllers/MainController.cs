@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 using PizzaDelivery.ViewModel.Interfaces;
 using PizzaDelivery.ViewModel.Interfaces.Ordering;
 using PizzaDelivery.ViewModel.ViewModels.Ordering;
@@ -26,26 +25,29 @@ namespace PizzaDelivery.Controllers
             _pizzaPageVmService = pizzaPageVmService;
             _shoppingCardVmService = shoppingCardVmService;
         }
-        
+
+        [HttpGet]
         public IActionResult Index()
         {
             var model = _pizzaPageVmService.GetPizzaPage(1);
 
-            return View("Main", model);
+            return View("Food/PizzasListPage", model);
         }
 
+        [HttpGet]
         public IActionResult PizzaSection()
         {
             var model = _pizzaPageVmService.GetPizzaPage(1);
 
-            return View(model);
+            return View("Food/PizzasListPage", model);
         }
 
+        [HttpGet]
         public IActionResult PizzaSection(int page)
         {
             var model = _pizzaPageVmService.GetPizzaPage(page);
 
-            return View(model);
+            return View("Food/PizzasListPage", model);
         }
 
         public void AddToShoppingCard(OrderPositionVM orderPosition)
@@ -65,9 +67,7 @@ namespace PizzaDelivery.Controllers
 
         public IActionResult ShoppingCard()
         {
-            var model = _shoppingCardVmService.GetShoppingCard();
-
-            return View(model);
+            return RedirectToAction("Index", "ShoppingCart");
         }
 
         public IActionResult PersonalPage()

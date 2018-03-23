@@ -9,7 +9,11 @@ namespace PizzaDelivery.Domain.Models.Orders
     {
         [Key]
         public Guid Id { get; set; }
-        
+
+        [Required]
+        [MinLength(0)]
+        public int OrderNumber { get; set; }
+
         public Employee Operator { get; set; }
         
         public Employee Deliveryman { get; set; }
@@ -18,7 +22,10 @@ namespace PizzaDelivery.Domain.Models.Orders
         public Client OrderingClient { get; set; }
 
         [Required]
-        public string DeliveryAddress { get; set; }
+        public DeliveryInfo DeliveryInfo { get; set; }
+
+        [Required]
+        public PaymentInfo PaymentInfo { get; set; }
 
         [Required]
         public OrderState OrderState { get; set; }

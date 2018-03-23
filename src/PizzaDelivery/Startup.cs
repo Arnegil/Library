@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PizzaDelivery.Domain;
+using PizzaDelivery.Services;
 using PizzaDelivery.ViewModel;
 
 namespace PizzaDelivery
@@ -22,6 +24,8 @@ namespace PizzaDelivery
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            DomainServicesModule.ConfigureServices(services);
+            ServicesModule.ConfigureServices(services);
             VMServicesModule.ConfigureServices(services);
 
             services.AddMvc();

@@ -21,7 +21,6 @@ namespace PizzaDelivery.Domain.Models.Persons
         public DateTime? Birthday { get; set; }
 
         [Required]
-        [StringLength(20)]
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 

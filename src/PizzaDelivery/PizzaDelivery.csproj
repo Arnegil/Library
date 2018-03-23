@@ -16,4 +16,8 @@
     <ProjectReference Include="..\PizzaDelivery.ViewModel\PizzaDelivery.ViewModel.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\PersonalPages\" />
+  </ItemGroup>
+
 </Project>

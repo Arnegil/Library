@@ -6,12 +6,12 @@ namespace PizzaDelivery.ViewModel.ViewModels.Ordering
     {
         public Guid Id { get; set; }
 
-        public string Number { get; set; }
+        public int Number { get; set; }
 
         public ShoppingCartVM ShoppingCart { get; set; }
 
-        public OrderDeliveryVM OrderDelivery { get; set; }
+        public DeliveryInfoVM DeliveryInfo { get; set; }
 
-        public PaymentVM Payment { get; set; }        
+        public PaymentInfoVM PaymentInfo { get; set; }     
     }
 }

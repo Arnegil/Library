@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 using PizzaDelivery.ViewModel.Interfaces.Ordering;
 using PizzaDelivery.ViewModel.ViewModels.Ordering;
 
@@ -15,23 +14,30 @@ namespace PizzaDelivery.Controllers.Ordering
         private readonly IDeliveryVMService _deliveryVmService; 
         private readonly IPaymentVMService _paymentVMService; 
 
-        public DeliveryInfoController()
+        public DeliveryInfoController(IDeliveryVMService deliveryVmService, IPaymentVMService paymentVmService)
         {
-            _deliveryVmService = HttpContext.RequestServices.GetService<IDeliveryVMService>();
-            _paymentVMService = HttpContext.RequestServices.GetService<IPaymentVMService>();
+            if (deliveryVmService == null)
+                throw new ArgumentNullException(nameof(deliveryVmService));
+            if (paymentVmService == null)
+                throw new ArgumentNullException(nameof(paymentVmService));
+
+            _deliveryVmService = deliveryVmService;
+            _paymentVMService = paymentVmService;
         }
 
-        public IActionResult Index(OrderDeliveryVM orderDelivery)
+        [HttpPost]
+        public IActionResult Index(DeliveryInfoVM deliveryInfo)
         {
-            return View(orderDelivery);
+            return View("/Views/Ordering/DeliveryInfo.cshtml", deliveryInfo);
         }
 
-        public IActionResult SaveDeliveryInformation(OrderDeliveryVM orderDelivery)
+        [HttpPost]
+        public IActionResult SaveDeliveryInformation(DeliveryInfoVM deliveryInfo)
         {
-            _deliveryVmService.SaveDeliveryInfo(orderDelivery);
+            _deliveryVmService.SaveDeliveryInfo(deliveryInfo);
             var model = _paymentVMService.GetPaymentInfo();
 
-            return View(model);
+            return RedirectToAction("Index", "Payment", model);
         }
     }
 }

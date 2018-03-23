@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 using PizzaDelivery.ViewModel.ViewModels.Ordering;
 using PizzaDelivery.ViewModel.Interfaces.Ordering;
 
@@ -12,27 +11,34 @@ namespace PizzaDelivery.Controllers.Ordering
 {
     public class PaymentController : Controller
     {
-        private readonly IOrderVMService _orderVmService;
+        private readonly IOrderVMService _orderVMService;
         private readonly IPaymentVMService _paymentVMService; 
 
-        public PaymentController()
+        public PaymentController(IOrderVMService deliveryVMService, IPaymentVMService paymentVMService)
         {
-            _orderVmService = HttpContext.RequestServices.GetService<IOrderVMService>();
-            _paymentVMService = HttpContext.RequestServices.GetService<IPaymentVMService>();
+            if (deliveryVMService == null)
+                throw new ArgumentNullException(nameof(deliveryVMService));
+            if (paymentVMService == null)
+                throw new ArgumentNullException(nameof(paymentVMService));
+
+            _orderVMService = deliveryVMService;
+            _paymentVMService = paymentVMService;
         }
 
-        public IActionResult Index(PaymentVM payment)
+        [HttpPost]
+        public IActionResult Index(PaymentInfoVM paymentInfo)
         {
-            return View(payment);
+            return View("/Views/Ordering/Payment.cshtml", paymentInfo);
         }
 
-        public IActionResult SavePaymentInfo(PaymentVM payment)
+        [HttpPost]
+        public IActionResult SavePaymentInfo(PaymentInfoVM paymentInfo)
         {
-            _paymentVMService.SavePaymentInfo(payment);
-            var newOrder = _orderVmService.BuildNewOrder();
-            var model = _orderVmService.CreateOrder(newOrder);
+            _paymentVMService.SavePaymentInfo(paymentInfo);
+            var newOrder = _orderVMService.BuildNewOrder();
+            var model = _orderVMService.CreateOrder(newOrder);
 
-            return View(model);
+            return View("/Views/Ordering/OrderResult.cshtml", model);
         }
     }
 }

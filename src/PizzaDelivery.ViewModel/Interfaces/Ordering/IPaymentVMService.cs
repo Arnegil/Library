@@ -4,7 +4,7 @@ namespace PizzaDelivery.ViewModel.Interfaces.Ordering
 {
     public interface IPaymentVMService
     {
-        PaymentVM GetPaymentInfo();
-        void SavePaymentInfo(PaymentVM paymentVM);
+        PaymentInfoVM GetPaymentInfo();
+        void SavePaymentInfo(PaymentInfoVM paymentInfoVm);
     }
 }

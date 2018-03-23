@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using PizzaDelivery.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using PizzaDelivery.Domain.Configuration;
 using PizzaDelivery.Domain.Models.Orders;
@@ -17,6 +16,8 @@ namespace PizzaDelivery.Domain
         public DbSet<Pizza> Pizzas { get; set; }
         public DbSet<OrderPosition> OrderPositions { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<DeliveryInfo> DeliveryInfos { get; set; }
+        public DbSet<PaymentInfo> PaymentInfos { get; set; }
         
 
         public PizzaDeliveryDBContext(DbContextOptions<PizzaDeliveryDBContext> options) : base(options)
@@ -32,6 +33,8 @@ namespace PizzaDelivery.Domain
             modelBuilder.ApplyConfiguration(new PizzaConfig()); 
             modelBuilder.ApplyConfiguration(new OrderPositionConfig()); 
             modelBuilder.ApplyConfiguration(new OrderConfig());
+            modelBuilder.ApplyConfiguration(new DeliveryInfoConfig()); 
+            modelBuilder.ApplyConfiguration(new PaymentInfoConfig());
         }
     }
 }

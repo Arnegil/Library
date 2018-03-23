@@ -17,6 +17,17 @@ namespace PizzaDelivery.Domain.Models.Persons
         [MinLength(0)]
         public int BonusCount { get; set; }
 
+        [DataType(DataType.CreditCard)]
+        public string CardNumber { get; set; }
+
+        [StringLength(20)]
+        public string CardOwnerName { get; set; }
+
+        public DateTime? DateTo { get; set; }
+
         public Collection<Order> Orders { get; set; }
+
+        public bool HaveCardInfo =>
+            !string.IsNullOrEmpty(CardNumber) && !string.IsNullOrEmpty(CardOwnerName) && DateTo.HasValue;
     }
 }
