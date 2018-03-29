@@ -1,7 +1,17 @@
-﻿@model PizzaDelivery.ViewModel.ViewModels.Ordering.PaymentInfoVM
+﻿@using PizzaDelivery.ViewModel.ViewModels.Ordering
+@model PizzaDelivery.ViewModel.ViewModels.Ordering.PaymentInfoVM
 @{
     ViewData["Title"] = "Payment";
 }
 
 <h2>Payment</h2>
 
+@using (Html.BeginForm("SavePaymentInfo", "Payment", Model, FormMethod.Post))
+{
+    @Html.EditorFor(x => x.CardNumber)
+    @Html.EditorFor(x => x.CardOwnerName)
+    @Html.EditorFor(x => x.DateTo)
+    @Html.DropDownListFor(x => x.PaymentType, new List<SelectListItem>(Enum.GetNames(typeof(PaymentType)).Select(x => new SelectListItem(){Text = x, Value = x})))
+
+    <button class="btn btn-primary" type="submit">Оплата</button>
+}

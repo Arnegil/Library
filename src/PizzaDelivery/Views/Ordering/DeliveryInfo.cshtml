@@ -5,3 +5,15 @@
 
 <h2>DeliveryInfo</h2>
 
+@Html.DisplayFor(x => x.StoreAddress)
+
+@using (Html.BeginForm("SaveDeliveryInformation", "DeliveryInfo", Model, FormMethod.Post))
+{
+    @Html.EditorFor(x => x.ClientName)
+    @Html.EditorFor(x => x.ClientPhoneNumber)
+    @Html.EditorFor(x => x.DeliveryAddress)
+    @Html.EditorFor(x => x.CommentToOperator)
+    @Html.CheckBoxFor(x => x.ShipmenAtOwnExpense)
+    
+    <button class="btn btn-primary" type="submit">Оплата</button>
+}

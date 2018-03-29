@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace PizzaDelivery.ViewModel.ViewModels.Ordering
@@ -7,7 +8,8 @@ namespace PizzaDelivery.ViewModel.ViewModels.Ordering
     {
         public List<OrderPositionVM> Products { get; set; }
 
-        public decimal SumOrderPrice => Products.Sum(x => x.Count * x.Pizza.Cost);
+        [Display(Name = "Сумма заказа")]
+        public decimal SumOrderPrice => Products.Sum(x => x.Count * x.Cost);
 
         public ShoppingCartVM()
         {

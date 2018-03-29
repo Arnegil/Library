@@ -31,7 +31,7 @@ namespace PizzaDelivery.Controllers
         {
             var model = _pizzaPageVmService.GetPizzaPage(1);
 
-            return View("Food/PizzasListPage", model);
+            return View("Main", model);
         }
 
         [HttpGet]
@@ -39,7 +39,7 @@ namespace PizzaDelivery.Controllers
         {
             var model = _pizzaPageVmService.GetPizzaPage(1);
 
-            return View("Food/PizzasListPage", model);
+            return View("Main", model);
         }
 
         [HttpGet]
@@ -47,12 +47,15 @@ namespace PizzaDelivery.Controllers
         {
             var model = _pizzaPageVmService.GetPizzaPage(page);
 
-            return View("Food/PizzasListPage", model);
+            return View("Main", model);
         }
 
-        public void AddToShoppingCard(OrderPositionVM orderPosition)
+        [HttpPost]
+        public IActionResult AddToShoppingCard(OrderPositionVM orderPosition)
         {
             _shoppingCardVmService.PutInShoppingCard(orderPosition);
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult OpenEditPizzaPage()
@@ -64,12 +67,7 @@ namespace PizzaDelivery.Controllers
         {
             return View();
         }
-
-        public IActionResult ShoppingCard()
-        {
-            return RedirectToAction("Index", "ShoppingCart");
-        }
-
+        
         public IActionResult PersonalPage()
         {
             return View();

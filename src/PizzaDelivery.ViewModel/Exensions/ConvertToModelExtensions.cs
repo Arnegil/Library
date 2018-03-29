@@ -39,7 +39,13 @@ namespace PizzaDelivery.ViewModel.Exensions
         {
             return new OrderPosition
             {
-                Pizza = orderPosition.Pizza.ToPizza(),
+                Pizza = new Pizza
+                {
+                    Id = orderPosition.PizzaId,
+                    Name = orderPosition.PizzaName,
+                    Recipe = orderPosition.PizzaRecipe,
+                    Cost = orderPosition.Cost
+                },
                 Count = orderPosition.Count
             };
         }

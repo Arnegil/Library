@@ -5,3 +5,14 @@
 
 <h2>OrderResult</h2>
 
+@if (Model.SuccessOrdered)
+{
+    <p>Успех</p>
+}
+else
+{
+    <p>Неудача</p>
+}
+
+@Html.DisplayFor(x => Model.Order.Number)
+

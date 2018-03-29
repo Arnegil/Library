@@ -5,3 +5,23 @@
 
 <h2>ShoppingCart</h2>
 
+@using (Html.BeginForm("GoToDelivery", "ShoppingCart", Model, FormMethod.Post))
+{
+    <table>
+        @for (int i = 0; i < Model.Products.Count; i++)
+        {
+            <tr>
+                <td>@Html.DisplayFor(x => Model.Products[i].PizzaName)</td>
+                <td>@Html.DisplayFor(x => Model.Products[i].PizzaRecipe)</td>
+                <td>@Html.DisplayFor(x => Model.Products[i].Cost)</td>
+                <td>@Html.EditorFor(x => Model.Products[i].Count)</td>
+                <td>@Html.DisplayFor(x => Model.Products[i].Sum)</td>
+            </tr>
+        }
+    </table>
+
+    @Html.DisplayNameFor(x => x.SumOrderPrice)
+    @Html.DisplayFor(x => x.SumOrderPrice)
+
+    <button class="btn btn-primary" type="submit">Доставка</button>
+}

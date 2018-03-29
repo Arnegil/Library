@@ -36,7 +36,10 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
             {
                 PizzaList = pizzas.Select(pizza => new OrderPositionVM
                 {
-                    Pizza = pizza,
+                    PizzaId = pizza.Id,
+                    PizzaName = pizza.Name,
+                    PizzaRecipe = pizza.Recipe,
+                    Cost = pizza.Cost,
                     Count = 1
                 }).ToList()
             };

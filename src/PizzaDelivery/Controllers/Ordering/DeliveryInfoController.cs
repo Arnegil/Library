@@ -25,19 +25,20 @@ namespace PizzaDelivery.Controllers.Ordering
             _paymentVMService = paymentVmService;
         }
 
-        [HttpPost]
-        public IActionResult Index(DeliveryInfoVM deliveryInfo)
+        [HttpGet]
+        public IActionResult Index()
         {
-            return View("/Views/Ordering/DeliveryInfo.cshtml", deliveryInfo);
+            var model = _deliveryVmService.GetDeliveryInformation();
+
+            return View("/Views/Ordering/DeliveryInfo.cshtml", model);
         }
 
         [HttpPost]
         public IActionResult SaveDeliveryInformation(DeliveryInfoVM deliveryInfo)
         {
             _deliveryVmService.SaveDeliveryInfo(deliveryInfo);
-            var model = _paymentVMService.GetPaymentInfo();
 
-            return RedirectToAction("Index", "Payment", model);
+            return RedirectToAction("Index", "Payment");
         }
     }
 }

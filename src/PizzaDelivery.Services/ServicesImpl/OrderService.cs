@@ -74,6 +74,9 @@ namespace PizzaDelivery.Services.ServicesImpl
 
         private int GetNextOderNumber()
         {
+            if (!_context.Orders.Any())
+                return 0;
+
             int maxNumber = _context.Orders.Max(x => x.OrderNumber);
 
             return maxNumber + 1;

@@ -16,10 +16,13 @@ namespace PizzaDelivery.ViewModel.ServicesImpl.Ordering
 
         public void PutInShoppingCard(OrderPositionVM orderPosition)
         {
+            if (orderPosition.Count <= 0)
+                return;
+
             var shoppingCart = _cache.ShoppingCartOfCurrentUser;
 
             var orderedPizza = shoppingCart.Products
-                .FirstOrDefault(x => PizzaVM.IdComparer.Equals(x.Pizza, orderPosition.Pizza));
+                .FirstOrDefault(x => x.PizzaId == orderPosition.PizzaId);
 
             if (orderedPizza == null)
                 shoppingCart.Products.Add(orderPosition);
@@ -34,7 +37,7 @@ namespace PizzaDelivery.ViewModel.ServicesImpl.Ordering
 
         public void SaveShoppingCart(ShoppingCartVM shoppingCart)
         {
-            _cache.ShoppingCartOfCurrentUser.Products = shoppingCart.Products;
+            _cache.ShoppingCartOfCurrentUser.Products = shoppingCart.Products.Where(x => x.Count > 0).ToList();
         }
     }
 }

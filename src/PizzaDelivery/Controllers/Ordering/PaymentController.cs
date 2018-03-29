@@ -25,10 +25,12 @@ namespace PizzaDelivery.Controllers.Ordering
             _paymentVMService = paymentVMService;
         }
 
-        [HttpPost]
-        public IActionResult Index(PaymentInfoVM paymentInfo)
+        [HttpGet]
+        public IActionResult Index()
         {
-            return View("/Views/Ordering/Payment.cshtml", paymentInfo);
+            var model = _paymentVMService.GetPaymentInfo();
+
+            return View("/Views/Ordering/Payment.cshtml", model);
         }
 
         [HttpPost]

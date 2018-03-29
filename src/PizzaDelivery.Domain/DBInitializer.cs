@@ -8,12 +8,18 @@ namespace PizzaDelivery.Domain
 {
     internal class DBInitializer
     {
+        private static bool _isInit = false;
+
         public static void Initialize(PizzaDeliveryDBContext context)
         {
-            InitPizzas(context);
-            InitClients(context);
-            InitEmployees(context);
-            context.SaveChanges();
+            if (!_isInit)
+            {
+                InitPizzas(context);
+                InitClients(context);
+                InitEmployees(context);
+                context.SaveChanges();
+                _isInit = true;
+            }
         }
 
         private static void InitPizzas(PizzaDeliveryDBContext context)

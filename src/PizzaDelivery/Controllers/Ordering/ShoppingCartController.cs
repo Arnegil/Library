@@ -37,9 +37,8 @@ namespace PizzaDelivery.Controllers.Ordering
         public IActionResult GoToDelivery(ShoppingCartVM shoppingCart)
         {
             _shoppingCardVmService.SaveShoppingCart(shoppingCart);
-            var model = _deliveryVmService.GetDeliveryInformation();
 
-            return RedirectToAction("Index", "DeliveryInfo", model);
+            return RedirectToAction("Index", "DeliveryInfo");
         }
     }
 }

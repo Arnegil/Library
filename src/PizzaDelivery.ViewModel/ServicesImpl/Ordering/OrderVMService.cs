@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using PizzaDelivery.Domain.Models.Orders;
 using PizzaDelivery.Services.Interfaces;
 using PizzaDelivery.ViewModel.Exensions;
@@ -36,6 +37,10 @@ namespace PizzaDelivery.ViewModel.ServicesImpl.Ordering
         public OrderResultVM CreateOrder(OrderVM newOrder)
         {
             var order = newOrder.ToOrder();
+
+            if (order.OrderPositions == null || order.OrderPositions.Count == 0)
+                return new OrderResultVM { SuccessOrdered = false };
+
             Guid createdOrderId = _orderService.CreateOrder(order);
             var createdOrder = _orderService.GetOrderById(createdOrderId);
             var createdOrderVM = createdOrder.ToOrderVM();
