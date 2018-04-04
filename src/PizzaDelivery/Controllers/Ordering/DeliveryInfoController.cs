@@ -12,17 +12,13 @@ namespace PizzaDelivery.Controllers.Ordering
     public class DeliveryInfoController : Controller
     {
         private readonly IDeliveryVMService _deliveryVmService; 
-        private readonly IPaymentVMService _paymentVMService; 
 
-        public DeliveryInfoController(IDeliveryVMService deliveryVmService, IPaymentVMService paymentVmService)
+        public DeliveryInfoController(IDeliveryVMService deliveryVmService)
         {
             if (deliveryVmService == null)
                 throw new ArgumentNullException(nameof(deliveryVmService));
-            if (paymentVmService == null)
-                throw new ArgumentNullException(nameof(paymentVmService));
 
             _deliveryVmService = deliveryVmService;
-            _paymentVMService = paymentVmService;
         }
 
         [HttpGet]

@@ -8,10 +8,21 @@
 
 @using (Html.BeginForm("SavePaymentInfo", "Payment", Model, FormMethod.Post))
 {
-    @Html.EditorFor(x => x.CardNumber)
-    @Html.EditorFor(x => x.CardOwnerName)
-    @Html.EditorFor(x => x.DateTo)
-    @Html.DropDownListFor(x => x.PaymentType, new List<SelectListItem>(Enum.GetNames(typeof(PaymentType)).Select(x => new SelectListItem(){Text = x, Value = x})))
+    <table>
+        <tr>
+            <td>@Html.DisplayNameFor(x => x.CardNumber)</td>
+            <td>@Html.EditorFor(x => x.CardNumber)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(x => x.CardOwnerName)</td>
+            <td>@Html.EditorFor(x => x.CardOwnerName)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(x => x.DateTo)</td>
+            <td>@Html.EditorFor(x => x.DateTo)</td>
+        </tr>
+        <tr>@Html.DropDownListFor(x => x.PaymentType, new List<SelectListItem>(Enum.GetNames(typeof(PaymentType)).Select(x => new SelectListItem() { Text = x, Value = x })))</tr>
+    </table>
 
     <button class="btn btn-primary" type="submit">Оплата</button>
 }

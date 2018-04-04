@@ -2,14 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using PizzaDelivery.Services;
 using PizzaDelivery.Services.Interfaces;
-using PizzaDelivery.ViewModel.Factories;
 using PizzaDelivery.ViewModel.Interfaces;
-using PizzaDelivery.ViewModel.Interfaces.Converiton;
 using PizzaDelivery.ViewModel.Interfaces.Ordering;
 using PizzaDelivery.ViewModel.ServicesImpl;
-using PizzaDelivery.ViewModel.ServicesImpl.Converiton;
 using PizzaDelivery.ViewModel.ServicesImpl.Ordering;
 
 namespace PizzaDelivery.ViewModel
@@ -31,6 +27,7 @@ namespace PizzaDelivery.ViewModel
             services.AddTransient<IOrderVMService>(provider => new OrderVMService(
                 provider.GetService<IOrderService>(),
                 provider.GetService<Cache>()));
+            services.AddTransient<IPesonalPageVMService>(provider => new PesonalPageVMService());
         }
     }
 }

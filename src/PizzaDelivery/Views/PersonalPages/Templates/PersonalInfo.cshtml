@@ -1,0 +1,37 @@
+﻿@model PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client.PersonalInfoVM
+@{
+    ViewData["Title"] = "DeliveryInfo";
+}
+
+<h2>DeliveryInfo</h2>
+
+<table>
+    <tr>
+        <td>@Html.DisplayNameFor(x => x.FirstName)</td>
+        <td>@Html.DisplayFor(x => x.FirstName)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(x => x.LastName)</td>
+        <td>@Html.DisplayFor(x => x.LastName)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(x => x.MiddleName)</td>
+        <td>@Html.DisplayFor(x => x.MiddleName)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(x => x.Birthday)</td>
+        <td>@Html.DisplayFor(x => x.Birthday)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(x => x.PhoneNumber)</td>
+        <td>@Html.DisplayFor(x => x.PhoneNumber)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(x => x.Email)</td>
+        <td>@Html.DisplayFor(x => x.Email)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(x => x.BonusPoints)</td>
+        <td>@Html.DisplayFor(x => x.BonusPoints)</td>
+    </tr>
+</table>

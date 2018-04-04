@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client;
 using PizzaDelivery.ViewModel.ViewModels.PersonalPages.Deliveryman;

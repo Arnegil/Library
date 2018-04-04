@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using PizzaDelivery.Models;
 using PizzaDelivery.ViewModel.Interfaces;
 using PizzaDelivery.ViewModel.Interfaces.Ordering;
 using PizzaDelivery.ViewModel.ViewModels.Ordering;
@@ -70,7 +71,12 @@ namespace PizzaDelivery.Controllers
         
         public IActionResult PersonalPage()
         {
-            return View();
+            return RedirectToAction("Index", "PersonPage");
+        }
+
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

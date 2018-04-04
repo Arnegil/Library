@@ -9,11 +9,28 @@
 
 @using (Html.BeginForm("SaveDeliveryInformation", "DeliveryInfo", Model, FormMethod.Post))
 {
-    @Html.EditorFor(x => x.ClientName)
-    @Html.EditorFor(x => x.ClientPhoneNumber)
-    @Html.EditorFor(x => x.DeliveryAddress)
-    @Html.EditorFor(x => x.CommentToOperator)
-    @Html.CheckBoxFor(x => x.ShipmenAtOwnExpense)
+    <table>
+        <tr>
+            <td>@Html.DisplayNameFor(x => x.ClientName)</td>
+            <td>@Html.EditorFor(x => x.ClientName)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(x => x.ClientPhoneNumber)</td>
+            <td>@Html.EditorFor(x => x.ClientPhoneNumber)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(x => x.DeliveryAddress)</td>
+            <td>@Html.EditorFor(x => x.DeliveryAddress)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(x => x.CommentToOperator)</td>
+            <td>@Html.EditorFor(x => x.CommentToOperator)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(x => x.ShipmenAtOwnExpense)</td>
+            <td>@Html.EditorFor(x => x.ShipmenAtOwnExpense)</td>
+        </tr>
+    </table>
     
     <button class="btn btn-primary" type="submit">Оплата</button>
 }

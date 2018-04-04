@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace PizzaDelivery.ViewModel.ViewModels.Ordering
 {
@@ -6,6 +7,7 @@ namespace PizzaDelivery.ViewModel.ViewModels.Ordering
     {
         public Guid Id { get; set; }
 
+        [Display(Name = "Номер заказа")]
         public int Number { get; set; }
 
         public ShoppingCartVM ShoppingCart { get; set; }
