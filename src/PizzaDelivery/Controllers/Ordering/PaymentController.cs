@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using PizzaDelivery.Extensions;
 using PizzaDelivery.ViewModel.ViewModels.Ordering;
 using PizzaDelivery.ViewModel.Interfaces.Ordering;
 
@@ -28,7 +29,9 @@ namespace PizzaDelivery.Controllers.Ordering
         [HttpGet]
         public IActionResult Index()
         {
-            var model = _paymentVMService.GetPaymentInfo();
+            var model = HttpContext.Session.Get<PaymentInfoVM>(SessionKeys.PaymentInfo);
+            if (model.IsEmpty)
+                model = _paymentVMService.GetPartOfPaymentInfo();
 
             return View("/Views/Ordering/Payment.cshtml", model);
         }
@@ -36,8 +39,11 @@ namespace PizzaDelivery.Controllers.Ordering
         [HttpPost]
         public IActionResult SavePaymentInfo(PaymentInfoVM paymentInfo)
         {
-            _paymentVMService.SavePaymentInfo(paymentInfo);
-            var newOrder = _orderVMService.BuildNewOrder();
+            HttpContext.Session.Set(SessionKeys.PaymentInfo, paymentInfo);
+            var shoppingCart = HttpContext.Session.Get<ShoppingCartVM>(SessionKeys.ShoppingCart);
+            var deliveryInfo = HttpContext.Session.Get<DeliveryInfoVM>(SessionKeys.DeliveryInfo);
+
+            var newOrder = _orderVMService.BuildNewOrder(shoppingCart, deliveryInfo, paymentInfo);
             var model = _orderVMService.CreateOrder(newOrder);
 
             return View("/Views/Ordering/OrderResult.cshtml", model);

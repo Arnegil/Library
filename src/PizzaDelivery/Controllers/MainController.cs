@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using PizzaDelivery.Extensions;
 using PizzaDelivery.Models;
 using PizzaDelivery.ViewModel.Interfaces;
 using PizzaDelivery.ViewModel.Interfaces.Ordering;
@@ -54,7 +55,9 @@ namespace PizzaDelivery.Controllers
         [HttpPost]
         public IActionResult AddToShoppingCard(OrderPositionVM orderPosition)
         {
-            _shoppingCardVmService.PutInShoppingCard(orderPosition);
+            var shoppingCart = HttpContext.Session.Get<ShoppingCartVM>(SessionKeys.ShoppingCart);
+            shoppingCart = _shoppingCardVmService.PutInShoppingCard(shoppingCart, orderPosition);
+            HttpContext.Session.Set(SessionKeys.ShoppingCart, shoppingCart);
 
             return RedirectToAction("Index");
         }

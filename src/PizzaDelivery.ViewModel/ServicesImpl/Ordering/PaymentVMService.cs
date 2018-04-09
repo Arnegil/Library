@@ -7,44 +7,31 @@ namespace PizzaDelivery.ViewModel.ServicesImpl.Ordering
 {
     public class PaymentVMService : IPaymentVMService
     {
-        private readonly Cache _cache;
         private readonly IClientService _clientService;
         
-        public PaymentVMService(IClientService clientService, Cache cache)
+        public PaymentVMService(IClientService clientService)
         {
             if (clientService == null)
                 throw new ArgumentNullException(nameof(clientService));
 
             _clientService = clientService;
-            _cache = cache;
         }
 
-        public PaymentInfoVM GetPaymentInfo()
+        public PaymentInfoVM GetPartOfPaymentInfo()
         {
-            var payment = _cache.PaymentInfoOfCurrentUser;
+            var payment = new PaymentInfoVM();
+            
+            Guid clientId = Guid.Empty;
+            var client = _clientService.GetClientById(clientId);
 
-            if (payment.IsEmpty)
+            if (client != null && client.HaveCardInfo)
             {
-                Guid clientId = Guid.Empty;
-                var client = _clientService.GetClientById(clientId);
-
-                if (client != null && client.HaveCardInfo)
-                {
-                    payment.CardNumber = client.CardNumber;
-                    payment.CardOwnerName = client.CardOwnerName;
-                    payment.DateTo = client.DateTo.Value;
-                }
+                payment.CardNumber = client.CardNumber;
+                payment.CardOwnerName = client.CardOwnerName;
+                payment.DateTo = client.DateTo.Value;
             }
 
             return payment;
-        }
-
-        public void SavePaymentInfo(PaymentInfoVM paymentInfo)
-        {
-            _cache.PaymentInfoOfCurrentUser.CardNumber = paymentInfo.CardNumber;
-            _cache.PaymentInfoOfCurrentUser.CardOwnerName = paymentInfo.CardOwnerName;
-            _cache.PaymentInfoOfCurrentUser.DateTo = paymentInfo.DateTo;
-            _cache.PaymentInfoOfCurrentUser.PaymentType = paymentInfo.PaymentType;
         }
     }
 }

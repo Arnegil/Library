@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using PizzaDelivery.Extensions;
 using PizzaDelivery.ViewModel.Interfaces.Ordering;
 using PizzaDelivery.ViewModel.ViewModels.Ordering;
 
@@ -24,7 +25,9 @@ namespace PizzaDelivery.Controllers.Ordering
         [HttpGet]
         public IActionResult Index()
         {
-            var model = _deliveryVmService.GetDeliveryInformation();
+            var model = HttpContext.Session.Get<DeliveryInfoVM>(SessionKeys.DeliveryInfo);
+            if (model.IsEmpty)
+                model = _deliveryVmService.GetPartOfDeliveryInformation();
 
             return View("/Views/Ordering/DeliveryInfo.cshtml", model);
         }
@@ -32,7 +35,7 @@ namespace PizzaDelivery.Controllers.Ordering
         [HttpPost]
         public IActionResult SaveDeliveryInformation(DeliveryInfoVM deliveryInfo)
         {
-            _deliveryVmService.SaveDeliveryInfo(deliveryInfo);
+            HttpContext.Session.Set(SessionKeys.DeliveryInfo, deliveryInfo);
 
             return RedirectToAction("Index", "Payment");
         }

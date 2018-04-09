@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
@@ -6,6 +7,8 @@ namespace PizzaDelivery.ViewModel.ViewModels.Ordering
 {
     public class ShoppingCartVM
     {
+        public int Intasd { get; set; }
+
         public List<OrderPositionVM> Products { get; set; }
 
         [Display(Name = "Сумма заказа")]

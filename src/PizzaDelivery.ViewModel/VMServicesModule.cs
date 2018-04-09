@@ -14,19 +14,13 @@ namespace PizzaDelivery.ViewModel
     {
         public static void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<Cache>(provider => new Cache());
-
             services.AddTransient<IPizzaPageVMService>(provider => new PizzaPageVMService(provider.GetService<IPizzaService>()));
-            services.AddTransient<IShoppingCardVMService>(provider => new ShoppingCartVMService(provider.GetService<Cache>()));
+            services.AddTransient<IShoppingCardVMService>(provider => new ShoppingCartVMService());
             services.AddTransient<IDeliveryVMService>(provider => new DeliveryVMService(
-                provider.GetService<IClientService>(),
-                provider.GetService<Cache>()));
+                provider.GetService<IClientService>()));
             services.AddTransient<IPaymentVMService>(provider => new PaymentVMService(
-                provider.GetService<IClientService>(),
-                provider.GetService<Cache>()));
-            services.AddTransient<IOrderVMService>(provider => new OrderVMService(
-                provider.GetService<IOrderService>(),
-                provider.GetService<Cache>()));
+                provider.GetService<IClientService>()));
+            services.AddTransient<IOrderVMService>(provider => new OrderVMService(provider.GetService<IOrderService>()));
             services.AddTransient<IPesonalPageVMService>(provider => new PesonalPageVMService());
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using NuGet.Packaging;
 using PizzaDelivery.Domain;
 using PizzaDelivery.Domain.Models.Orders;
 using PizzaDelivery.Services.Interfaces;
@@ -32,7 +32,7 @@ namespace PizzaDelivery.Services.ServicesImpl
             return order;
         }
 
-        public Guid CreateOrder(Order newOrder)
+        public Guid CreateOrder(Order newOrder, IEnumerable<OrderPosition> orderPositions)
         {
             var order = new Order
             {
@@ -46,7 +46,13 @@ namespace PizzaDelivery.Services.ServicesImpl
                 CommentToOperator = newOrder.CommentToOperator
             };
             order.OrderNumber = GetNextOderNumber();
-            order.OrderPositions.AddRange(order.OrderPositions);
+
+            foreach (var orderPosition in orderPositions)
+            {
+                orderPosition.Order = order;
+                _context.OrderPositions.Add(orderPosition);
+            }
+            _context.Orders.Add(order);
 
             _context.SaveChanges();
             return order.Id;

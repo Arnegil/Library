@@ -28,7 +28,10 @@ namespace PizzaDelivery
             ServicesModule.ConfigureServices(services);
             VMServicesModule.ConfigureServices(services);
 
-            services.AddMvc();
+            services
+                .AddMvc()
+                .AddSessionStateTempDataProvider();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,7 +48,7 @@ namespace PizzaDelivery
             }
 
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

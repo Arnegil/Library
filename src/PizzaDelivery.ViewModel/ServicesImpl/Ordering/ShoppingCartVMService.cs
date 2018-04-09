@@ -1,43 +1,34 @@
 ﻿using System.Linq;
 using PizzaDelivery.ViewModel.Interfaces.Ordering;
-using PizzaDelivery.ViewModel.ViewModels.Main.PizzaPage;
 using PizzaDelivery.ViewModel.ViewModels.Ordering;
 
 namespace PizzaDelivery.ViewModel.ServicesImpl.Ordering
 {
     internal class ShoppingCartVMService : IShoppingCardVMService
     {
-        private readonly Cache _cache;
+        public ShoppingCartVMService()
+        { }
 
-        public ShoppingCartVMService(Cache cache)
-        {
-            _cache = cache;
-        }
-
-        public void PutInShoppingCard(OrderPositionVM orderPosition)
+        public ShoppingCartVM PutInShoppingCard(ShoppingCartVM shoppingCart, OrderPositionVM orderPosition)
         {
             if (orderPosition.Count <= 0)
-                return;
-
-            var shoppingCart = _cache.ShoppingCartOfCurrentUser;
+                return shoppingCart;
 
             var orderedPizza = shoppingCart.Products
                 .FirstOrDefault(x => x.PizzaId == orderPosition.PizzaId);
 
             if (orderedPizza == null)
-                shoppingCart.Products.Add(orderPosition);
+            {
+                var products = shoppingCart.Products.ToList();
+                products.Add(orderPosition);
+                shoppingCart.Products = products;
+            }
             else
                 orderedPizza.Count += orderPosition.Count;
-        }
 
-        public ShoppingCartVM GetShoppingCart()
-        {
-            return _cache.ShoppingCartOfCurrentUser;
-        }
+            shoppingCart.Intasd = 123;
 
-        public void SaveShoppingCart(ShoppingCartVM shoppingCart)
-        {
-            _cache.ShoppingCartOfCurrentUser.Products = shoppingCart.Products.Where(x => x.Count > 0).ToList();
+            return shoppingCart;
         }
     }
 }

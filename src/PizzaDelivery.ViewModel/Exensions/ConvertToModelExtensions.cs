@@ -27,9 +27,8 @@ namespace PizzaDelivery.ViewModel.Exensions
             var model = new Order
             {
                 DeliveryInfo = order.DeliveryInfo.ToDeliveryInfo(),
-                PaymentInfo = order.PaymentInfo.ToPaymentInfo(),
+                PaymentInfo = order.PaymentInfo.ToPaymentInfo()
             };
-            model.OrderPositions.AddRange(order.ShoppingCart.Products.Select(ToOrderPosition));
             model.CommentToOperator = order.DeliveryInfo.CommentToOperator;
 
             return model;

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using PizzaDelivery.Domain.Models.Orders;
 using PizzaDelivery.Services.Interfaces;
 using PizzaDelivery.ViewModel.Exensions;
 using PizzaDelivery.ViewModel.Interfaces.Ordering;
@@ -11,24 +10,22 @@ namespace PizzaDelivery.ViewModel.ServicesImpl.Ordering
     public class OrderVMService : IOrderVMService
     {
         private readonly IOrderService _orderService;
-        private readonly Cache _cache;
 
-        public OrderVMService(IOrderService orderService, Cache cache)
+        public OrderVMService(IOrderService orderService)
         {
             if (orderService == null)
                 throw new ArgumentNullException(nameof(orderService));
 
             _orderService = orderService;
-            _cache = cache;
         }
 
-        public OrderVM BuildNewOrder()
+        public OrderVM BuildNewOrder(ShoppingCartVM shoppingCart, DeliveryInfoVM deliveryInfo, PaymentInfoVM paymentInfo)
         {
             var vm = new OrderVM
             {
-                ShoppingCart = _cache.ShoppingCartOfCurrentUser,
-                DeliveryInfo = _cache.OderDeliveryInfoOfCurrentUser,
-                PaymentInfo = _cache.PaymentInfoOfCurrentUser
+                ShoppingCart = shoppingCart,
+                DeliveryInfo = deliveryInfo,
+                PaymentInfo = paymentInfo
             };
 
             return vm;
@@ -38,10 +35,11 @@ namespace PizzaDelivery.ViewModel.ServicesImpl.Ordering
         {
             var order = newOrder.ToOrder();
 
-            if (order.OrderPositions == null || order.OrderPositions.Count == 0)
+            if (newOrder.ShoppingCart.Products == null || newOrder.ShoppingCart.Products.Count == 0)
                 return new OrderResultVM { SuccessOrdered = false };
 
-            Guid createdOrderId = _orderService.CreateOrder(order);
+            var orderPosotions = newOrder.ShoppingCart.Products.Select(x => x.ToOrderPosition());
+            Guid createdOrderId = _orderService.CreateOrder(order, orderPosotions);
             var createdOrder = _orderService.GetOrderById(createdOrderId);
             var createdOrderVM = createdOrder.ToOrderVM();
 
