@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace PizzaDelivery.ViewModel.ViewModels.Main.PizzaPage
 {
     public class PizzaVM
     {
         public Guid Id { get; set; }
-        
+
+        [Display(Name = "Название")]
         public string Name { get; set; }
-        
+
+        [Display(Name = "Состав")]
         public string Recipe { get; set; }
-        
+
+        [Display(Name = "Цена")]
         public decimal Cost { get; set; }
 
         private sealed class IdEqualityComparer : IEqualityComparer<PizzaVM>

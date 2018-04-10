@@ -12,7 +12,7 @@ namespace PizzaDelivery.ViewModel.ViewModels.Ordering
         public List<OrderPositionVM> Products { get; set; }
 
         [Display(Name = "Сумма заказа")]
-        public decimal SumOrderPrice => Products.Sum(x => x.Count * x.Cost);
+        public decimal SumOrderPrice => Products.Sum(x => x.Sum);
 
         public ShoppingCartVM()
         {

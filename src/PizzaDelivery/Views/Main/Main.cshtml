@@ -7,19 +7,4 @@
 
 <a class="btn btn-primary" href="@Url.Action("Index", "ShoppingCart")">Корзина</a>
 
-@foreach (var itemPosition in Model.PizzaList)
-{
-     using (Html.BeginForm("AddToShoppingCard", "Main", itemPosition, FormMethod.Post))
-     {
-         <table>
-             <tr>
-                 <td>@itemPosition.PizzaName</td>
-                 <td>@itemPosition.PizzaRecipe</td>
-                 <td>@itemPosition.Cost</td>
-                 <td>@Html.EditorFor(x => x.PizzaList.Find(y => y.PizzaId == itemPosition.PizzaId).Count)</td>
-             </tr>
-         </table>
-
-         <button class="btn btn-primary" type="submit">Добавить</button>
-     }
-}
+@Html.DisplayFor(x => x.PizzaList)

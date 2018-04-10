@@ -27,13 +27,12 @@ namespace PizzaDelivery.Controllers.Ordering
         {
             var model = HttpContext.Session.Get<ShoppingCartVM>(SessionKeys.ShoppingCart);
 
-            return View("/Views/Ordering/ShoppingCart.cshtml", model);
+            return View("/Views/ShoppingCart/ShoppingCart.cshtml", model);
         }
 
         [HttpPost]
         public IActionResult GoToDelivery(ShoppingCartVM model)
         {
-            model.Products.Add(new OrderPositionVM(){PizzaName = "asd", PizzaRecipe = "asdasd", Cost = 123});
             HttpContext.Session.Set(SessionKeys.ShoppingCart, model);
 
             return RedirectToAction("Index", "DeliveryInfo");

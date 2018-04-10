@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using PizzaDelivery.ViewModel.Interfaces;
+using PizzaDelivery.ViewModel.ViewModels.Main.PizzaPage;
 using PizzaDelivery.ViewModel.ViewModels.Ordering;
 using PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client;
 using PizzaDelivery.ViewModel.ViewModels.PersonalPages.Deliveryman;
@@ -44,9 +45,12 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
                             {
                                 new OrderPositionVM
                                 {
-                                    PizzaName = "Pizza",
-                                    PizzaRecipe = "Something",
-                                    Cost = 123,
+                                    Pizza = new PizzaVM()
+                                    {
+                                        Name = "Pizza",
+                                        Recipe = "Something",
+                                        Cost = 123
+                                    },
                                     Count = 2
                                 }
                             }

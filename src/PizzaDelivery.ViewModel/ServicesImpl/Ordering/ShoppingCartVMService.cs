@@ -15,7 +15,7 @@ namespace PizzaDelivery.ViewModel.ServicesImpl.Ordering
                 return shoppingCart;
 
             var orderedPizza = shoppingCart.Products
-                .FirstOrDefault(x => x.PizzaId == orderPosition.PizzaId);
+                .FirstOrDefault(x => x.Pizza.Id == orderPosition.Pizza.Id);
 
             if (orderedPizza == null)
             {

@@ -19,7 +19,6 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
                 throw new ArgumentNullException(nameof(pizzaService));
 
             PageSize = 10;
-
             _pizzaService = pizzaService;
         }
 
@@ -36,10 +35,7 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
             {
                 PizzaList = pizzas.Select(pizza => new OrderPositionVM
                 {
-                    PizzaId = pizza.Id,
-                    PizzaName = pizza.Name,
-                    PizzaRecipe = pizza.Recipe,
-                    Cost = pizza.Cost,
+                    Pizza = pizza,
                     Count = 1
                 }).ToList()
             };

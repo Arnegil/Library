@@ -1,0 +1,18 @@
+﻿@model PizzaDelivery.ViewModel.ViewModels.Ordering.ShoppingCartVM
+@{
+    ViewData["Title"] = "ShoppingCart";
+}
+
+<h2>ShoppingCart</h2>
+
+@using (Html.BeginForm("GoToDelivery", "ShoppingCart", Model, FormMethod.Post))
+{
+    <table>
+        @Html.DisplayFor(x => x.Products)
+    </table>
+    
+    @Html.DisplayNameFor(x => x.SumOrderPrice)
+    @Html.DisplayFor(x => x.SumOrderPrice)
+
+    <button class="btn btn-primary" type="submit">Доставка</button>
+}

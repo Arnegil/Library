@@ -40,10 +40,7 @@ namespace PizzaDelivery.ViewModel.Exensions
         {
             return new OrderPositionVM
             { 
-                PizzaId = orderPosition.Pizza.Id,
-                PizzaName = orderPosition.Pizza.Name,
-                PizzaRecipe = orderPosition.Pizza.Recipe,
-                Cost = orderPosition.Pizza.Cost,
+                Pizza = orderPosition.Pizza.ToPizzaVM(),
                 Count = orderPosition.Count
             };
         }

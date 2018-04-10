@@ -1,0 +1,15 @@
+﻿@model PizzaDelivery.ViewModel.ViewModels.Ordering.OrderPositionVM
+
+@using (Html.BeginForm("AddToShoppingCard", "Main", Model, FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>@Html.DisplayFor(x => x.Pizza.Name)</td>
+            <td>@Html.DisplayFor(x => x.Pizza.Recipe)</td>
+            <td>@Html.DisplayFor(x => x.Pizza.Cost)</td>
+            <td>@Html.EditorFor(x => x.Count)</td>
+        </tr>
+    </table>
+
+    <button class="btn btn-primary" type="submit">Добавить</button>
+}
