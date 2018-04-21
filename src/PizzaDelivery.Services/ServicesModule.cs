@@ -13,7 +13,8 @@ namespace PizzaDelivery.Services
         public static void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IPizzaService>(provider => new PizzaService(provider.GetService<PizzaDeliveryDBContext>()));
-            services.AddTransient<IClientService>(provier => new ClientService(provier.GetService<PizzaDeliveryDBContext>()));
-            services.AddTransient<IOrderService>(provier => new OrderService(provier.GetService<PizzaDeliveryDBContext>()));
+            services.AddTransient<IClientService>(provider => new ClientService(provider.GetService<PizzaDeliveryDBContext>()));
+            services.AddTransient<IOrderService>(provider => new OrderService(provider.GetService<PizzaDeliveryDBContext>()));
+            services.AddTransient<IRegistrationService>(provider => new RegistrationService(provider.GetService<PizzaDeliveryDBContext>()));
         }
     }}
