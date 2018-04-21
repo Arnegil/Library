@@ -1,0 +1,19 @@
+﻿@model PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client.LoginVM
+@{
+    ViewData["Title"] = "Вход";
+}
+
+@using (Html.BeginForm("LoginUser", "Login", Model, FormMethod.Post))
+{
+    <table style="padding: 30px 30px 30px 30px" cellspacing="30">
+        <tr>
+            <td>Логин</td>
+            <td>@Html.EditorFor(x => x.Login)</td>
+        </tr>
+        <tr>
+            <td>Пароль</td>
+            <td>@Html.EditorFor(x => x.Password)</td>
+        </tr>
+    </table>
+    <button class="btn btn-primary" type="submit">Вход</button>
+}

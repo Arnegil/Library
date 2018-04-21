@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using PizzaDelivery.Domain.Models.Orders;
@@ -12,7 +14,9 @@ using PizzaDelivery.Models;
 using PizzaDelivery.Services.Interfaces;
 using PizzaDelivery.ViewModel.Interfaces;
 using PizzaDelivery.ViewModel.Interfaces.Ordering;
+using PizzaDelivery.ViewModel.Interfaces.ViewModel;
 using PizzaDelivery.ViewModel.ViewModels.Ordering;
+using PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client;
 
 namespace PizzaDelivery.Controllers
 {
@@ -76,14 +80,27 @@ namespace PizzaDelivery.Controllers
             return View();
         }
         
+        [Authorize(Roles = "client")]
         public IActionResult PersonalPage()
         {
             return RedirectToAction("Index", "PersonPage");
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return RedirectToAction("Index","Login");
+        }
+
+        public IActionResult RegistrationPage()
+        {
+            return RedirectToAction("Index", "RegistrationPage");
         }
 
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        
     }
 }
