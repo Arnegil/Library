@@ -7,6 +7,7 @@ using PizzaDelivery.ViewModel.Interfaces;
 using PizzaDelivery.ViewModel.Interfaces.Ordering;
 using PizzaDelivery.ViewModel.ServicesImpl;
 using PizzaDelivery.ViewModel.ServicesImpl.Ordering;
+using PizzaDelivery.ViewModel.Interfaces.ViewModel;
 
 namespace PizzaDelivery.ViewModel
 {
@@ -22,6 +23,8 @@ namespace PizzaDelivery.ViewModel
                 provider.GetService<IClientService>()));
             services.AddTransient<IOrderVMService>(provider => new OrderVMService(provider.GetService<IOrderService>()));
             services.AddTransient<IPesonalPageVMService>(provider => new PesonalPageVMService());
+            services.AddTransient<IRegistrationVMService>(provider => new RegistrationVMService());
+            services.AddTransient<ILoginVMService>(provider => new LoginVMService());
         }
     }
 }
