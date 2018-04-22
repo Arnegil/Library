@@ -5,17 +5,19 @@ namespace PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client
 {
     public class RegistrationVM
     {
-        /*public string LastName { get; set; }
-        
-        public string FirstName { get; set; }
-        
-        public string MiddleName { get; set; }*/
-        public Guid Id { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string LastName { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string FullName { get; set; }
+        public string FirstName { get; set; }
 
+        
+        [StringLength(100)]
+        public string MiddleName { get; set; }
+        public Guid Id { get; set; }
+        
         [Required]
         [StringLength(50)]
         public string Login { get; set; }
@@ -30,7 +32,7 @@ namespace PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client
 
         [Required]
         [DataType(DataType.PhoneNumber)]
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         [Required]
         [StringLength(100)]

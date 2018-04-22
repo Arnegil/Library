@@ -10,13 +10,21 @@ namespace PizzaDelivery.Services.ServicesImpl
     public class RegistrationService : IRegistrationService
     {
         private readonly PizzaDeliveryDBContext _context;
+
         public RegistrationService(PizzaDeliveryDBContext context)
         {
             _context = context;
         }
+
         public void RegisterPerson(Person person)
         {
             _context.Persons.Add(person);
+            _context.Clients.Add(new Client
+            {
+                Person = person,
+                BonusCount = 0
+            });
+            _context.SaveChanges();
         }
     }
 }

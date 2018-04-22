@@ -8,7 +8,7 @@ namespace PizzaDelivery.ViewModel.Interfaces
 {
     public interface IPesonalPageVMService
     {
-        PersonalInfoVM GetPersonalInfo();
+        PersonalInfoVM GetPersonalInfo(string login);
         void SavePersonalInfo(PersonalInfoVM personalInfo);
         OrderHistoryVM GetOrderHistory();
 

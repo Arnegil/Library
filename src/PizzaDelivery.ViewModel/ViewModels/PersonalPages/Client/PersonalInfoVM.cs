@@ -15,7 +15,7 @@ namespace PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client
         public string MiddleName { get; set; }
 
         [Display(Name = "Дата рождения")]
-        public DateTime Birthday { get; set; }
+        public DateTime? Birthday { get; set; }
 
         [Display(Name = "Номер телефона")]
         public string PhoneNumber { get; set; }

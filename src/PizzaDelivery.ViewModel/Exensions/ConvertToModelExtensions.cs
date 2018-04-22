@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using NuGet.Packaging;
 using PizzaDelivery.Domain.Models.Orders;
+using PizzaDelivery.Domain.Models.Persons;
 using PizzaDelivery.ViewModel.ViewModels.Main.PizzaPage;
 using PizzaDelivery.ViewModel.ViewModels.Ordering;
+using PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client;
 
 namespace PizzaDelivery.ViewModel.Exensions
 {
@@ -60,6 +62,21 @@ namespace PizzaDelivery.ViewModel.Exensions
                 CardNumber = paymentInfo.CardNumber,
                 CardOwnerName = paymentInfo.CardOwnerName,
                 DateTo = paymentInfo.DateTo
+            };
+        }
+
+        public static Person ToPerson(this RegistrationVM registration)
+        {
+            return new Person
+            {
+                Login = registration.Login,
+                Address = registration.Address,
+                Birthday = registration.Birthday,
+                Email = registration.Email,
+                FirstName = registration.FirstName,
+                LastName = registration.LastName,
+                MiddleName = registration.MiddleName,
+                PhoneNumber = registration.PhoneNumber
             };
         }
     }

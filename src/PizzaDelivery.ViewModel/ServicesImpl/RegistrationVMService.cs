@@ -1,34 +1,33 @@
-﻿using PizzaDelivery.Domain;
-using PizzaDelivery.ViewModel.Interfaces;
+﻿using PizzaDelivery.ViewModel.Interfaces;
 using PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client;
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using PizzaDelivery.Services.Interfaces;
+using PizzaDelivery.ViewModel.Exensions;
 
 namespace PizzaDelivery.ViewModel.ServicesImpl
 {
     public class RegistrationVMService : IRegistrationVMService
     {
+        private readonly IRegistrationService _registrationService;
+
+        public RegistrationVMService(IRegistrationService registrationService)
+        {
+            _registrationService = registrationService;
+        }
+
         public void RegisterNewClient(RegistrationVM registrationVm)
         {
-            using (var db = new PizzaDeliveryDBContext(new Microsoft.EntityFrameworkCore.DbContextOptions<PizzaDeliveryDBContext>()))
+            var newPerson = registrationVm.ToPerson();
+            
+            using (var md5 = MD5.Create())
             {
-                var RegistrationEncoded = registrationVm;
-                using (var md5 = MD5.Create())
-                {
-                    RegistrationEncoded.Password = md5.ComputeHash(Encoding.ASCII.GetBytes(registrationVm.Password)).ToString();
-                }
-                db.Add(RegistrationEncoded);
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    Console.Write(e);
-                }
+                newPerson.Password = Encoding.UTF8.GetString(md5.ComputeHash(Encoding.UTF8.GetBytes(registrationVm.Password)));
             }
+
+            _registrationService.RegisterPerson(newPerson);
         }
     }
 }

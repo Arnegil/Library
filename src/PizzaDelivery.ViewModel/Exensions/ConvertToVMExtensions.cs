@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using PizzaDelivery.Domain.Models.Orders;
+using PizzaDelivery.Domain.Models.Persons;
 using PizzaDelivery.ViewModel.ViewModels.Main.PizzaPage;
 using PizzaDelivery.ViewModel.ViewModels.Ordering;
+using PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client;
 
 namespace PizzaDelivery.ViewModel.Exensions
 {
@@ -62,6 +64,20 @@ namespace PizzaDelivery.ViewModel.Exensions
                 CardNumber = paymentInfo.CardNumber,
                 CardOwnerName = paymentInfo.CardOwnerName,
                 DateTo = paymentInfo.DateTo
+            };
+        }
+
+        public static PersonalInfoVM ToPersonalInfoVM(this Client client)
+        {
+            return new PersonalInfoVM
+            {
+                Email = client.Person.Email,
+                FirstName = client.Person.FirstName,
+                LastName = client.Person.LastName,
+                MiddleName = client.Person.MiddleName,
+                Birthday = client.Person.Birthday,
+                PhoneNumber = client.Person.PhoneNumber,
+                BonusPoints = client.BonusCount
             };
         }
     }

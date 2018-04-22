@@ -30,7 +30,7 @@ namespace PizzaDelivery.Controllers
         [Authorize(Roles = "client")]
         public IActionResult PersonalInfoPage()
         {
-            var model = _pesonalPageVmService.GetPersonalInfo();
+            var model = _pesonalPageVmService.GetPersonalInfo(HttpContext.User.Identity.Name);
 
             return View("/Views/PersonalPages/Templates/PersonalInfo.cshtml", model);
         }

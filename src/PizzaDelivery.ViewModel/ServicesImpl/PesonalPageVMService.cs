@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using PizzaDelivery.Services.Interfaces;
+using PizzaDelivery.ViewModel.Exensions;
 using PizzaDelivery.ViewModel.Interfaces;
 using PizzaDelivery.ViewModel.ViewModels.Main.PizzaPage;
 using PizzaDelivery.ViewModel.ViewModels.Ordering;
@@ -11,18 +13,18 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
 {
     internal class PesonalPageVMService : IPesonalPageVMService
     {
-        public PersonalInfoVM GetPersonalInfo()
+        private readonly IClientService _clientService;
+
+        public PesonalPageVMService(IClientService clientService)
         {
-            return new PersonalInfoVM
-            {
-                Email = "email@mail.ru",
-                FirstName = "Ivan",
-                LastName = "Ivanov",
-                MiddleName = "Ivanovich",
-                Birthday = DateTime.Parse("01.02.1990"),
-                PhoneNumber = "323-23-23",
-                BonusPoints = 123
-            };
+            _clientService = clientService;
+        }
+
+        public PersonalInfoVM GetPersonalInfo(string login)
+        {
+            var client = _clientService.GetClientByLogin(login);
+
+            return client.ToPersonalInfoVM();
         }
 
         public void SavePersonalInfo(PersonalInfoVM personalInfo)

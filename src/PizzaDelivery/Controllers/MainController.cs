@@ -96,7 +96,7 @@ namespace PizzaDelivery.Controllers
 
         public IActionResult RegistrationPage()
         {
-            return RedirectToAction("Index", "RegistrationPage");
+            return RedirectToAction("Index", "Registration");
         }
 
         public IActionResult Error()

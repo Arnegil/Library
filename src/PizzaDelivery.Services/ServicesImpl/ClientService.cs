@@ -30,7 +30,7 @@ namespace PizzaDelivery.Services.ServicesImpl
         {
             var client = _context.Clients
                 .Include(x => x.Person)
-                .FirstOrDefault(x => x.Person.Login == login);
+                .FirstOrDefault(x => x.Person.Login.ToLower() == login.ToLower());
             return client;
         }
 
