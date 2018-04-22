@@ -2,9 +2,11 @@
 using PizzaDelivery.ViewModel.Interfaces.ViewModel;
 using PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using PizzaDelivery.Models;
 
 namespace PizzaDelivery.Controllers
 {
@@ -22,10 +24,21 @@ namespace PizzaDelivery.Controllers
             return View("/Views/Login/Login.cshtml");
         }
 
-        public IActionResult LoginUser(LoginVM login)
+        [HttpPost]
+        public async Task<IActionResult> LoginUser(LoginVM login)
         {
-            _loginVMService.LogInUser(login);
-            return RedirectToAction("Main", "Main");
+            login = new LoginVM(){Login = "asd32", Password = "123"};
+            var principal = _loginVMService.LogInUser(login);
+            if (principal == null)
+                return Error();
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(principal));
+            return RedirectToAction("Index", "Main");
+        }
+
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = "Неправильный логин или пароль" });
         }
     }
 }

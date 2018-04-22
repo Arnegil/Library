@@ -1,0 +1,35 @@
+﻿@using PizzaDelivery.ViewModel.ViewModels.Ordering
+@model PizzaDelivery.ViewModel.ViewModels.PersonalPages.Operator.NewOrdersVM
+@{
+    ViewData["Title"] = "OrderHistory";
+}
+
+<h2>OrderHistory</h2>
+
+
+@foreach (OrderVM order in Model.OrderList)
+{
+    <td>@Html.DisplayNameFor(x => order.Number)</td>
+    <td>@Html.DisplayFor(x => order.Number)</td>
+    <table>
+        @foreach (OrderPositionVM position in order.ShoppingCart.Products)
+        {
+            <tr>
+                <td>@Html.DisplayNameFor(x => position.Pizza.Name)</td>
+                <td>@Html.DisplayNameFor(x => position.Pizza.Recipe)</td>
+                <td>@Html.DisplayNameFor(x => position.Pizza.Cost)</td>
+                <td>@Html.DisplayNameFor(x => position.Count)</td>
+                <td>@Html.DisplayNameFor(x => position.Sum)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayFor(x => position.Pizza.Name)</td>
+                <td>@Html.DisplayFor(x => position.Pizza.Recipe)</td>
+                <td>@Html.DisplayFor(x => position.Pizza.Cost)</td>
+                <td>@Html.DisplayFor(x => position.Count)</td>
+                <td>@Html.DisplayFor(x => position.Sum)</td>
+            </tr>
+        }
+    </table>
+    @Html.DisplayNameFor(x => order.ShoppingCart.SumOrderPrice)
+    @Html.DisplayFor(x => order.ShoppingCart.SumOrderPrice)
+}

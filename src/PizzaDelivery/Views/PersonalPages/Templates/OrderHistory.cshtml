@@ -15,16 +15,16 @@
         @foreach (OrderPositionVM position in order.ShoppingCart.Products)
         {
             <tr>
-                <td>@Html.DisplayNameFor(x => position.PizzaName)</td>
-                <td>@Html.DisplayNameFor(x => position.PizzaRecipe)</td>
-                <td>@Html.DisplayNameFor(x => position.Cost)</td>
+                <td>@Html.DisplayNameFor(x => position.Pizza.Name)</td>
+                <td>@Html.DisplayNameFor(x => position.Pizza.Recipe)</td>
+                <td>@Html.DisplayNameFor(x => position.Pizza.Cost)</td>
                 <td>@Html.DisplayNameFor(x => position.Count)</td>
                 <td>@Html.DisplayNameFor(x => position.Sum)</td>
             </tr>
             <tr>
-                <td>@Html.DisplayFor(x => position.PizzaName)</td>
-                <td>@Html.DisplayFor(x => position.PizzaRecipe)</td>
-                <td>@Html.DisplayFor(x => position.Cost)</td>
+                <td>@Html.DisplayFor(x => position.Pizza.Name)</td>
+                <td>@Html.DisplayFor(x => position.Pizza.Recipe)</td>
+                <td>@Html.DisplayFor(x => position.Pizza.Cost)</td>
                 <td>@Html.DisplayFor(x => position.Count)</td>
                 <td>@Html.DisplayFor(x => position.Sum)</td>
             </tr>

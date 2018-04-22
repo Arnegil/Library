@@ -8,11 +8,9 @@
 @if (Model.SuccessOrdered)
 {
     <p>Успех</p>
+    <p>@Model.Order.Number</p>
 }
 else
 {
     <p>Неудача</p>
 }
-
-@Html.DisplayFor(x => Model.Order.Number)
-

@@ -60,7 +60,9 @@ namespace PizzaDelivery.Domain
                     MiddleName = "Ivanovich",
                     Birthday = new DateTime(1990, 3, 13),
                     Email = "email1@mail.ru",
-                    PhoneNumber = "230-23-23"
+                    PhoneNumber = "230-23-23",
+                    Login = "asd32",
+                    Password = @" ,�b�Y[�K-#Kp"
                 },
                 BonusCount = 0
             });
@@ -75,7 +77,9 @@ namespace PizzaDelivery.Domain
                     MiddleName = "Andevich",
                     Birthday = new DateTime(1994, 11, 21),
                     Email = "email2@mail.ru",
-                    PhoneNumber = "153-11-23"
+                    PhoneNumber = "153-11-23",
+                    Login = "qwe",
+                    Password = "321"
                 },
                 BonusCount = 100
             });

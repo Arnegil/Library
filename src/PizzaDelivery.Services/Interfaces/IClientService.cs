@@ -8,6 +8,7 @@ namespace PizzaDelivery.Services.Interfaces
     public interface IClientService
     {
         Client GetClientById(Guid clientId);
+        Client GetClientByLogin(string login);
         void CreateClient(Client client);
         void UpdateClient(Client client);
         void DeleteClient(Client client);

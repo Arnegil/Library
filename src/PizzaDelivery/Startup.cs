@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +29,12 @@ namespace PizzaDelivery
             ServicesModule.ConfigureServices(services);
             VMServicesModule.ConfigureServices(services);
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    //Адрес страницы аутентификации
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Auth/Login");
+                });
             services
                 .AddMvc()
                 .AddSessionStateTempDataProvider();
@@ -49,6 +56,7 @@ namespace PizzaDelivery
 
             app.UseStaticFiles();
             app.UseSession();
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

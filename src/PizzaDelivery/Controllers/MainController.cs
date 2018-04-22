@@ -2,21 +2,16 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
-using PizzaDelivery.Domain.Models.Orders;
-using PizzaDelivery.Domain.Models.Persons;
 using PizzaDelivery.Extensions;
 using PizzaDelivery.Models;
-using PizzaDelivery.Services.Interfaces;
 using PizzaDelivery.ViewModel.Interfaces;
 using PizzaDelivery.ViewModel.Interfaces.Ordering;
-using PizzaDelivery.ViewModel.Interfaces.ViewModel;
 using PizzaDelivery.ViewModel.ViewModels.Ordering;
-using PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client;
 
 namespace PizzaDelivery.Controllers
 {
@@ -90,6 +85,13 @@ namespace PizzaDelivery.Controllers
         public IActionResult Login()
         {
             return RedirectToAction("Index","Login");
+        }
+        
+        [HttpGet]
+        public async Task<IActionResult> LoginOut()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Main");
         }
 
         public IActionResult RegistrationPage()
