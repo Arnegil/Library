@@ -15,7 +15,7 @@ namespace PizzaDelivery.Domain.Models.Persons
 
         [Required]
         [MinLength(0)]
-        public int BonusCount { get; set; }
+        public decimal BonusCount { get; set; }
 
         [DataType(DataType.CreditCard)]
         public string CardNumber { get; set; }
@@ -24,6 +24,9 @@ namespace PizzaDelivery.Domain.Models.Persons
         public string CardOwnerName { get; set; }
 
         public DateTime? DateTo { get; set; }
+
+        [Required]
+        public bool IsTemp { get; set; }
 
         public Collection<Order> Orders { get; set; }
 

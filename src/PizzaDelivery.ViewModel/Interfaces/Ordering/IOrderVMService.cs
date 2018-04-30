@@ -7,6 +7,6 @@ namespace PizzaDelivery.ViewModel.Interfaces.Ordering
     public interface IOrderVMService
     {
         OrderVM BuildNewOrder(ShoppingCartVM shoppingCart, DeliveryInfoVM deliveryInfo, PaymentInfoVM paymentInfo);
-        OrderResultVM CreateOrder(OrderVM newOrder);
+        OrderResultVM CreateOrder(OrderVM newOrder, string login);
     }
 }

@@ -1,18 +1,35 @@
 ﻿@model PizzaDelivery.ViewModel.ViewModels.Ordering.ShoppingCartVM
 @{
     ViewData["Title"] = "ShoppingCart";
+    var shoppingCart = Model;
 }
 
 <h2>ShoppingCart</h2>
 
-@using (Html.BeginForm("GoToDelivery", "ShoppingCart", Model, FormMethod.Post))
+@using (Html.BeginForm("GoToDelivery", "ShoppingCart", shoppingCart, FormMethod.Post))
 {
     <table>
-        @Html.DisplayFor(x => x.Products)
+        <tbody id="@Html.IdFor(x => shoppingCart)">
+        @for (var i = 0; i < Model.Products.Count; i++)
+        {
+            @Html.HiddenFor(x => shoppingCart.Products[i].Pizza.Id)
+            @Html.HiddenFor(x => shoppingCart.Products[i].Pizza.Name)
+            @Html.HiddenFor(x => shoppingCart.Products[i].Pizza.Recipe)
+            @Html.HiddenFor(x => shoppingCart.Products[i].Pizza.Cost)
+            @Html.HiddenFor(x => shoppingCart.Products[i].Sum)
+            <tr>
+                <td>@Html.DisplayFor(x => shoppingCart.Products[i].Pizza.Name)</td>
+                <td>@Html.DisplayFor(x => shoppingCart.Products[i].Pizza.Recipe)</td>
+                <td>@Html.DisplayFor(x => shoppingCart.Products[i].Pizza.Cost)</td>
+                <td>@Html.EditorFor(x => shoppingCart.Products[i].Count)</td>
+                <td>@Html.DisplayFor(x => shoppingCart.Products[i].Sum)</td>
+            </tr>
+        }
+        </tbody>
     </table>
     
-    @Html.DisplayNameFor(x => x.SumOrderPrice)
-    @Html.DisplayFor(x => x.SumOrderPrice)
+    @Html.DisplayNameFor(x => shoppingCart.SumOrderPrice)
+    @Html.DisplayFor(x => shoppingCart.SumOrderPrice)
 
     <button class="btn btn-primary" type="submit">Доставка</button>
 }

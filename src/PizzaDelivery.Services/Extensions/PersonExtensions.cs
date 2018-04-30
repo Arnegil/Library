@@ -27,7 +27,7 @@ namespace PizzaDelivery.Services.Extensions
 
         public static string GetFullName(this Person person)
         {
-            return $"{person.LastName} {person.FirstName.First()} {person.MiddleName.First()}";
+            return $"{person.FIO}";
         }
     }
 }
