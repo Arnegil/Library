@@ -4,6 +4,6 @@ namespace PizzaDelivery.ViewModel.Interfaces.Ordering
 {
     public interface IPaymentVMService
     {
-        PaymentInfoVM GetPartOfPaymentInfo();
+        PaymentInfoVM GetPartOfPaymentInfo(string login);
     }
 }

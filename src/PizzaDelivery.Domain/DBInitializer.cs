@@ -76,14 +76,13 @@ namespace PizzaDelivery.Domain
                 Person = new Person
                 {
                     Id = Guid.NewGuid(),
-                    FirstName = "Alexander",
-                    LastName = "Petrov",
-                    MiddleName = "Ivanovich",
+                    FIO = "Alexander",
                     Birthday = new DateTime(1990, 3, 13),
                     Email = "email1@mail.ru",
                     PhoneNumber = "230-23-23",
                     Login = "asd32",
-                    Password = @" ,�b�Y[�K-#Kp"
+                    Password = @" ,�b�Y[�K-#Kp",
+                    Address = "Street 21"
                 },
                 BonusCount = 0
             });
@@ -93,9 +92,7 @@ namespace PizzaDelivery.Domain
                 Person = new Person
                 {
                     Id = Guid.NewGuid(),
-                    FirstName = "Mihail",
-                    LastName = "Ivanov",
-                    MiddleName = "Andevich",
+                    FIO = "Mihail",
                     Birthday = new DateTime(1994, 11, 21),
                     Email = "email2@mail.ru",
                     PhoneNumber = "153-11-23",
@@ -103,6 +100,21 @@ namespace PizzaDelivery.Domain
                     Password = "321"
                 },
                 BonusCount = 100
+            });
+            context.Add(new Client()
+            {
+                Id = Guid.NewGuid(),
+                Person = new Person
+                {
+                    Id = Guid.NewGuid(),
+                    FIO = "Anonymous",
+                    Birthday = new DateTime(1994, 11, 21),
+                    Email = "Anonymous@mail.ru",
+                    PhoneNumber = "153-11-23",
+                    Login = "Anonymous",
+                    Password = "Anonymous"
+                },
+                BonusCount = 0
             });
         }
 
@@ -114,9 +126,7 @@ namespace PizzaDelivery.Domain
                 Person = new Person
                 {
                     Id = Guid.NewGuid(),
-                    FirstName = "Vladislav",
-                    LastName = "Sidorov",
-                    MiddleName = "Maksimovich",
+                    FIO = "Vladislav",
                     Birthday = new DateTime(1995, 5, 13),
                     Email = "email3@mail.ru",
                     PhoneNumber = "563-23-32"
@@ -130,9 +140,7 @@ namespace PizzaDelivery.Domain
                 Person = new Person
                 {
                     Id = Guid.NewGuid(),
-                    FirstName = "Alexander",
-                    LastName = "Nosov",
-                    MiddleName = "Ivanovich",
+                    FIO = "Alexander",
                     Birthday = new DateTime(1998, 1, 9),
                     Email = "email4@mail.ru",
                     PhoneNumber = "123-54-65"
