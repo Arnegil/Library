@@ -18,16 +18,16 @@ namespace PizzaDelivery.ViewModel.ServicesImpl.Ordering
             _clientService = clientService;
         }
 
-        public DeliveryInfoVM GetPartOfDeliveryInformation(string login)
+        public DeliveryInfoVM GetPartOfDeliveryInformation()
         {
             var orderDeliver = new DeliveryInfoVM();
             
-            var client = _clientService.GetClientByLogin(login);
+            Guid clientId = Guid.Empty;
+            var client = _clientService.GetClientById(clientId);
             if (client != null)
             {
                 orderDeliver.ClientName = client.GetFullName();
                 orderDeliver.ClientPhoneNumber = client.Person.PhoneNumber;
-                orderDeliver.DeliveryAddress = client.Person.Address;
             }
 
             return orderDeliver;

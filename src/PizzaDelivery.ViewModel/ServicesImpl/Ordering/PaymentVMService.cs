@@ -17,11 +17,13 @@ namespace PizzaDelivery.ViewModel.ServicesImpl.Ordering
             _clientService = clientService;
         }
 
-        public PaymentInfoVM GetPartOfPaymentInfo(string login)
+        public PaymentInfoVM GetPartOfPaymentInfo()
         {
             var payment = new PaymentInfoVM();
             
-            var client = _clientService.GetClientByLogin(login);
+            Guid clientId = Guid.Empty;
+            var client = _clientService.GetClientById(clientId);
+
             if (client != null && client.HaveCardInfo)
             {
                 payment.CardNumber = client.CardNumber;

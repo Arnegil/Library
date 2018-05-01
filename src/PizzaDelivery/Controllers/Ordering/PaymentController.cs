@@ -31,7 +31,7 @@ namespace PizzaDelivery.Controllers.Ordering
         {
             var model = HttpContext.Session.Get<PaymentInfoVM>(SessionKeys.PaymentInfo);
             if (model.IsEmpty)
-                model = _paymentVMService.GetPartOfPaymentInfo(HttpContext.User.Identity.Name);
+                model = _paymentVMService.GetPartOfPaymentInfo();
 
             return View("/Views/Ordering/Payment.cshtml", model);
         }
@@ -44,8 +44,7 @@ namespace PizzaDelivery.Controllers.Ordering
             var deliveryInfo = HttpContext.Session.Get<DeliveryInfoVM>(SessionKeys.DeliveryInfo);
 
             var newOrder = _orderVMService.BuildNewOrder(shoppingCart, deliveryInfo, paymentInfo);
-            var model = _orderVMService.CreateOrder(newOrder, HttpContext.User.Identity.Name);
-            HttpContext.Session.Set(SessionKeys.ShoppingCart, new ShoppingCartVM());
+            var model = _orderVMService.CreateOrder(newOrder);
 
             return View("/Views/Ordering/OrderResult.cshtml", model);
         }

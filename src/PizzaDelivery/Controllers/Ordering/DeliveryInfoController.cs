@@ -27,7 +27,7 @@ namespace PizzaDelivery.Controllers.Ordering
         {
             var model = HttpContext.Session.Get<DeliveryInfoVM>(SessionKeys.DeliveryInfo);
             if (model.IsEmpty)
-                model = _deliveryVmService.GetPartOfDeliveryInformation(HttpContext.User.Identity.Name);
+                model = _deliveryVmService.GetPartOfDeliveryInformation();
 
             return View("/Views/Ordering/DeliveryInfo.cshtml", model);
         }

@@ -31,9 +31,9 @@ namespace PizzaDelivery.Controllers.Ordering
         }
 
         [HttpPost]
-        public IActionResult GoToDelivery(ShoppingCartVM shoppingCart)
+        public IActionResult GoToDelivery(ShoppingCartVM model)
         {
-            HttpContext.Session.Set(SessionKeys.ShoppingCart, shoppingCart);
+            HttpContext.Session.Set(SessionKeys.ShoppingCart, model);
 
             return RedirectToAction("Index", "DeliveryInfo");
         }

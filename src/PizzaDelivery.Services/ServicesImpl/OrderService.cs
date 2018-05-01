@@ -20,7 +20,13 @@ namespace PizzaDelivery.Services.ServicesImpl
         public Order GetOrderById(Guid orderId)
         {
             var order = _context.Orders
+                .Include(x => x.DeliveryInfo)
+                .Include(x => x.PaymentInfo)
+                .Include(x => x.OrderPositions)
+                .Include(x => x.Deliveryman)
+                .Include(x => x.Operator)
                 .Include(x => x.OrderingClient)
+                .Include(x => x.OrderPositions.Select(y => y.Pizza))
                 .FirstOrDefault(x => x.Id == orderId);
 
             return order;
@@ -44,8 +50,6 @@ namespace PizzaDelivery.Services.ServicesImpl
             foreach (var orderPosition in orderPositions)
             {
                 orderPosition.Order = order;
-                var pizza = _context.Pizzas.First(x => x.Id == orderPosition.Pizza.Id);
-                orderPosition.Pizza = pizza;
                 _context.OrderPositions.Add(orderPosition);
             }
             _context.Orders.Add(order);

@@ -7,7 +7,16 @@ namespace PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client
     {
         [Required]
         [StringLength(100)]
-        public string FIO { get; set; }
+        public string LastName { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string FirstName { get; set; }
+
+        
+        [StringLength(100)]
+        public string MiddleName { get; set; }
+        public Guid Id { get; set; }
         
         [Required]
         [StringLength(50)]

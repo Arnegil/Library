@@ -25,9 +25,10 @@ namespace PizzaDelivery.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> LoginUser(LoginVM model)
+        public async Task<IActionResult> LoginUser(LoginVM login)
         {
-            var principal = _loginVMService.LogInUser(model);
+            login = new LoginVM(){Login = "asd32", Password = "123"};
+            var principal = _loginVMService.LogInUser(login);
             if (principal == null)
                 return Error();
 

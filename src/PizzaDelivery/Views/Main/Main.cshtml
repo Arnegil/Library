@@ -7,25 +7,4 @@
 
 <a class="btn btn-primary" href="@Url.Action("Index", "ShoppingCart")">Корзина</a>
 
-@for (var i = 0; i < Model.PizzaList.Count; i++)
-{
-    var orderPosition = Model.PizzaList[i];
-    using (Html.BeginForm("AddToShoppingCard", "Main", orderPosition, FormMethod.Post))
-    {
-        <table>
-            <tbody id="@Html.IdFor(x => orderPosition)">
-                @Html.HiddenFor(x => orderPosition.Pizza.Id)
-                @Html.HiddenFor(x => orderPosition.Pizza.Name)
-                @Html.HiddenFor(x => orderPosition.Pizza.Recipe)
-                @Html.HiddenFor(x => orderPosition.Pizza.Cost)
-                <tr>
-                    <td>@Html.DisplayFor(x => orderPosition.Pizza.Name)</td>
-                    <td>@Html.DisplayFor(x => orderPosition.Pizza.Recipe)</td>
-                    <td>@Html.DisplayFor(x => orderPosition.Pizza.Cost)</td>
-                    <td>@Html.EditorFor(x => orderPosition.Count)</td>
-                </tr>
-            </tbody>
-        </table>
-        <button class="btn btn-primary" type="submit">Добавить</button>
-    }
-}
+@Html.DisplayFor(x => x.PizzaList)

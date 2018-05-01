@@ -17,9 +17,6 @@ namespace PizzaDelivery.ViewModel.ViewModels.Main.PizzaPage
         [Display(Name = "Цена")]
         public decimal Cost { get; set; }
 
-        public PizzaVM()
-        { }
-
         private sealed class IdEqualityComparer : IEqualityComparer<PizzaVM>
         {
             public bool Equals(PizzaVM x, PizzaVM y)

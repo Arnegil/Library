@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using PizzaDelivery.Services.Extensions;
+﻿using System.Linq;
 using PizzaDelivery.ViewModel.Interfaces.Ordering;
 using PizzaDelivery.ViewModel.ViewModels.Ordering;
 
@@ -15,8 +13,6 @@ namespace PizzaDelivery.ViewModel.ServicesImpl.Ordering
         {
             if (orderPosition.Count <= 0)
                 return shoppingCart;
-            if (shoppingCart.Products.IsNullOrEmpty())
-                shoppingCart.Products = new List<OrderPositionVM>();
 
             var orderedPizza = shoppingCart.Products
                 .FirstOrDefault(x => x.Pizza.Id == orderPosition.Pizza.Id);
@@ -29,7 +25,9 @@ namespace PizzaDelivery.ViewModel.ServicesImpl.Ordering
             }
             else
                 orderedPizza.Count += orderPosition.Count;
-            
+
+            shoppingCart.Intasd = 123;
+
             return shoppingCart;
         }
     }

@@ -15,7 +15,6 @@ namespace PizzaDelivery.ViewModel.ViewModels.Ordering
         public string CardOwnerName { get; set; }
 
         [Display(Name = "Дата")]
-        [DataType(DataType.Date)]
         public DateTime? DateTo { get; set; }
 
         public bool IsEmpty =>

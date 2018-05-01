@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using PizzaDelivery.Domain.Models.Orders;
 using PizzaDelivery.Domain.Models.Persons;
 
@@ -15,7 +14,5 @@ namespace PizzaDelivery.Services.Interfaces
         void DeleteClient(Client client);
         IEnumerable<Order> GetOrdersOfClient(Guid clientId);
         IEnumerable<Order> GetAciveOrdersOfClient(Guid clientId);
-        void AddBonusToClient(Guid clientId, Collection<OrderPosition> orderPositions);
-        Client CreateTempClient(DeliveryInfo deliveryInfo);
     }
 }

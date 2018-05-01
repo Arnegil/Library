@@ -73,7 +73,9 @@ namespace PizzaDelivery.ViewModel.Exensions
                 Address = registration.Address,
                 Birthday = registration.Birthday,
                 Email = registration.Email,
-                FIO = registration.FIO,
+                FirstName = registration.FirstName,
+                LastName = registration.LastName,
+                MiddleName = registration.MiddleName,
                 PhoneNumber = registration.PhoneNumber
             };
         }

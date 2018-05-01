@@ -7,31 +7,39 @@
 {
     <table style="padding: 30px 30px 30px 30px" cellspacing="30">
         <tr>
-            <td>@Html.DisplayNameFor(x => x.Login)</td>
+            <td>Логин</td>
             <td>@Html.EditorFor(x => x.Login)</td>
         </tr>
         <tr>
-            <td>@Html.DisplayNameFor(x => x.Password)</td>
+            <td>Пароль</td>
             <td>@Html.EditorFor(x => x.Password)</td>
         </tr>
         <tr>
-            <td>@Html.DisplayNameFor(x => x.FIO)</td>
-            <td>@Html.EditorFor(x => x.FIO)</td>
+            <td>ФИО</td>
+            <td>@Html.EditorFor(x => x.LastName)</td>
         </tr>
         <tr>
-            <td>@Html.DisplayNameFor(x => x.Email)</td>
+            <td>ФИО</td>
+            <td>@Html.EditorFor(x => x.FirstName)</td>
+        </tr>
+        <tr>
+            <td>ФИО</td>
+            <td>@Html.EditorFor(x => x.MiddleName)</td>
+        </tr>
+        <tr>
+            <td>Эл. почта</td>
             <td>@Html.EditorFor(x => x.Email)</td>
         </tr>
         <tr>
-            <td>@Html.DisplayNameFor(x => x.PhoneNumber)</td>
+            <td>Номер телефона</td>
             <td>@Html.EditorFor(x => x.PhoneNumber)</td>
         </tr>
         <tr>
-            <td>@Html.DisplayNameFor(x => x.Birthday)</td>
+            <td>Дата рождения</td>
             <td>@Html.EditorFor(x => x.Birthday)</td>
         </tr>
         <tr>
-            <td>@Html.DisplayNameFor(x => x.Address)</td>
+            <td>Адрес</td>
             <td>@Html.EditorFor(x => x.Address)</td>
         </tr>
     </table>

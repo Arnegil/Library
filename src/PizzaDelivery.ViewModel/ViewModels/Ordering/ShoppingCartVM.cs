@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using PizzaDelivery.Services.Extensions;
 
 namespace PizzaDelivery.ViewModel.ViewModels.Ordering
 {
     public class ShoppingCartVM
     {
+        public int Intasd { get; set; }
+
         public List<OrderPositionVM> Products { get; set; }
 
         [Display(Name = "Сумма заказа")]
-        public decimal SumOrderPrice => Products.IsNullOrEmpty() ? 0 : Products.Sum(x => x.Sum);
+        public decimal SumOrderPrice => Products.Sum(x => x.Sum);
 
         public ShoppingCartVM()
         {

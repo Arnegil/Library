@@ -8,9 +8,15 @@ namespace PizzaDelivery.Domain.Models.Persons
         [Key]
         public Guid Id { get; set; }
 
+        [StringLength(50)]
+        public string LastName { get; set; }
+
         [Required]
-        [StringLength(100)]
-        public string FIO { get; set; }
+        [StringLength(50)]
+        public string FirstName { get; set; }
+
+        [StringLength(50)]
+        public string MiddleName { get; set; }
         
         [Required]
         [StringLength(50)]
