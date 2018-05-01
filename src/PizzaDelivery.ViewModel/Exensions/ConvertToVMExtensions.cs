@@ -72,9 +72,7 @@ namespace PizzaDelivery.ViewModel.Exensions
             return new PersonalInfoVM
             {
                 Email = client.Person.Email,
-                FirstName = client.Person.FirstName,
-                LastName = client.Person.LastName,
-                MiddleName = client.Person.MiddleName,
+                FIO = client.Person.FIO,
                 Birthday = client.Person.Birthday,
                 PhoneNumber = client.Person.PhoneNumber,
                 BonusPoints = client.BonusCount

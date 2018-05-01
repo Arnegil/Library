@@ -4,6 +4,6 @@ namespace PizzaDelivery.ViewModel.Interfaces.Ordering
 {
     public interface IDeliveryVMService
     {
-        DeliveryInfoVM GetPartOfDeliveryInformation();
+        DeliveryInfoVM GetPartOfDeliveryInformation(string login);
     }
 }
