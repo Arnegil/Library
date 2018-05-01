@@ -1,0 +1,49 @@
+﻿body {
+    font-family: Verdana, Arial, Sans-Serif;
+    padding-bottom: 20px;
+    background-image: url("../images/pizza-tr.png");
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: top left;
+    background-color: #90E890;
+    color: #080808;
+}
+.topbar {
+    background-color: #f5ab1b;
+    border-color: #080808;
+    color:#ffffff;
+}
+.title_topbar {
+    float: left;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 25px;
+    line-height: 20px;
+    color: #ffffff;
+}
+.image_top {
+    height: 150px;
+}
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color:#ffffff;
+}
+
+.topbar_navbar_nav > li > a {
+    color: #ffffff;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding:10px 15px;
+}
+.topbar_navbar_nav > li {
+    float: left;
+    position:relative;
+    display:block;
+}
+.topbar_navbar_nav {
+    float: left;
+    margin: 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}

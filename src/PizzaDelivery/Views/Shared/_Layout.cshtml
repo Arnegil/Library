@@ -7,7 +7,8 @@
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
+        @*<link rel="stylesheet" href="~/css/site.css" />*@
+        <link href="@Url.Content("~/css/StyleSheet.css")" rel="stylesheet" type="text/css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -17,7 +18,10 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="image_top">
+        <img src="~/images/image_top.jpg" title="Pizza Image">
+    </div>
+    <div class="topbar">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -26,10 +30,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Main" asp-action="Index" class="navbar-brand">Доставка пиццы</a>
+                <a asp-area="" asp-controller="Main" asp-action="Index" class="title_topbar">Вкусная пицца</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="topbar_navbar_nav">
                     <li><a asp-area="" asp-controller="ShoppingCart" asp-action="Index">Корзина</a></li>
                     <li><a asp-area="" asp-controller="Main" asp-action="Contact">Контакты</a></li>
                     @if (!Html.ViewContext.HttpContext.User.Identity.IsAuthenticated)
@@ -45,7 +49,7 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </div>
     <div class="container body-content">
         @RenderBody()
         <hr />

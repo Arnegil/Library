@@ -27,23 +27,44 @@ namespace PizzaDelivery.Domain
             context.Add(new Pizza()
             {
                 Id = Guid.NewGuid(),
-                Name = "Pizza 1",
-                Recipe = "Bla Bla Bla Bla Bla Bla Bla",
-                Cost = 499
+                Name = "Барбекю",
+                Recipe = "Пицца с ветчиной, беконом, пепперони, болгарским перцем и томатным соусом для ценителей мясных деликатесов",
+                Cost = 410
             });
             context.Add(new Pizza()
             {
                 Id = Guid.NewGuid(),
-                Name = "Pizza 2",
-                Recipe = "Bla Bla",
-                Cost = 399
+                Name = "Гавайская",
+                Recipe = "Волшебное сочетание нежного куриного мяса, ананасов и спелой груши.",
+                Cost = 335
             });
             context.Add(new Pizza()
             {
                 Id = Guid.NewGuid(),
-                Name = "Pizza 3",
-                Recipe = "Bla Bla Bla",
-                Cost = 459
+                Name = "Карбонара",
+                Recipe = "Итальянский колорит бекона, сыра, грибов и красного лука",
+                Cost = 340
+            });
+            context.Add(new Pizza()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Маргарита",
+                Recipe = "Пицца с классическим сочетанием томатов и сыра",
+                Cost = 255
+            });
+            context.Add(new Pizza()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Мексиканская",
+                Recipe = "Острая мексиканская пицца с куриной грудкой, кукурузой, сыром, вялеными томатами и перчиком халапеньо",
+                Cost = 330
+            });
+            context.Add(new Pizza()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Филадельфия",
+                Recipe = "Лосось,сливочный сыр,икра.",
+                Cost = 600
             });
         }
 
