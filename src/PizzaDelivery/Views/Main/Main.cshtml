@@ -3,7 +3,7 @@
     ViewData["Title"] = "Main";
 }
 
-<h2>Пицца</h2>
+@*<h2>Пицца</h2>*@
 
 @*<a class="btn btn-primary" href="@Url.Action("Index", "ShoppingCart")">Корзина</a>*@
 <div class="product_grid">
@@ -24,19 +24,22 @@
                 </div>
                 <div class="caption">
                     <div class="name">
-                       @* <a href="margarita.html">@Html.DisplayFor(x => orderPosition.Pizza.Name)</a>*@
+                        @* <a href="margarita.html">@Html.DisplayFor(x => orderPosition.Pizza.Name)</a>*@
                         <a>@Html.DisplayFor(x => orderPosition.Pizza.Name)</a>
                     </div>
                     <div class="recipe">
                         @Html.DisplayFor(x => orderPosition.Pizza.Recipe)
                     </div>
                     <div class="Cost">
-                        <div>
-                            <span>@Html.DisplayFor(x => orderPosition.Pizza.Cost) ₽</span>
+                        <span>@Html.DisplayFor(x => orderPosition.Pizza.Cost) ₽</span>
+                    </div>
+                    <div class="add_and_count">
+                        <button class="btn btn-primary" type="submit">Добавить</button>
+                        <div class="count">
+                            @Html.EditorFor(x => orderPosition.Count)
                         </div>
                     </div>
-                    </div>
-                <button class="btn btn-primary" type="submit">Добавить</button>
+                </div>
             </div>
 
                     @*<table>

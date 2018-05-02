@@ -81,3 +81,28 @@
 .product_grid {
     margin-bottom:20px;
 }
+.count {
+    display: inline;
+    width: 50px;
+    padding: 10px;
+}
+
+.count > input {
+    width: 50px;
+}
+.add_and_count {
+    display: inline;
+}
+.name > a {
+    color: #080808;
+    font-size: 20px;
+    font:bold;
+}
+.add_and_count > button {
+    background-color: #D2381D;
+    border-color: #D2381D;
+}
+.add_and_count > button:hover {
+    background-color: #891B08;
+    border-color: #891B08;
+}
