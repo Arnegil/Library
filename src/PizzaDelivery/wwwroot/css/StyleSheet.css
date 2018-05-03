@@ -65,6 +65,9 @@
 .image_item > img {
     width: 250px;
 }
+.image_item_shopping_cart > img {
+    width: 150px;
+}
 
 .product_grid:before,
 .product_grid:after {
@@ -102,7 +105,32 @@
     background-color: #D2381D;
     border-color: #D2381D;
 }
-.add_and_count > button:hover {
+.add_and_count > button:hover,
+.add_and_count > button:active,
+.add_and_count > button:focus {
     background-color: #891B08;
     border-color: #891B08;
+}
+.cost {
+    width:70px;
+}
+.sum{
+    width:70px;
+}
+.shopping_cart_item > td
+{
+    padding:10px 0;
+}
+.sum_sopping_cart > button {
+    background-color: #D2381D;
+    border-color: #D2381D;
+}
+.sum_sopping_cart > button:hover,
+.sum_sopping_cart > button:active,
+.sum_sopping_cart > button:focus {
+    background-color: #891B08;
+    border-color: #891B08;
+}
+.sum_sopping_cart_title {
+    font-weight: bold;
 }
