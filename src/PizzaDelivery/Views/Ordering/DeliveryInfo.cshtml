@@ -2,25 +2,32 @@
 @{
     ViewData["Title"] = "DeliveryInfo";
 }
+<script type="text/javascript">
+    jQuery(function ($) {
+        $("#ClientPhoneNumber").mask("+7(999) 999-9999");
+    });
+</script>
 
-<h2>DeliveryInfo</h2>
+<h2>Доставка</h2>
 
 @Html.DisplayFor(x => x.StoreAddress)
 
 @using (Html.BeginForm("SaveDeliveryInformation", "DeliveryInfo", Model, FormMethod.Post))
 {
-    <table>
+    <table class="delivery_info">
         <tr>
             <td>@Html.DisplayNameFor(x => x.ClientName)</td>
             <td>@Html.EditorFor(x => x.ClientName)</td>
         </tr>
         <tr>
             <td>@Html.DisplayNameFor(x => x.ClientPhoneNumber)</td>
-            <td>@Html.EditorFor(x => x.ClientPhoneNumber)</td>
+            <td>
+                @Html.EditorFor(x => x.ClientPhoneNumber)
+            </td>
         </tr>
         <tr>
             <td>@Html.DisplayNameFor(x => x.DeliveryAddress)</td>
-            <td>@Html.EditorFor(x => x.DeliveryAddress)</td>
+            <td class="delivery_address">@Html.EditorFor(x => x.DeliveryAddress)</td>
         </tr>
         <tr>
             <td>@Html.DisplayNameFor(x => x.CommentToOperator)</td>
@@ -31,6 +38,7 @@
             <td>@Html.EditorFor(x => x.ShipmenAtOwnExpense)</td>
         </tr>
     </table>
-    
-    <button class="btn btn-primary" type="submit">Оплата</button>
+    <div class="delivery_info_btn">
+        <button class="btn btn-primary" type="submit">Оплата</button>
+    </div>
 }

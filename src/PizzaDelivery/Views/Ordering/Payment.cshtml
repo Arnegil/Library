@@ -4,11 +4,11 @@
     ViewData["Title"] = "Payment";
 }
 
-<h2>Payment</h2>
+<h2>Оплата</h2>
 
 @using (Html.BeginForm("SavePaymentInfo", "Payment", Model, FormMethod.Post))
 {
-    <table>
+    <table class="delivery_info">
         <tr>
             <td>@Html.DisplayNameFor(x => x.CardNumber)</td>
             <td>@Html.EditorFor(x => x.CardNumber)</td>
@@ -23,6 +23,7 @@
         </tr>
         <tr>@Html.DropDownListFor(x => x.PaymentType, new List<SelectListItem>(Enum.GetNames(typeof(PaymentType)).Select(x => new SelectListItem() { Text = x, Value = x })))</tr>
     </table>
-
-    <button class="btn btn-primary" type="submit">Заказать</button>
+    <div class="delivery_info_btn">
+        <button class="btn btn-primary" type="submit">Заказать</button>
+    </div>
 }

@@ -121,6 +121,12 @@
 {
     padding:10px 0;
 }
+.delivery_info > tbody > tr > td {
+    padding: 5px 0;
+}
+.delivery_info > tbody > tr > td > input {
+    border-radius: 5px;
+}
 .sum_sopping_cart > button {
     background-color: #D2381D;
     border-color: #D2381D;
@@ -133,4 +139,17 @@
 }
 .sum_sopping_cart_title {
     font-weight: bold;
+}
+.delivery_address > input {
+    
+}
+.delivery_info_btn > button {
+    background-color: #D2381D;
+    border-color: #D2381D;
+}
+.delivery_info_btn > button:hover,
+.delivery_info_btn > button:active,
+.delivery_info_btn > button:focus {
+    background-color: #891B08;
+    border-color: #891B08;
 }
