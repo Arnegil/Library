@@ -101,16 +101,6 @@
     font-size: 20px;
     font:bold;
 }
-.add_and_count > button {
-    background-color: #D2381D;
-    border-color: #D2381D;
-}
-.add_and_count > button:hover,
-.add_and_count > button:active,
-.add_and_count > button:focus {
-    background-color: #891B08;
-    border-color: #891B08;
-}
 .cost {
     width:70px;
 }
@@ -119,7 +109,7 @@
 }
 .shopping_cart_item > td
 {
-    padding:10px 0;
+    padding:10px;
 }
 .delivery_info > tbody > tr > td {
     padding: 5px 0;
@@ -127,29 +117,27 @@
 .delivery_info > tbody > tr > td > input {
     border-radius: 5px;
 }
-.sum_sopping_cart > button {
-    background-color: #D2381D;
-    border-color: #D2381D;
-}
-.sum_sopping_cart > button:hover,
-.sum_sopping_cart > button:active,
-.sum_sopping_cart > button:focus {
-    background-color: #891B08;
-    border-color: #891B08;
-}
-.sum_sopping_cart_title {
+.sum_shopping_cart_title {
     font-weight: bold;
 }
 .delivery_address > input {
     
 }
-.delivery_info_btn > button {
-    background-color: #D2381D;
-    border-color: #D2381D;
+.registration > tbody > tr > td {
+    padding: 5px 5px;
 }
-.delivery_info_btn > button:hover,
-.delivery_info_btn > button:active,
-.delivery_info_btn > button:focus {
-    background-color: #891B08;
-    border-color: #891B08;
+.order_item {
+    border-radius: 5px;
+    background-color: #fde6c6;
+    padding: 10px;
+    margin: 5px;
+}
+.shopping_cart_item {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fde6c6;
+    margin: 5px;
+}
+.sum_shopping_cart{
+    padding:10px;
 }

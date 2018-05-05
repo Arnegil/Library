@@ -5,7 +5,7 @@
 
 @using (Html.BeginForm("RegisterPerson", "Registration", Model, FormMethod.Post))
 {
-    <table style="padding: 30px 30px 30px 30px" cellspacing="30">
+    <table class="registration">
         <tr>
             <td>@Html.DisplayNameFor(x => x.Login)</td>
             <td>@Html.EditorFor(x => x.Login)</td>
@@ -35,5 +35,5 @@
             <td>@Html.EditorFor(x => x.Address)</td>
         </tr>
     </table>
-    <button class="btn btn-primary" type="submit">Регистрация</button>
+        <button class="btn btn-primary" type="submit">Регистрация</button>
 }
