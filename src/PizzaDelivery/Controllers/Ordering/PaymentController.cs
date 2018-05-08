@@ -39,6 +39,11 @@ namespace PizzaDelivery.Controllers.Ordering
         [HttpPost]
         public IActionResult SavePaymentInfo(PaymentInfoVM paymentInfo)
         {
+            /*if (!ModelState.IsValid)
+            {
+                return Index();
+            }*/
+
             HttpContext.Session.Set(SessionKeys.PaymentInfo, paymentInfo);
             var shoppingCart = HttpContext.Session.Get<ShoppingCartVM>(SessionKeys.ShoppingCart);
             var deliveryInfo = HttpContext.Session.Get<DeliveryInfoVM>(SessionKeys.DeliveryInfo);

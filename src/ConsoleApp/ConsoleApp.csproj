@@ -9,6 +9,7 @@
     <ProjectReference Include="..\PizzaDelivery.Domain\PizzaDelivery.Domain.csproj" />
     <ProjectReference Include="..\PizzaDelivery.Services\PizzaDelivery.Services.csproj" />
     <ProjectReference Include="..\PizzaDelivery.ViewModel\PizzaDelivery.ViewModel.csproj" />
+    <ProjectReference Include="..\PizzaDelivery\PizzaDelivery.csproj" />
   </ItemGroup>
 
 </Project>

@@ -35,6 +35,11 @@ namespace PizzaDelivery.Controllers.Ordering
         [HttpPost]
         public IActionResult SaveDeliveryInformation(DeliveryInfoVM deliveryInfo)
         {
+            if (!ModelState.IsValid)
+            {
+                return Index();
+            }
+
             HttpContext.Session.Set(SessionKeys.DeliveryInfo, deliveryInfo);
 
             return RedirectToAction("Index", "Payment");

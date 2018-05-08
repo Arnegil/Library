@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using PizzaDelivery.ViewModel.Exensions;
 
 namespace PizzaDelivery.ViewModel.ViewModels.Ordering
 {
@@ -9,6 +11,7 @@ namespace PizzaDelivery.ViewModel.ViewModels.Ordering
         public PaymentType PaymentType { get; set; }
 
         [Display(Name = "Номер карты")]
+        [DataType(DataType.CreditCard)] 
         public string CardNumber { get; set; }
 
         [Display(Name = "Имя владельца")]
@@ -24,8 +27,11 @@ namespace PizzaDelivery.ViewModel.ViewModels.Ordering
 
     public enum PaymentType
     {
+        [Description("Банковская карта")]
         CardOnline,
+        [Description("Оплата курьеру")]
         CashToDeliveryman,
+        [Description("Оплата банковской картой курьеру")]
         CardToDeliveryman
     }
 }

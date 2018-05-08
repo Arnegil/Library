@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client;
 using PizzaDelivery.ViewModel.ViewModels.PersonalPages.Deliveryman;
@@ -10,7 +11,7 @@ namespace PizzaDelivery.ViewModel.Interfaces
     {
         PersonalInfoVM GetPersonalInfo(string login);
         void SavePersonalInfo(PersonalInfoVM personalInfo);
-        OrderHistoryVM GetOrderHistory();
+        OrderHistoryVM GetOrderHistory(Guid clientId);
 
         NewOrdersVM GetNewOrders();
         PersonalOrdersVM GetPersonalOrders();

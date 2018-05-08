@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using PizzaDelivery.Domain.Models.Persons;
 using PizzaDelivery.Services.Interfaces;
 using PizzaDelivery.ViewModel.Exensions;
 
@@ -21,13 +22,15 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
         public void RegisterNewClient(RegistrationVM registrationVm)
         {
             var newPerson = registrationVm.ToPerson();
-            
+            var newAccount = registrationVm.ToAccount();
+            newAccount.Type = AccountType.Client;
+
             using (var md5 = MD5.Create())
             {
-                newPerson.Password = Encoding.UTF8.GetString(md5.ComputeHash(Encoding.UTF8.GetBytes(registrationVm.Password)));
+                newAccount.Password = Encoding.UTF8.GetString(md5.ComputeHash(Encoding.UTF8.GetBytes(registrationVm.Password)));
             }
 
-            _registrationService.RegisterPerson(newPerson);
+            _registrationService.RegisterPerson(newPerson, newAccount);
         }
     }
 }

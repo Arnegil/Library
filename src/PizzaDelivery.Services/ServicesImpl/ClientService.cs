@@ -24,6 +24,7 @@ namespace PizzaDelivery.Services.ServicesImpl
         {
             var client = _context.Clients
                 .Include(x => x.Person)
+                .Include(x => x.Account)
                 .FirstOrDefault(x => x.Id == clientId);
             return client;
         }
@@ -35,7 +36,8 @@ namespace PizzaDelivery.Services.ServicesImpl
 
             var client = _context.Clients
                 .Include(x => x.Person)
-                .FirstOrDefault(x => x.Person.Login.ToLower() == login.ToLower());
+                .Include(x => x.Account)
+                .FirstOrDefault(x => x.Account.Login.ToLower() == login.ToLower());
             return client;
         }
 
@@ -56,7 +58,12 @@ namespace PizzaDelivery.Services.ServicesImpl
 
         public IEnumerable<Order> GetOrdersOfClient(Guid clientId)
         {
-            throw new NotImplementedException();
+            var orders = _context.Orders
+                .Include(x => x.OrderPositions).ThenInclude(x => x.Pizza)
+                .Include(x => x.OrderingClient)
+                .Where(x => x.OrderingClient.Id == clientId);
+
+            return orders;
         }
 
         public IEnumerable<Order> GetAciveOrdersOfClient(Guid clientId)
@@ -84,7 +91,12 @@ namespace PizzaDelivery.Services.ServicesImpl
                     PhoneNumber = deliveryInfo.ClientPhoneNumber,
                     Address = deliveryInfo.DeliveryAddress
                 },
-                IsTemp = true
+                Account = new Account
+                {
+                    Login = Guid.NewGuid().ToString(),
+                    Password = Guid.NewGuid().ToString(),
+                    IsTemp = true
+                }
             };
 
             _context.Add(newClient);

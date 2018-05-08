@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using PizzaDelivery.Services.Interfaces;
 using PizzaDelivery.ViewModel.Exensions;
 using PizzaDelivery.ViewModel.Interfaces;
@@ -32,9 +33,16 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
             throw new NotImplementedException();
         }
 
-        public OrderHistoryVM GetOrderHistory()
+        public OrderHistoryVM GetOrderHistory(Guid clientId)
         {
+            var orders = _clientService.GetOrdersOfClient(clientId);
+
             return new OrderHistoryVM
+            {
+                OrderList = orders.Select(x => x.ToOrderVM()).ToList()
+            };
+
+            /*return new OrderHistoryVM
             {
                 OrderList = new List<OrderVM>
                 {
@@ -89,7 +97,7 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
                         }
                     }
                 }
-            };
+            };*/
         }
 
         public NewOrdersVM GetNewOrders()

@@ -1,4 +1,5 @@
-﻿@using PizzaDelivery.ViewModel.ViewModels.Ordering
+﻿@using PizzaDelivery.Extensions
+@using PizzaDelivery.ViewModel.ViewModels.Ordering
 @model PizzaDelivery.ViewModel.ViewModels.Ordering.PaymentInfoVM
 @{
     ViewData["Title"] = "Payment";
@@ -21,7 +22,7 @@
             <td>@Html.DisplayNameFor(x => x.DateTo)</td>
             <td>@Html.EditorFor(x => x.DateTo)</td>
         </tr>
-        <tr>@Html.DropDownListFor(x => x.PaymentType, new List<SelectListItem>(Enum.GetNames(typeof(PaymentType)).Select(x => new SelectListItem() { Text = x, Value = x })))</tr>
+        <tr>@Html.DropDownListFor(x => x.PaymentType, new List<SelectListItem>(typeof(PaymentType).GetEnumValues<PaymentType>().Select(x => new SelectListItem() { Text = x.GetDescription(), Value = x.GetDescription() })))</tr>
     </table>
     <div class="delivery_info_btn">
         <button class="btn btn-primary" type="submit">Заказать</button>

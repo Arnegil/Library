@@ -12,6 +12,9 @@ namespace PizzaDelivery.Domain.Models.Persons
         public Person Person { get; set; }
 
         [Required]
+        public Account Account { get; set; }
+
+        [Required]
         [StringLength(50)]
         public string PostName { get; set; }
 

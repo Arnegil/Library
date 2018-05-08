@@ -13,6 +13,7 @@ namespace PizzaDelivery.Domain
         public DbSet<Person> Persons { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Account> Accounts { get; set; }
         public DbSet<Pizza> Pizzas { get; set; }
         public DbSet<OrderPosition> OrderPositions { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -30,6 +31,7 @@ namespace PizzaDelivery.Domain
             modelBuilder.ApplyConfiguration(new PersonConfig());
             modelBuilder.ApplyConfiguration(new ClientConfig());
             modelBuilder.ApplyConfiguration(new EmployeeConfig());
+            modelBuilder.ApplyConfiguration(new AccountConfig());
             modelBuilder.ApplyConfiguration(new PizzaConfig()); 
             modelBuilder.ApplyConfiguration(new OrderPositionConfig()); 
             modelBuilder.ApplyConfiguration(new OrderConfig());

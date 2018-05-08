@@ -33,6 +33,11 @@ namespace PizzaDelivery.Controllers.Ordering
         [HttpPost]
         public IActionResult GoToDelivery(ShoppingCartVM shoppingCart)
         {
+            if (!ModelState.IsValid)
+            {
+                return Index();
+            }
+
             HttpContext.Session.Set(SessionKeys.ShoppingCart, shoppingCart);
 
             return RedirectToAction("Index", "DeliveryInfo");

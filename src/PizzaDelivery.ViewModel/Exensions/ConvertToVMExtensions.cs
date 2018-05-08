@@ -14,6 +14,9 @@ namespace PizzaDelivery.ViewModel.Exensions
     {
         public static PizzaVM ToPizzaVM(this Pizza pizza)
         {
+            if (pizza == null)
+                return null;
+
             return new PizzaVM
             {
                 Id = pizza.Id,
@@ -25,6 +28,9 @@ namespace PizzaDelivery.ViewModel.Exensions
 
         public static OrderVM ToOrderVM(this Order order)
         {
+            if (order == null)
+                return null;
+
             return new OrderVM
             {
                 Id = order.Id,
@@ -40,6 +46,9 @@ namespace PizzaDelivery.ViewModel.Exensions
 
         public static OrderPositionVM ToOrderPositionVM(this OrderPosition orderPosition)
         {
+            if (orderPosition == null)
+                return null;
+
             return new OrderPositionVM
             { 
                 Pizza = orderPosition.Pizza.ToPizzaVM(),
@@ -49,6 +58,9 @@ namespace PizzaDelivery.ViewModel.Exensions
 
         public static DeliveryInfoVM ToDeliveryInfoVM(this DeliveryInfo deliveryInfo)
         {
+            if (deliveryInfo == null)
+                return null;
+
             return new DeliveryInfoVM
             {
                 ClientName = deliveryInfo.ClientName,
@@ -59,6 +71,9 @@ namespace PizzaDelivery.ViewModel.Exensions
 
         public static PaymentInfoVM ToPaymentInfoVM(this PaymentInfo paymentInfo)
         {
+            if (paymentInfo == null)
+                return null;
+
             return new PaymentInfoVM
             {
                 CardNumber = paymentInfo.CardNumber,
@@ -69,6 +84,9 @@ namespace PizzaDelivery.ViewModel.Exensions
 
         public static PersonalInfoVM ToPersonalInfoVM(this Client client)
         {
+            if (client == null)
+                return null;
+
             return new PersonalInfoVM
             {
                 Email = client.Person.Email,

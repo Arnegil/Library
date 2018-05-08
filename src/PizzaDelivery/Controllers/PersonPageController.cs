@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PizzaDelivery.ViewModel;
 using PizzaDelivery.ViewModel.Interfaces;
 
 namespace PizzaDelivery.Controllers
@@ -38,7 +41,10 @@ namespace PizzaDelivery.Controllers
         [Authorize(Roles = SecurityRoles.Client)]
         public IActionResult OrderHistoryPage()
         {
-            var model = _pesonalPageVmService.GetOrderHistory();
+            var sid = HttpContext.User.Identities.First(x => x.AuthenticationType == "MyCookieMiddlewareInstance")
+                .Claims.First(x => x.Type == ClaimTypes.Sid).Value;
+            var clientId = Guid.Parse(sid);
+            var model = _pesonalPageVmService.GetOrderHistory(clientId);
 
             return View("/Views/PersonalPages/Templates/OrderHistory.cshtml", model);
         }

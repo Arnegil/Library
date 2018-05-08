@@ -28,13 +28,17 @@ namespace PizzaDelivery.Services.ServicesImpl
 
         public Guid CreateOrder(Order newOrder, IEnumerable<OrderPosition> orderPositions)
         {
+            var client = _context.Clients.First(x => x.Id == newOrder.OrderingClient.Id);
+            _context.DeliveryInfos.Add(newOrder.DeliveryInfo);
+            _context.PaymentInfos.Add(newOrder.PaymentInfo);
+            
             var order = new Order
             {
                 Id = Guid.NewGuid(),
                 CreationDate = DateTime.Now,
                 UpdateDate = DateTime.Now,
                 OrderState = OrderState.Created,
-                OrderingClient = newOrder.OrderingClient,
+                OrderingClient = client,
                 DeliveryInfo = newOrder.DeliveryInfo,
                 PaymentInfo = newOrder.PaymentInfo,
                 CommentToOperator = newOrder.CommentToOperator
@@ -77,7 +81,7 @@ namespace PizzaDelivery.Services.ServicesImpl
         private int GetNextOderNumber()
         {
             if (!_context.Orders.Any())
-                return 0;
+                return 1;
 
             int maxNumber = _context.Orders.Max(x => x.OrderNumber);
 

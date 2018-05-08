@@ -10,19 +10,21 @@
 
 <h2>Доставка</h2>
 
-@Html.DisplayFor(x => x.StoreAddress)
-
 @using (Html.BeginForm("SaveDeliveryInformation", "DeliveryInfo", Model, FormMethod.Post))
 {
     <table class="delivery_info">
         <tr>
             <td>@Html.DisplayNameFor(x => x.ClientName)</td>
-            <td>@Html.EditorFor(x => x.ClientName)</td>
+            <td>
+                @Html.EditorFor(x => x.ClientName)
+                @Html.ValidationMessageFor(x => x.ClientName)
+            </td>
         </tr>
         <tr>
             <td>@Html.DisplayNameFor(x => x.ClientPhoneNumber)</td>
             <td>
                 @Html.EditorFor(x => x.ClientPhoneNumber)
+                @Html.ValidationMessageFor(x => x.ClientPhoneNumber)
             </td>
         </tr>
         <tr>

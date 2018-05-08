@@ -7,6 +7,6 @@ namespace PizzaDelivery.Services.Interfaces
 {
     public interface IRegistrationService
     {
-        void RegisterPerson(Person person);
+        void RegisterPerson(Person person, Account account);
     }
 }

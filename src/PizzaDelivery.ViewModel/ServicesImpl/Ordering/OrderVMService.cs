@@ -53,7 +53,7 @@ namespace PizzaDelivery.ViewModel.ServicesImpl.Ordering
             var createdOrder = _orderService.GetOrderById(createdOrderId);
             var createdOrderVM = createdOrder.ToOrderVM();
 
-            if (!client.IsTemp)
+            if (!client.Account.IsTemp)
                 _clientService.AddBonusToClient(client.Id, createdOrder.OrderPositions);
 
             return new OrderResultVM

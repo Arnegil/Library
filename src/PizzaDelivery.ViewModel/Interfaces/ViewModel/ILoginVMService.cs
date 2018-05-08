@@ -9,5 +9,6 @@ namespace PizzaDelivery.ViewModel.Interfaces.ViewModel
     public interface ILoginVMService
     {
         ClaimsPrincipal LogInUser(LoginVM login);
+        ClaimsPrincipal LogInEmployee(LoginVM login);
     }
 }

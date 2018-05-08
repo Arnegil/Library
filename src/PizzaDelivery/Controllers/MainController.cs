@@ -9,10 +9,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PizzaDelivery.Extensions;
 using PizzaDelivery.Models;
+using PizzaDelivery.ViewModel;
 using PizzaDelivery.ViewModel.Interfaces;
 using PizzaDelivery.ViewModel.Interfaces.Ordering;
 using PizzaDelivery.ViewModel.ViewModels.Ordering;
-using NuGet.Protocol;
 
 namespace PizzaDelivery.Controllers
 {
@@ -73,7 +73,7 @@ namespace PizzaDelivery.Controllers
             shoppingCart = _shoppingCardVmService.PutInShoppingCard(shoppingCart, orderPosition);
             HttpContext.Session.Set(SessionKeys.ShoppingCart, shoppingCart);
 
-            return new JsonResult(new {Success = true});
+            return Json(new {IsSuccess = true});
         }
 
         public IActionResult OpenEditPizzaPage()
@@ -86,16 +86,19 @@ namespace PizzaDelivery.Controllers
             return View();
         }
         
-        [Authorize(Roles = "client")]
+        [Authorize]
         public IActionResult PersonalPage()
         {
-            return RedirectToAction("Index", "PersonPage");
+            if (HttpContext.User.IsInRole(SecurityRoles.Client))
+                return RedirectToAction("Index", "PersonPage");
+
+            return Index();
         }
 
         [HttpGet]
         public IActionResult Login()
         {
-            return RedirectToAction("Index","Login");
+            return RedirectToAction("Index","Auth");
         }
         
         [HttpGet]

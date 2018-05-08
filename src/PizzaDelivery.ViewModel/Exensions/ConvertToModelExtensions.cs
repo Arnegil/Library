@@ -69,12 +69,19 @@ namespace PizzaDelivery.ViewModel.Exensions
         {
             return new Person
             {
-                Login = registration.Login,
                 Address = registration.Address,
                 Birthday = registration.Birthday,
                 Email = registration.Email,
                 FIO = registration.FIO,
                 PhoneNumber = registration.PhoneNumber
+            };
+        }
+
+        public static Account ToAccount(this RegistrationVM registration)
+        {
+            return new Account
+            {
+                Login = registration.Login
             };
         }
     }

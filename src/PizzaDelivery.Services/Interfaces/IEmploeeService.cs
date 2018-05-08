@@ -6,9 +6,10 @@ namespace PizzaDelivery.Services.Interfaces
 {
     public interface IEmploeeService
     {
-        Employee GetEmployeeById(Guid id);
+        Employee GetEmployeeById(Guid employeeId);
         void CreateEmployee(Employee newEmployee);
         void UpdateEmployee(Employee newEmployee);
         void DeleteEmployee(Employee newEmployee);
+        Employee GetEmployeeByLogin(string login);
     }
 }
