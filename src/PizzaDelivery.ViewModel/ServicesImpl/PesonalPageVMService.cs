@@ -40,7 +40,7 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
                 {
                     new OrderVM
                     {
-                        Number = 123,
+                        Number = 052,
                         ShoppingCart = new ShoppingCartVM
                         {
                             Products = new List<OrderPositionVM>
@@ -49,11 +49,41 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
                                 {
                                     Pizza = new PizzaVM()
                                     {
-                                        Name = "Pizza",
-                                        Recipe = "Something",
-                                        Cost = 123
+                                        Name = "Барбекю",
+                                        Recipe = "Пицца с ветчиной, беконом, пепперони, болгарским перцем и томатным соусом для ценителей мясных деликатесов",
+                                        Cost = 410
                                     },
                                     Count = 2
+                                },
+                                new OrderPositionVM
+                                {
+                                    Pizza = new PizzaVM()
+                                    {
+                                        Name = "Гавайская",
+                                        Recipe = "Волшебное сочетание нежного куриного мяса, ананасов и спелой груши.",
+                                        Cost = 335
+                                    },
+                                    Count = 1
+                                }
+                            }
+                        }
+                    },
+                    new OrderVM
+                    {
+                        Number = 058,
+                        ShoppingCart = new ShoppingCartVM
+                        {
+                            Products = new List<OrderPositionVM>
+                            {
+                                new OrderPositionVM
+                                {
+                                    Pizza = new PizzaVM()
+                                    {
+                                        Name = "Карбонара",
+                                        Recipe = "Итальянский колорит бекона, сыра, грибов и красного лука",
+                                        Cost = 340
+                                    },
+                                    Count = 3
                                 }
                             }
                         }

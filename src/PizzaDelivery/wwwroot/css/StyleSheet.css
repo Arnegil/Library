@@ -1,0 +1,143 @@
+﻿body {
+    font-family: Verdana, Arial, Sans-Serif;
+    padding-bottom: 20px;
+    background-image: url("../images/pizza-tr.png");
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: top left;
+    background-color: #90E890;
+    color: #080808;
+}
+.topbar {
+    background-color: #f5ab1b;
+    border-color: #080808;
+    color:#ffffff;
+}
+.title_topbar {
+    float: left;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 25px;
+    line-height: 20px;
+    color: #ffffff;
+}
+.image_top {
+    height: 150px;
+}
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #FFF7D9;
+}
+
+.topbar_navbar_nav > li > a {
+    color: #ffffff;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding:10px 15px;
+}
+.topbar_navbar_nav > li {
+    float: left;
+    position:relative;
+    display:block;
+}
+.topbar_navbar_nav {
+    float: left;
+    margin: 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.item {
+    border: 1px solid rgba(0, 0, 0, 0);
+    display: block;
+    float: left;
+    margin: 10px 0 0;
+    padding: 10px 20px 20px;
+    width: 33.333333333333336%;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 0;
+    height:400px;
+}
+.image_item > img {
+    width: 250px;
+}
+.image_item_shopping_cart > img {
+    width: 150px;
+}
+
+.product_grid:before,
+.product_grid:after {
+    content: " ";
+    /* 1 */
+    display: table;
+    /* 2 */
+}
+
+.product_grid:after {
+    clear: both;
+}
+
+.product_grid {
+    margin-bottom:20px;
+}
+.count {
+    display: inline;
+    width: 50px;
+    padding: 10px;
+}
+
+.count > input {
+    width: 50px;
+}
+.add_and_count {
+    display: inline;
+}
+.name > a {
+    color: #080808;
+    font-size: 20px;
+    font:bold;
+}
+.cost {
+    width:70px;
+}
+.sum{
+    width:70px;
+}
+.shopping_cart_item > td
+{
+    padding:10px;
+}
+.delivery_info > tbody > tr > td {
+    padding: 5px 0;
+}
+.delivery_info > tbody > tr > td > input {
+    border-radius: 5px;
+}
+.sum_shopping_cart_title {
+    font-weight: bold;
+}
+.delivery_address > input {
+    
+}
+.registration > tbody > tr > td {
+    padding: 5px 5px;
+}
+.order_item {
+    border-radius: 5px;
+    background-color: #fde6c6;
+    padding: 10px;
+    margin: 5px;
+}
+.shopping_cart_item {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fde6c6;
+    margin: 5px;
+}
+.sum_shopping_cart{
+    padding:10px;
+}
