@@ -1,16 +1,15 @@
-﻿@model PizzaDelivery.ViewModel.ViewModels.Main.PizzaPage.PizzaPageVM
+﻿@using System.Net
+@using NuGet.Protocol
+@model PizzaDelivery.ViewModel.ViewModels.Main.PizzaPage.PizzaPageVM
 @{
     ViewData["Title"] = "Main";
 }
 
-@*<h2>Пицца</h2>*@
-
-@*<a class="btn btn-primary" href="@Url.Action("Index", "ShoppingCart")">Корзина</a>*@
 <div class="product_grid">
     @for (var i = 0; i < Model.PizzaList.Count; i++)
     {
         var orderPosition = Model.PizzaList[i];
-        using (Html.BeginForm("AddToShoppingCard", "Main", orderPosition, FormMethod.Post))
+        using (Html.BeginForm("AddToShoppingCard", "Main", orderPosition, FormMethod.Post, null, new { name = "MyForm" }))
         {
             @Html.HiddenFor(x => orderPosition.Pizza.Id)
             @Html.HiddenFor(x => orderPosition.Pizza.Name)
@@ -18,13 +17,11 @@
             @Html.HiddenFor(x => orderPosition.Pizza.Cost)
             <div class="item" >
                 <div class="image_item">
-                    @*<a href="margarita.html">*@
                         <img src="~/images/pizza_img_1.jpg">
                     @*</a>*@
                 </div>
                 <div class="caption">
                     <div class="name">
-                        @* <a href="margarita.html">@Html.DisplayFor(x => orderPosition.Pizza.Name)</a>*@
                         <a>@Html.DisplayFor(x => orderPosition.Pizza.Name)</a>
                     </div>
                     <div class="recipe">
@@ -35,27 +32,13 @@
                     </div>
                     <div class="add_and_count">
                         <button class="btn btn-primary" type="submit">Добавить</button>
+                        <button class="btn btn-primary" type="button" onclick="ajaxTest($('#MyForm'));">Добавить ajax</button>
                         <div class="count">
                             @Html.EditorFor(x => orderPosition.Count)
                         </div>
                     </div>
                 </div>
             </div>
-
-                    @*<table>
-                        <tbody id="@Html.IdFor(x => orderPosition)">
-                            @Html.HiddenFor(x => orderPosition.Pizza.Id)
-                            @Html.HiddenFor(x => orderPosition.Pizza.Name)
-                            @Html.HiddenFor(x => orderPosition.Pizza.Recipe)
-                            @Html.HiddenFor(x => orderPosition.Pizza.Cost)
-                            <tr>
-                                <td>@Html.DisplayFor(x => orderPosition.Pizza.Name)</td>
-                                <td>@Html.DisplayFor(x => orderPosition.Pizza.Recipe)</td>
-                                <td>@Html.DisplayFor(x => orderPosition.Pizza.Cost)</td>
-                                <td>@Html.EditorFor(x => orderPosition.Count)</td>
-                            </tr>
-                        </tbody>
-                    </table>*@
         }
     }
 </div>

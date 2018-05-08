@@ -11,7 +11,7 @@ namespace PizzaDelivery.Extensions
         public static void Set<T>(this ISession session, string key, T value)
         {
             var stringValue = JsonConvert.SerializeObject(value);
-            var array = Encoding.ASCII.GetBytes(stringValue);
+            var array = Encoding.UTF8.GetBytes(stringValue);
             session.Set(key, array);
         }
 
@@ -24,7 +24,7 @@ namespace PizzaDelivery.Extensions
                 return obj;
             }
 
-            var stringValue = Encoding.ASCII.GetString(array);
+            var stringValue = Encoding.UTF8.GetString(array);
             return JsonConvert.DeserializeObject<T>(stringValue);
         }
     }

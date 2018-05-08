@@ -21,13 +21,13 @@ namespace PizzaDelivery.Controllers
             _pesonalPageVmService = pesonalPageVMService;
         }
 
-        [Authorize(Roles = "client")]
+        [Authorize(Roles = SecurityRoles.Client)]
         public IActionResult Index()
         {
             return View("/Views/PersonalPages/ClientPersonalPage.cshtml");
         }
 
-        [Authorize(Roles = "client")]
+        [Authorize(Roles = SecurityRoles.Client)]
         public IActionResult PersonalInfoPage()
         {
             var model = _pesonalPageVmService.GetPersonalInfo(HttpContext.User.Identity.Name);
@@ -35,7 +35,7 @@ namespace PizzaDelivery.Controllers
             return View("/Views/PersonalPages/Templates/PersonalInfo.cshtml", model);
         }
 
-        [Authorize(Roles = "client")]
+        [Authorize(Roles = SecurityRoles.Client)]
         public IActionResult OrderHistoryPage()
         {
             var model = _pesonalPageVmService.GetOrderHistory();
@@ -45,7 +45,7 @@ namespace PizzaDelivery.Controllers
 
 
 
-        [Authorize(Roles = "operator")]
+        [Authorize(Roles = SecurityRoles.Operator)]
         public IActionResult NewOrdersPage()
         {
             var model = _pesonalPageVmService.GetNewOrders();
@@ -53,7 +53,7 @@ namespace PizzaDelivery.Controllers
             return View("/Views/PersonalPages/Templates/NewOrders.cshtml", model);
         }
 
-        [Authorize(Roles = "operator")]
+        [Authorize(Roles = SecurityRoles.Operator)]
         public IActionResult PersonalOrdersPage()
         {
             var model = _pesonalPageVmService.GetPersonalOrders();
@@ -63,7 +63,7 @@ namespace PizzaDelivery.Controllers
 
 
 
-        [Authorize(Roles = "deliveryman")]
+        [Authorize(Roles = SecurityRoles.Deliveryman)]
         public IActionResult OrdersToDeliveryPage()
         {
             var model = _pesonalPageVmService.GetOrdersToDelivery();

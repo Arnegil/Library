@@ -12,6 +12,7 @@ using PizzaDelivery.Models;
 using PizzaDelivery.ViewModel.Interfaces;
 using PizzaDelivery.ViewModel.Interfaces.Ordering;
 using PizzaDelivery.ViewModel.ViewModels.Ordering;
+using NuGet.Protocol;
 
 namespace PizzaDelivery.Controllers
 {
@@ -63,6 +64,16 @@ namespace PizzaDelivery.Controllers
             HttpContext.Session.Set(SessionKeys.ShoppingCart, shoppingCart);
 
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public JsonResult AddToShoppingCardAjax([FromBody] OrderPositionVM orderPosition)
+        {
+            var shoppingCart = HttpContext.Session.Get<ShoppingCartVM>(SessionKeys.ShoppingCart);
+            shoppingCart = _shoppingCardVmService.PutInShoppingCard(shoppingCart, orderPosition);
+            HttpContext.Session.Set(SessionKeys.ShoppingCart, shoppingCart);
+
+            return new JsonResult(new {Success = true});
         }
 
         public IActionResult OpenEditPizzaPage()
