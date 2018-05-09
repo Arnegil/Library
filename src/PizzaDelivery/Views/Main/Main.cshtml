@@ -1,6 +1,4 @@
-﻿@using System.Net
-@using NuGet.Protocol
-@model PizzaDelivery.ViewModel.ViewModels.Main.PizzaPage.PizzaPageVM
+﻿@model PizzaDelivery.ViewModel.ViewModels.Main.PizzaPage.PizzaPageVM
 @{
     ViewData["Title"] = "Main";
 }
@@ -9,7 +7,7 @@
     @for (var i = 0; i < Model.PizzaList.Count; i++)
     {
         var orderPosition = Model.PizzaList[i];
-        using (Html.BeginForm("AddToShoppingCard", "Main", orderPosition, FormMethod.Post, null, new { name = "MyForm" }))
+        using (Html.BeginForm("AddToShoppingCard", "Main", orderPosition, FormMethod.Post, null, new { id = "MyForm" }))
         {
             @Html.HiddenFor(x => orderPosition.Pizza.Id)
             @Html.HiddenFor(x => orderPosition.Pizza.Name)

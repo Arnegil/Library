@@ -28,7 +28,7 @@ namespace PizzaDelivery
             DomainServicesModule.ConfigureServices(services);
             ServicesModule.ConfigureServices(services);
             VMServicesModule.ConfigureServices(services);
-
+            
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
