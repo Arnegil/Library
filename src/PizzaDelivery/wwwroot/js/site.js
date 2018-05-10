@@ -1,6 +1,6 @@
 ﻿// Write your JavaScript code.
 
-function ajaxTest(dataM) {
+function putPizzaInShoppingCart(dataM) {
     var id = dataM.find('input[name="orderPosition.Pizza.Id"]').val();
     var name = dataM.find('input[name="orderPosition.Pizza.Name"]').val();
     var recipe = dataM.find('input[name="orderPosition.Pizza.Recipe"]').val();
@@ -14,6 +14,10 @@ function ajaxTest(dataM) {
         url: '/Main/AddToShoppingCardAjax',
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        data: dataDto
+        data: dataDto,
+        success: function (response) {
+            if (response.isSuccess)
+                dataM.find('input[name="orderPosition.Count"]').val(1);
+        }
     });
 }
