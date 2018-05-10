@@ -7,7 +7,7 @@
     @for (var i = 0; i < Model.PizzaList.Count; i++)
     {
         var orderPosition = Model.PizzaList[i];
-        using (Html.BeginForm("AddToShoppingCard", "Main", orderPosition, FormMethod.Post, null, new { id = "MyForm" }))
+        using (Html.BeginForm("AddToShoppingCard", "Main", orderPosition, FormMethod.Post, null, new { id = "MyForm_" + i }))
         {
             @Html.HiddenFor(x => orderPosition.Pizza.Id)
             @Html.HiddenFor(x => orderPosition.Pizza.Name)
@@ -30,7 +30,7 @@
                     </div>
                     <div class="add_and_count">
                         <button class="btn btn-primary" type="submit">Добавить</button>
-                        <button class="btn btn-primary" type="button" onclick="ajaxTest($('#MyForm'));">Добавить ajax</button>
+                        <button class="btn btn-primary" type="button" onclick="ajaxTest($('#MyForm_@i'));">Добавить ajax</button>
                         <div class="count">
                             @Html.EditorFor(x => orderPosition.Count)
                         </div>
