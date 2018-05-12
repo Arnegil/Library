@@ -22,7 +22,7 @@ namespace PizzaDelivery.ViewModel
             services.AddTransient<IPaymentVMService>(provider => new PaymentVMService(
                 provider.GetService<IClientService>()));
             services.AddTransient<IOrderVMService>(provider => new OrderVMService(provider.GetService<IOrderService>(), provider.GetService<IClientService>()));
-            services.AddTransient<IPesonalPageVMService>(provider => new PesonalPageVMService(provider.GetService<IClientService>()));
+            services.AddTransient<IPesonalPageVMService>(provider => new PesonalPageVMService(provider.GetService<IClientService>(), provider.GetService<IOrderService>()));
             services.AddTransient<IRegistrationVMService>(provider => new RegistrationVMService(provider.GetService<IRegistrationService>()));
             services.AddTransient<ILoginVMService>(provider => new LoginVMService(provider.GetService<IClientService>(), provider.GetService<IEmploeeService>()));
         }

@@ -12,5 +12,8 @@ namespace PizzaDelivery.Services.Interfaces
         void DeleteOrder(Order orderId);
         void SetOrderToOperator(Guid orderId, Guid operatorId);
         void SetOrderToDeliveryman(Guid orderId, Guid deliverymanId);
+        IEnumerable<Order> GetNewOrders();
+        IEnumerable<Order> GetOrdersByOperatorId(Guid operatorId);
+        IEnumerable<Order> GetOrdersToDelivery();
     }
 }

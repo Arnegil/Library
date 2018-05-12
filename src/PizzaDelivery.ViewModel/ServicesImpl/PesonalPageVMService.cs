@@ -4,8 +4,6 @@ using System.Linq;
 using PizzaDelivery.Services.Interfaces;
 using PizzaDelivery.ViewModel.Exensions;
 using PizzaDelivery.ViewModel.Interfaces;
-using PizzaDelivery.ViewModel.ViewModels.Main.PizzaPage;
-using PizzaDelivery.ViewModel.ViewModels.Ordering;
 using PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client;
 using PizzaDelivery.ViewModel.ViewModels.PersonalPages.Deliveryman;
 using PizzaDelivery.ViewModel.ViewModels.PersonalPages.Operator;
@@ -14,11 +12,13 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
 {
     internal class PesonalPageVMService : IPesonalPageVMService
     {
-        private readonly IClientService _clientService;
+        private readonly IClientService _clientService; 
+        private readonly IOrderService _orderService; 
 
-        public PesonalPageVMService(IClientService clientService)
+        public PesonalPageVMService(IClientService clientService, IOrderService orderService)
         {
             _clientService = clientService;
+            _orderService = orderService;
         }
 
         public PersonalInfoVM GetPersonalInfo(string login)
@@ -102,17 +102,41 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
 
         public NewOrdersVM GetNewOrders()
         {
-            throw new NotImplementedException();
+            var orders = _orderService.GetNewOrders();
+
+            return new NewOrdersVM
+            {
+                OrderList = orders
+                    .Select(x => x.ToOrderVM())
+                    .OrderBy(x => x.CreationDate)
+                    .ToList()
+            };
         }
 
-        public PersonalOrdersVM GetPersonalOrders()
+        public PersonalOrdersVM GetPersonalOrders(Guid operatorId)
         {
-            throw new NotImplementedException();
+            var orders = _orderService.GetOrdersByOperatorId(operatorId);
+
+            return new PersonalOrdersVM
+            {
+                OrderList = orders
+                    .Select(x => x.ToOrderVM())
+                    .OrderBy(x => x.CreationDate)
+                    .ToList()
+            };
         }
 
         public OrdersToDeliveryVM GetOrdersToDelivery()
         {
-            throw new NotImplementedException();
+            var orders = _orderService.GetOrdersToDelivery();
+
+            return new OrdersToDeliveryVM
+            {
+                OrderList = orders
+                    .Select(x => x.ToOrderVM())
+                    .OrderBy(x => x.CreationDate)
+                    .ToList()
+            };
         }
     }
 }

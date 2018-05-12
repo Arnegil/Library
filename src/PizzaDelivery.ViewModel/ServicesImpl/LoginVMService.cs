@@ -14,11 +14,17 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
     {
         private readonly IClientService _clientService;
         private readonly IEmploeeService _emploeeService;
+        private Dictionary<string, string> _employeeRoles;
 
         public LoginVMService(IClientService clientService, IEmploeeService emploeeService)
         {
             _clientService = clientService;
             _emploeeService = emploeeService;
+            _employeeRoles = new Dictionary<string, string>()
+            {
+                {EmployeePosts.Operator, SecurityRoles.Operator},
+                {EmployeePosts.Deliveryman, SecurityRoles.Deliveryman}
+            };
         }
 
         public ClaimsPrincipal LogInUser(LoginVM login)
@@ -65,11 +71,14 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
             if (user.Account.Password.Equals(pass))
             {
                 login.LoggedIn = true;
+
+
+
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.Account.Login),
                     new Claim(ClaimTypes.Sid, user.Id.ToString()),
-                    new Claim(ClaimTypes.Role, SecurityRoles.Operator)
+                    new Claim(ClaimTypes.Role, _employeeRoles[user.PostName])
                 };
                 var identity = new ClaimsIdentity(claims, "MyCookieMiddlewareInstance");
 

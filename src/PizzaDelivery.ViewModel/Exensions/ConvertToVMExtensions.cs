@@ -35,6 +35,7 @@ namespace PizzaDelivery.ViewModel.Exensions
             {
                 Id = order.Id,
                 Number = order.OrderNumber,
+                OrderState = (ViewModels.Ordering.OrderState) order.OrderState,
                 ShoppingCart = new ShoppingCartVM
                 {
                     Products = order.OrderPositions.Select(ToOrderPositionVM).ToList()

@@ -14,7 +14,7 @@ namespace PizzaDelivery.ViewModel.Interfaces
         OrderHistoryVM GetOrderHistory(Guid clientId);
 
         NewOrdersVM GetNewOrders();
-        PersonalOrdersVM GetPersonalOrders();
+        PersonalOrdersVM GetPersonalOrders(Guid operatorId);
 
         OrdersToDeliveryVM GetOrdersToDelivery();
     }

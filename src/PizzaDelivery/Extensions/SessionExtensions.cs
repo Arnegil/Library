@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
@@ -26,6 +27,17 @@ namespace PizzaDelivery.Extensions
 
             var stringValue = Encoding.UTF8.GetString(array);
             return JsonConvert.DeserializeObject<T>(stringValue);
+        }
+
+        public static Guid GetId(this ClaimsPrincipal user)
+        {
+            var sid = user.Identities
+                .First(x => x.AuthenticationType == "MyCookieMiddlewareInstance")
+                .Claims.First(x => x.Type == ClaimTypes.Sid)
+                .Value;
+            var userId = Guid.Parse(sid);
+
+            return userId;
         }
     }
 }

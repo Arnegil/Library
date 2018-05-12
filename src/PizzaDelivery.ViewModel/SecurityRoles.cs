@@ -8,4 +8,10 @@
         public const string Admin = "admin";
         public const string Developer = "developer";
     }
+
+    public static class EmployeePosts
+    {
+        public const string Operator = "Operator";
+        public const string Deliveryman = "Deliveryman";
+    }
 }

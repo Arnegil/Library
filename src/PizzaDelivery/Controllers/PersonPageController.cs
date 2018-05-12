@@ -7,6 +7,7 @@ using System.Security.Principal;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PizzaDelivery.Extensions;
 using PizzaDelivery.ViewModel;
 using PizzaDelivery.ViewModel.Interfaces;
 
@@ -41,9 +42,7 @@ namespace PizzaDelivery.Controllers
         [Authorize(Roles = SecurityRoles.Client)]
         public IActionResult OrderHistoryPage()
         {
-            var sid = HttpContext.User.Identities.First(x => x.AuthenticationType == "MyCookieMiddlewareInstance")
-                .Claims.First(x => x.Type == ClaimTypes.Sid).Value;
-            var clientId = Guid.Parse(sid);
+            var clientId = HttpContext.User.GetId();
             var model = _pesonalPageVmService.GetOrderHistory(clientId);
 
             return View("/Views/PersonalPages/Templates/OrderHistory.cshtml", model);
@@ -62,7 +61,8 @@ namespace PizzaDelivery.Controllers
         [Authorize(Roles = SecurityRoles.Operator)]
         public IActionResult PersonalOrdersPage()
         {
-            var model = _pesonalPageVmService.GetPersonalOrders();
+            var operatorId = HttpContext.User.GetId();
+            var model = _pesonalPageVmService.GetPersonalOrders(operatorId);
 
             return View("/Views/PersonalPages/Templates/PersonalOrders.cshtml", model);
         }

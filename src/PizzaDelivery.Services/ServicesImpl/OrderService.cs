@@ -78,6 +78,47 @@ namespace PizzaDelivery.Services.ServicesImpl
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Order> GetNewOrders()
+        {
+            var orders = _context.Orders
+                .Include(x => x.OrderingClient)
+                .Include(x => x.DeliveryInfo)
+                .Include(x => x.PaymentInfo)
+                .Include(x => x.OrderPositions).ThenInclude(x => x.Pizza)
+                .Where(x => x.OrderState == OrderState.Created)
+                .ToList();
+
+            return orders;
+        }
+
+        public IEnumerable<Order> GetOrdersByOperatorId(Guid operatorId)
+        {
+            var stopStates = new[] { OrderState.Created, OrderState.Cancelled, OrderState.Paid };
+
+            var orders = _context.Orders
+                .Include(x => x.OrderingClient)
+                .Include(x => x.DeliveryInfo)
+                .Include(x => x.PaymentInfo)
+                .Include(x => x.OrderPositions).ThenInclude(x => x.Pizza)
+                .Where(x => !stopStates.Contains(x.OrderState) && x.Operator.Id == operatorId)
+                .ToList();
+
+            return orders;
+        }
+
+        public IEnumerable<Order> GetOrdersToDelivery()
+        {
+            var orders = _context.Orders
+                .Include(x => x.OrderingClient)
+                .Include(x => x.DeliveryInfo)
+                .Include(x => x.PaymentInfo)
+                .Include(x => x.OrderPositions).ThenInclude(x => x.Pizza)
+                .Where(x => x.OrderState == OrderState.WaitingForDeliveryman)
+                .ToList();
+
+            return orders;
+        }
+
         private int GetNextOderNumber()
         {
             if (!_context.Orders.Any())

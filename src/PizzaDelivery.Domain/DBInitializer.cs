@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using PizzaDelivery.Domain.Models.Orders;
 using PizzaDelivery.Domain.Models.Persons;
@@ -17,6 +18,8 @@ namespace PizzaDelivery.Domain
                 InitPizzas(context);
                 InitClients(context);
                 InitEmployees(context);
+                context.SaveChanges();
+                InitOrders(context);
                 context.SaveChanges();
                 _isInit = true;
             }
@@ -136,6 +139,167 @@ namespace PizzaDelivery.Domain
                 },
                 HireDate = new DateTime(2012, 12, 1),
                 PostName = "Deliveryman"
+            });
+        }
+
+        private static void InitOrders(PizzaDeliveryDBContext context)
+        {
+            var order1 = new Order()
+            {
+                Id = Guid.Parse("00000000-0000-2222-0000-000000000001"),
+                OrderingClient = context.Clients.First(x => x.Id == Guid.Parse("00000000-0000-0000-0000-000000000001")),
+                CommentToOperator = "comment to operator",
+                CreationDate = DateTime.Parse("01.05.2018"),
+                OrderNumber = 1,
+                OrderState = OrderState.Created,
+                DeliveryInfo = new DeliveryInfo
+                {
+                    Id = Guid.Parse("00000000-0000-3333-0000-000000000001"),
+                    DeliveryAddress = "Street 123",
+                    ClientName = "Client1",
+                    ClientPhoneNumber = "3123123123"
+                },
+                PaymentInfo = new PaymentInfo
+                {
+                    Id = Guid.Parse("00000000-0000-4444-0000-000000000001"),
+                    CardOwnerName = "Name",
+                    CardNumber = "123123",
+                    DateTo = DateTime.Parse("01.02.2018")
+                }
+            };
+            context.Add(order1);
+
+            context.OrderPositions.Add(new OrderPosition()
+            {
+                Id = Guid.Parse("00000000-0000-5555-0000-000000000001"),
+                Pizza = context.Pizzas.First(x => x.Id == Guid.Parse("00000000-0000-1111-0000-000000000001")),
+                Count = 3,
+                Order = order1
+            });
+
+            var order2 = new Order()
+            {
+                Id = Guid.Parse("00000000-0000-2222-0000-000000000002"),
+                OrderingClient = context.Clients.First(x => x.Id == Guid.Parse("00000000-0000-0000-0000-000000000001")),
+                CommentToOperator = "comment to operator",
+                CreationDate = DateTime.Parse("02.05.2018"),
+                OrderNumber = 2,
+                OrderState = OrderState.WaitingForDeliveryman,
+                DeliveryInfo = new DeliveryInfo
+                {
+                    Id = Guid.Parse("00000000-0000-3333-0000-000000000002"),
+                    DeliveryAddress = "Street 123",
+                    ClientName = "Client1",
+                    ClientPhoneNumber = "3123123123"
+                },
+                PaymentInfo = new PaymentInfo
+                {
+                    Id = Guid.Parse("00000000-0000-4444-0000-000000000002"),
+                    CardOwnerName = "Name",
+                    CardNumber = "123123",
+                    DateTo = DateTime.Parse("01.02.2018")
+                },
+                Operator = context.Employees.First(x => x.Id == Guid.Parse("00000000-0000-0000-0000-000000000007"))
+            };
+            context.Add(order2);
+
+            context.OrderPositions.Add(new OrderPosition()
+            {
+                Id = Guid.Parse("00000000-0000-5555-0000-000000000002"),
+                Pizza = context.Pizzas.First(x => x.Id == Guid.Parse("00000000-0000-1111-0000-000000000001")),
+                Count = 2,
+                Order = order2
+            });
+            context.OrderPositions.Add(new OrderPosition()
+            {
+                Id = Guid.Parse("00000000-0000-5555-0000-000000000003"),
+                Pizza = context.Pizzas.First(x => x.Id == Guid.Parse("00000000-0000-1111-0000-000000000002")),
+                Count = 2,
+                Order = order2
+            });
+            
+            var order3 = new Order()
+            {
+                Id = Guid.Parse("00000000-0000-2222-0000-000000000003"),
+                OrderingClient = context.Clients.First(x => x.Id == Guid.Parse("00000000-0000-0000-0000-000000000001")),
+                CommentToOperator = "comment to operator",
+                CreationDate = DateTime.Parse("04.05.2018"),
+                OrderNumber = 3,
+                OrderState = OrderState.Paid,
+                DeliveryInfo = new DeliveryInfo
+                {
+                    Id = Guid.Parse("00000000-0000-3333-0000-000000000003"),
+                    DeliveryAddress = "Street 123",
+                    ClientName = "Client1",
+                    ClientPhoneNumber = "3123123123"
+                },
+                PaymentInfo = new PaymentInfo
+                {
+                    Id = Guid.Parse("00000000-0000-4444-0000-000000000003"),
+                    CardOwnerName = "Name",
+                    CardNumber = "123123",
+                    DateTo = DateTime.Parse("01.02.2018")
+                },
+                Operator = context.Employees.First(x => x.Id == Guid.Parse("00000000-0000-0000-0000-000000000007"))
+            };
+            context.Add(order3);
+
+            context.OrderPositions.Add(new OrderPosition()
+            {
+                Id = Guid.Parse("00000000-0000-5555-0000-000000000004"),
+                Pizza = context.Pizzas.First(x => x.Id == Guid.Parse("00000000-0000-1111-0000-000000000003")),
+                Count = 3,
+                Order = order3
+            });
+            context.OrderPositions.Add(new OrderPosition()
+            {
+                Id = Guid.Parse("00000000-0000-5555-0000-000000000005"),
+                Pizza = context.Pizzas.First(x => x.Id == Guid.Parse("00000000-0000-1111-0000-000000000001")),
+                Count = 2,
+                Order = order3
+            });
+
+            var order4 = new Order()
+            {
+                Id = Guid.Parse("00000000-0000-2222-0000-000000000004"),
+                OrderingClient = context.Clients.First(x => x.Id == Guid.Parse("00000000-0000-0000-0000-000000000001")),
+                CommentToOperator = "comment to operator",
+                CommentToDeliveryman = "comment to deliveryman",
+                CreationDate = DateTime.Parse("05.05.2018"),
+                OrderNumber = 4,
+                OrderState = OrderState.Cooking,
+                DeliveryInfo = new DeliveryInfo
+                {
+                    Id = Guid.Parse("00000000-0000-3333-0000-000000000005"),
+                    DeliveryAddress = "Street 123",
+                    ClientName = "Client1",
+                    ClientPhoneNumber = "3123123123"
+                },
+                PaymentInfo = new PaymentInfo
+                {
+                    Id = Guid.Parse("00000000-0000-4444-0000-000000000005"),
+                    CardOwnerName = "Name",
+                    CardNumber = "123123",
+                    DateTo = DateTime.Parse("01.02.2018")
+                },
+                UpdateDate = DateTime.Parse("05.05.2018"),
+                Operator = context.Employees.First(x => x.Id == Guid.Parse("00000000-0000-0000-0000-000000000007"))
+            };
+            context.Add(order4);
+
+            context.OrderPositions.Add(new OrderPosition()
+            {
+                Id = Guid.Parse("00000000-0000-5555-0000-000000000006"),
+                Pizza = context.Pizzas.First(x => x.Id == Guid.Parse("00000000-0000-1111-0000-000000000001")),
+                Count = 3,
+                Order = order4
+            });
+            context.OrderPositions.Add(new OrderPosition()
+            {
+                Id = Guid.Parse("00000000-0000-5555-0000-000000000007"),
+                Pizza = context.Pizzas.First(x => x.Id == Guid.Parse("00000000-0000-1111-0000-000000000002")),
+                Count = 2,
+                Order = order4
             });
         }
     }
