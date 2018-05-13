@@ -4,8 +4,10 @@
     ViewData["Title"] = "OrderHistory";
 }
 
-<h2>История заказов</h2>
+<a class="btn btn-primary" href="@Url.Action("PersonalInfoPage", "PersonPage")">Личные данные</a>
+<a class="btn btn-primary" href="@Url.Action("OrderHistoryPage", "PersonPage")">История заказов</a>
 
+<h2>История заказов</h2>
 
 @foreach (OrderVM order in Model.OrderList)
 {

@@ -28,7 +28,10 @@ namespace PizzaDelivery.Controllers
         [Authorize(Roles = SecurityRoles.Client)]
         public IActionResult Index()
         {
-            return View("/Views/PersonalPages/ClientPersonalPage.cshtml");
+            //return View("/Views/PersonalPages/ClientPersonalPage.cshtml");
+            var model = _pesonalPageVmService.GetPersonalInfo(HttpContext.User.Identity.Name);
+
+            return View("/Views/PersonalPages/Templates/PersonalInfo.cshtml", model);
         }
 
         [Authorize(Roles = SecurityRoles.Client)]
@@ -48,7 +51,12 @@ namespace PizzaDelivery.Controllers
             return View("/Views/PersonalPages/Templates/OrderHistory.cshtml", model);
         }
 
-
+        [Authorize(Roles = SecurityRoles.Operator)]
+        public IActionResult IndexOperator()
+        {
+            var model = _pesonalPageVmService.GetNewOrders();
+            return View("/Views/PersonalPages/Templates/NewOrders.cshtml", model);
+        }
 
         [Authorize(Roles = SecurityRoles.Operator)]
         public IActionResult NewOrdersPage()
