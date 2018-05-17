@@ -1,4 +1,4 @@
-﻿@model PizzaDelivery.ViewModel.ViewModels.Main.PizzaPage.PizzaPageVM
+@model PizzaDelivery.ViewModel.ViewModels.Main.PizzaPage.PizzaPageVM
 @{
     ViewData["Title"] = "Main";
 }
@@ -33,9 +33,13 @@
                         <div class="count">
                             @Html.EditorFor(x => orderPosition.Count)
                         </div>
+                        <input type="button" class="btn btn-primary" value="Редактировать" onclick="location.href='@Url.Action("OpenEditPizzaPage", "Main", new { pizzaId = Model.PizzaList[i].Pizza.Id })'" />
                     </div>
                 </div>
             </div>
         }
     }
+            <div class="item" style="vertical-align:central">
+                <input type="button" class="btn btn-primary" value="Новая пицца" onclick="location.href='@Url.Action("CreateNewPizzaPage", "Main")'" />
+            </div>
 </div>
