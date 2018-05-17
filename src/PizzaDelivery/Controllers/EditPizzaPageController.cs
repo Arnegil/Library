@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -14,9 +14,9 @@ namespace PizzaDelivery.Controllers
     {
         private readonly IPizzaVMService _pizzaVmService;
 
-        public EditPizzaPageController()
+        public EditPizzaPageController(IPizzaVMService pizzaVMService)
         {
-            _pizzaVmService = HttpContext.RequestServices.GetService<IPizzaVMService>();
+            _pizzaVmService = pizzaVMService;
         }
 
         public IActionResult Index()
