@@ -1,0 +1,32 @@
+﻿@model PizzaDelivery.ViewModel.ViewModels.Main.PizzaPage.PizzaVM
+@{
+    ViewData["Title"] = "Редактирование пиццы";
+}
+
+@using (Html.BeginForm("SavePizza", "EditPizzaPage", Model, FormMethod.Post))
+{
+    <table class="registration">
+        <tr>
+            <td>@Html.DisplayNameFor(x => x.Name)</td>
+            <td>
+                @Html.EditorFor(x => x.Name)
+                @Html.ValidationMessageFor(x => x.Name)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(x => x.Recipe)</td>
+            <td>
+                @Html.EditorFor(x => x.Recipe)
+                @Html.ValidationMessageFor(x => x.Recipe)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(x => x.Cost)</td>
+            <td>
+                @Html.EditorFor(x => x.Cost)
+                @Html.ValidationMessageFor(x => x.Cost)
+            </td>
+        </tr>
+    </table>
+    <button class="btn btn-primary" type="submit">Сохранить пиццу</button>
+}
