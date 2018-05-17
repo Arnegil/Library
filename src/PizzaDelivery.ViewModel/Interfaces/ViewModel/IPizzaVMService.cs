@@ -9,5 +9,6 @@ namespace PizzaDelivery.ViewModel.Interfaces
     {
         void SavePizza(PizzaVM pizza);
         void DeletePizza(PizzaVM pizza);
+        PizzaVM GetPizzaById(Guid pizzaId);
     }
 }
