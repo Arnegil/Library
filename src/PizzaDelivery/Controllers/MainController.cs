@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -12,6 +12,7 @@ using PizzaDelivery.Models;
 using PizzaDelivery.ViewModel;
 using PizzaDelivery.ViewModel.Interfaces;
 using PizzaDelivery.ViewModel.Interfaces.Ordering;
+using PizzaDelivery.ViewModel.ViewModels.Main.PizzaPage;
 using PizzaDelivery.ViewModel.ViewModels.Ordering;
 
 namespace PizzaDelivery.Controllers
@@ -20,16 +21,20 @@ namespace PizzaDelivery.Controllers
     {
         private readonly IPizzaPageVMService _pizzaPageVmService;
         private readonly IShoppingCardVMService _shoppingCardVmService;
+        private readonly IPizzaVMService _pizzaVMService;
 
-        public MainController(IPizzaPageVMService pizzaPageVmService, IShoppingCardVMService shoppingCardVmService)
+        public MainController(IPizzaPageVMService pizzaPageVmService, IShoppingCardVMService shoppingCardVmService, IPizzaVMService pizzaVMService)
         {
             if (pizzaPageVmService == null)
                 throw new ArgumentNullException(nameof(pizzaPageVmService));
             if (shoppingCardVmService == null)
                 throw new ArgumentNullException(nameof(shoppingCardVmService));
+            if (pizzaVMService == null)
+                throw new ArgumentNullException(nameof(pizzaVMService));
 
             _pizzaPageVmService = pizzaPageVmService;
             _shoppingCardVmService = shoppingCardVmService;
+            _pizzaVMService = pizzaVMService;
         }
 
         [HttpGet]
@@ -48,13 +53,13 @@ namespace PizzaDelivery.Controllers
             return View("Main", model);
         }
 
-        [HttpGet]
+        /*[HttpGet]
         public IActionResult PizzaSection(int page)
         {
             var model = _pizzaPageVmService.GetPizzaPage(page);
 
             return View("Main", model);
-        }
+        }*/
 
         [HttpPost]
         public IActionResult AddToShoppingCard(OrderPositionVM orderPosition)
@@ -76,16 +81,18 @@ namespace PizzaDelivery.Controllers
             return Json(new {IsSuccess = true});
         }
 
-        public IActionResult OpenEditPizzaPage()
+        [HttpGet]
+        public IActionResult OpenEditPizzaPage(Guid pizzaId)
         {
-            return View();
+            var model = _pizzaVMService.GetPizzaById(pizzaId);
+            return View("/Views/Main/EditPizza.cshtml", model);
         }
 
         public IActionResult CreateNewPizzaPage()
         {
-            return View();
+            return View("/Views/Main/EditPizza.cshtml", new PizzaVM());
         }
-        
+
         [Authorize]
         public IActionResult PersonalPage()
         {
