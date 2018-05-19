@@ -120,6 +120,14 @@ namespace PizzaDelivery.Controllers
             return RedirectToAction("Index", "Registration");
         }
 
+        [Authorize]
+        public IActionResult EmployeeRegistration()
+        {
+            if (HttpContext.User.IsInRole(SecurityRoles.Admin))
+                return RedirectToAction("EmployeeRegistration", "Registration");
+            return Index();
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
