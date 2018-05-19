@@ -4,6 +4,18 @@
 }
 @using (Html.BeginForm("RegisterEmployee", "Registration", Model, FormMethod.Post))
 {
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    listItems.Add(new SelectListItem
+    {
+        Text = "Оператор",
+        Value = "Оператор"
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "Курьер",
+        Value = "Курьер"
+    });
+    
     <table class="registration">
         <tr>
             <td>@Html.DisplayNameFor(x => x.Login)</td>
@@ -52,6 +64,13 @@
             <td>
                 @Html.EditorFor(x => x.Address)
                 @Html.ValidationMessageFor(x => x.Address)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(x => x.Role)</td>
+            <td>
+                @Html.DropDownListFor(x => x.Role, listItems, "-- Выберите должность --")
+                @Html.ValidationMessageFor(x => x.Role)
             </td>
         </tr>
     </table>
