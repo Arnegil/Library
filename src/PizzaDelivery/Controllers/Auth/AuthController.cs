@@ -32,6 +32,8 @@ namespace PizzaDelivery.Controllers.Auth
 
             var principal = _loginVMService.LogInUser(model);
             if (principal == null)
+                principal = _loginVMService.LogInEmployee(model);
+            if (principal == null)
                 return Error();
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(principal));
