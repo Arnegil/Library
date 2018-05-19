@@ -23,7 +23,8 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
             _employeeRoles = new Dictionary<string, string>()
             {
                 {EmployeePosts.Operator, SecurityRoles.Operator},
-                {EmployeePosts.Deliveryman, SecurityRoles.Deliveryman}
+                {EmployeePosts.Deliveryman, SecurityRoles.Deliveryman},
+                {EmployeePosts.Admin, SecurityRoles.Admin }
             };
         }
 
