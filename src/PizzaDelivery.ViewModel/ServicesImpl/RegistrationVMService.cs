@@ -1,4 +1,4 @@
-﻿using PizzaDelivery.ViewModel.Interfaces;
+using PizzaDelivery.ViewModel.Interfaces;
 using PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client;
 using System;
 using System.Collections.Generic;
@@ -33,7 +33,7 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
             _registrationService.RegisterPerson(newPerson, newAccount);
         }
 
-        public void RegisterNewEmployee(RegistrationVM registrationVM)
+        public void RegisterNewEmployee(RegistrationVM registrationVM, string role)
         {
             var newPerson = registrationVM.ToPerson();
             var newAccount = registrationVM.ToAccount();
@@ -44,7 +44,7 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
                 newAccount.Password = Encoding.UTF8.GetString(md5.ComputeHash(Encoding.UTF8.GetBytes(registrationVM.Password)));
             }
 
-            _registrationService.RegisterPerson(newPerson, newAccount);
+            _registrationService.RegisterEmployee(newPerson, newAccount, role);
         }
     }
 }
