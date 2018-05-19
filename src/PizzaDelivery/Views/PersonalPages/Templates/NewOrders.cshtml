@@ -21,38 +21,76 @@
                 @Html.DisplayFor(x => order.Number)
             </span>
         </div>
-        <table class="shopping_cart_grid">
-            <tbody>
-                @foreach (OrderPositionVM position in order.ShoppingCart.Products)
-                {
-                    <tr class="shopping_cart_item">
+            <table class="order_element">
+                <tbody>
+                    <tr>
                         <td>
-                            <div class="image_item_shopping_cart">
-                                <img src="~/images/pizza_img_1.jpg">
+                            <div>
+                                <table class="shopping_cart_grid">
+                                    @foreach (OrderPositionVM position in order.ShoppingCart.Products)
+                                    {
+                                    <tr class="shopping_cart_item">
+                                        <td>
+                                            <div class="image_item_shopping_cart">
+                                                <img src="~/images/pizza_img_1.jpg">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="name">
+                                                <span>@Html.DisplayFor(x => position.Pizza.Name)</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="cost">
+                                                <span>@Html.DisplayFor(x => position.Pizza.Cost) ₽</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="count">
+                                                @Html.DisplayFor(x => position.Count)
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="sum">
+                                                <span>@Html.DisplayFor(x => position.Sum) ₽</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    }
+                                </table>
                             </div>
                         </td>
-                        <td>
-                            <div class="name">
-                                <span>@Html.DisplayFor(x => position.Pizza.Name)</span>
+                    <td>
+                        <div class="comment">
+                            <div>
+                                <span>@Html.DisplayNameFor(x => order.PaymentInfo.PaymentType): </span>
+                                <span>@Html.DisplayFor(x => order.PaymentInfo.PaymentType)</span>
                             </div>
-                        </td>
-                        <td>
-                            <div class="cost">
-                                <span>@Html.DisplayFor(x => position.Pizza.Cost) ₽</span>
+                            <div>
+                                <span>@Html.DisplayNameFor(x => order.DeliveryInfo.ClientName): </span>
+                                <span>@Html.DisplayFor(x => order.DeliveryInfo.ClientName)</span>
                             </div>
-                        </td>
-                        <td>
-                            <div class="count">
-                                @Html.DisplayFor(x => position.Count)
+                            <div>
+                                <span>@Html.DisplayNameFor(x => order.DeliveryInfo.ClientPhoneNumber): </span>
+                                <span>@Html.DisplayFor(x => order.DeliveryInfo.ClientPhoneNumber)</span>
                             </div>
-                        </td>
-                        <td>
-                            <div class="sum">
-                                <span>@Html.DisplayFor(x => position.Sum) ₽</span>
+                            <div>
+                                <span>Комментарий: </span>
+                                <span>@Html.DisplayFor(x => order.DeliveryInfo.CommentToOperator)</span>
                             </div>
-                        </td>
-                    </tr>
-                }
+                        </div>
+                    </td>
+                    <td>
+                        <div class="for_button">
+                            <div class="add_button">
+                                <button class="btn btn-primary" type="button" onclick="okOrderInOrderNew('@order.Id.ToString()');">Принять</button>
+                            </div>
+                            <div class="del_button">
+                                <button class="btn btn-primary" type="button" onclick="delOrderInOrderNew('@order.Id.ToString()');">Удалить</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <div class="sum_shopping_cart">

@@ -48,6 +48,11 @@
                             <span>@Html.DisplayFor(x => shoppingCart.Products[i].Sum) ₽</span>
                         </div>
                     </td>
+                    <td>
+                        <div class="add_and_count">
+                            <button class="btn btn-primary" type="button" onclick="delPizzaInShoppingCart('@shoppingCart.Products[i].Pizza.Id.ToString()');">Удалить</button>
+                        </div>
+                    </td>
                 </tr>
             }
         </tbody>

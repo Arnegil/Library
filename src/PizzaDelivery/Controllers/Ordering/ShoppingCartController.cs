@@ -42,5 +42,13 @@ namespace PizzaDelivery.Controllers.Ordering
 
             return RedirectToAction("Index", "DeliveryInfo");
         }
+
+        [HttpPost]
+        public JsonResult DelToShoppingCardAjax([FromBody] OrderPositionVM orderPosition)
+        {
+            //
+
+            return Json(new { IsSuccess = true });
+        }
     }
 }

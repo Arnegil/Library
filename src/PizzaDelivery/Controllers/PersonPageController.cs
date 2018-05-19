@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using PizzaDelivery.Extensions;
 using PizzaDelivery.ViewModel;
 using PizzaDelivery.ViewModel.Interfaces;
+using PizzaDelivery.ViewModel.ViewModels.Ordering;
 
 namespace PizzaDelivery.Controllers
 {
@@ -75,6 +76,22 @@ namespace PizzaDelivery.Controllers
             return View("/Views/PersonalPages/Templates/PersonalOrders.cshtml", model);
         }
 
+        [HttpPost]
+        public JsonResult OkOrderInOrderNewAjax([FromBody] OrderPositionVM orderPosition)
+        {
+            //номер заказа
+
+            return Json(new { IsSuccess = true });
+        }
+
+        [HttpPost]
+        public JsonResult DelOrderInOrderNewAjax([FromBody] OrderPositionVM orderPosition)
+        {
+            //номер заказа
+
+            return Json(new { IsSuccess = true });
+        }
+
 
 
         [Authorize(Roles = SecurityRoles.Deliveryman)]
@@ -83,6 +100,13 @@ namespace PizzaDelivery.Controllers
             var model = _pesonalPageVmService.GetOrdersToDelivery();
 
             return View("/Views/PersonalPages/Templates/OrdersToDelivery.cshtml", model);
+        }
+        [HttpPost]
+        public JsonResult ExecuteOrderInOrderToDeliveryAjax([FromBody] OrderPositionVM orderPosition)
+        {
+            //номер заказа
+
+            return Json(new { IsSuccess = true });
         }
     }
 }
