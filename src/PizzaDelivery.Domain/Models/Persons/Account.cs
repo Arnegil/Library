@@ -29,6 +29,7 @@ namespace PizzaDelivery.Domain.Models.Persons
     public enum AccountType
     {
         Client,
-        Employee
+        Employee,
+        Admin
     }
 }
