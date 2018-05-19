@@ -98,6 +98,10 @@ namespace PizzaDelivery.Controllers
         {
             if (HttpContext.User.IsInRole(SecurityRoles.Client))
                 return RedirectToAction("Index", "PersonPage");
+            if (HttpContext.User.IsInRole(SecurityRoles.Operator))
+                return RedirectToAction("IndexOperator", "PersonPage");
+            if (HttpContext.User.IsInRole(SecurityRoles.Deliveryman))
+                return RedirectToAction("OrdersToDeliveryPage", "PersonPage");
 
             return Index();
         }
