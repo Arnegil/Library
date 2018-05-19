@@ -1,0 +1,59 @@
+﻿@model PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client.RegistrationVM
+@{
+    ViewData["Title"] = "Регистрация сотрудника";
+}
+@using (Html.BeginForm("RegisterEmployee", "Registration", Model, FormMethod.Post))
+{
+    <table class="registration">
+        <tr>
+            <td>@Html.DisplayNameFor(x => x.Login)</td>
+            <td>
+                @Html.EditorFor(x => x.Login)
+                @Html.ValidationMessageFor(x => x.Login)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(x => x.Password)</td>
+            <td>
+                @Html.EditorFor(x => x.Password)
+                @Html.ValidationMessageFor(x => x.Password)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(x => x.FIO)</td>
+            <td>
+                @Html.EditorFor(x => x.FIO)
+                @Html.ValidationMessageFor(x => x.FIO)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(x => x.Email)</td>
+            <td>
+                @Html.EditorFor(x => x.Email)
+                @Html.ValidationMessageFor(x => x.Email)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(x => x.PhoneNumber)</td>
+            <td>
+                @Html.EditorFor(x => x.PhoneNumber)
+                @Html.ValidationMessageFor(x => x.PhoneNumber)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(x => x.Birthday)</td>
+            <td>
+                @Html.EditorFor(x => x.Birthday)
+                @Html.ValidationMessageFor(x => x.Birthday)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(x => x.Address)</td>
+            <td>
+                @Html.EditorFor(x => x.Address)
+                @Html.ValidationMessageFor(x => x.Address)
+            </td>
+        </tr>
+    </table>
+    <button class="btn btn-primary" type="submit">Регистрация</button>
+}
