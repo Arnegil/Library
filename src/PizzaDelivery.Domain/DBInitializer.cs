@@ -18,6 +18,7 @@ namespace PizzaDelivery.Domain
                 InitPizzas(context);
                 InitClients(context);
                 InitEmployees(context);
+                InitAdmins(context);
                 context.SaveChanges();
                 InitOrders(context);
                 context.SaveChanges();
@@ -139,6 +140,31 @@ namespace PizzaDelivery.Domain
                 },
                 HireDate = new DateTime(2012, 12, 1),
                 PostName = "Deliveryman"
+            });
+        }
+
+        private static void InitAdmins(PizzaDeliveryDBContext context)
+        {
+            context.Add(new Employee()
+            {
+                Id = Guid.Parse("00000000-0000-0000-0000-000000000010"),
+                Person = new Person
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-000000000020"),
+                    FIO = "Ivan Ivanovich",
+                    Birthday = new DateTime(1991, 1, 19),
+                    Email = "adminsaita@mail.ru",
+                    PhoneNumber = "555-35-35"
+                },
+                Account = new Account
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-000000000030"),
+                    Login = "AdminSaita",
+                    Password = @" ,�b�Y[�K-#Kp",
+                    Type = AccountType.Admin
+                },
+                HireDate = new DateTime(2010, 2, 1),
+                PostName = "Admin"
             });
         }
 
