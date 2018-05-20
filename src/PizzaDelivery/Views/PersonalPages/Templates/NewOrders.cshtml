@@ -74,10 +74,13 @@
                                 <span>@Html.DisplayNameFor(x => order.DeliveryInfo.ClientPhoneNumber): </span>
                                 <span>@Html.DisplayFor(x => order.DeliveryInfo.ClientPhoneNumber)</span>
                             </div>
-                            <div>
-                                <span>Комментарий: </span>
-                                <span>@Html.DisplayFor(x => order.DeliveryInfo.CommentToOperator)</span>
-                            </div>
+                            @if (!string.IsNullOrEmpty(order.DeliveryInfo.CommentToOperator))
+                            {
+                                <div>
+                                    <span>Комментарий: </span>
+                                    <span>@Html.DisplayFor(x => order.DeliveryInfo.CommentToOperator)</span>
+                                </div>
+                            }
                         </div>
                     </td>
                     <td>
