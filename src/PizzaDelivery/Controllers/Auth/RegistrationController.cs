@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using PizzaDelivery.ViewModel.Interfaces;
 using PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client;
 using System;
@@ -27,6 +27,17 @@ namespace PizzaDelivery.Controllers.Auth
             return View("/Views/Registration/Registration.cshtml");
         }
 
+        public IActionResult EmployeeRegistration()
+        {
+            return View("/Views/Registration/EmployeeRegistration.cshtml");
+        }
+
+        [HttpPost]
+        public IActionResult EmployeeReRegistration(ViewModel.ViewModels.PersonalPages.Operator.RegistrationVM registration)
+        {
+            return View("/Views/Registration/EmployeeRegistration.cshtml", registration);
+        }
+
         [HttpPost]
         public IActionResult ReRegistration(RegistrationVM registration)
         {
@@ -48,7 +59,28 @@ namespace PizzaDelivery.Controllers.Auth
             return RedirectToAction("Index", "Main");
         }
 
-        public IActionResult Error()
+        [HttpPost]
+        public async Task<IActionResult> RegisterEmployee(ViewModel.ViewModels.PersonalPages.Operator.RegistrationVM registration)
+        {
+            if (!ModelState.IsValid)
+                return EmployeeReRegistration(registration);
+
+            RegistrationVM register = new RegistrationVM
+            {
+                Address = registration.Address,
+                Birthday = registration.Birthday,
+                Email = registration.Email,
+                FIO = registration.FIO,
+                Login = registration.Login,
+                Password = registration.Password,
+                PhoneNumber = registration.PhoneNumber
+            };
+            string role = registration.Role;
+            _registrationVMService.RegisterNewEmployee(register, role);
+            return RedirectToAction("Index","Main");
+        }
+
+            public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = "Неправильный логин или пароль" });
         }

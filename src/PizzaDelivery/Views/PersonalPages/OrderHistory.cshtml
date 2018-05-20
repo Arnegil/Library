@@ -1,4 +1,5 @@
-﻿@using PizzaDelivery.ViewModel.ViewModels.Ordering
+﻿@using PizzaDelivery.Extensions
+@using PizzaDelivery.ViewModel.ViewModels.Ordering
 @model PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client.OrderHistoryVM
 @{
     ViewData["Title"] = "OrderHistory";
@@ -19,17 +20,15 @@
             <span>
                 @Html.DisplayFor(x => order.Number)
             </span>
+            <span class="sum_shopping_cart_title">
+                @order.OrderState.GetDescription()
+            </span>
         </div>
         <table class="shopping_cart_grid">
             <tbody>
                 @foreach (OrderPositionVM position in order.ShoppingCart.Products)
                 {
                     <tr class="shopping_cart_item">
-                        <td>
-                            <div class="image_item_shopping_cart">
-                                <img src="~/images/pizza_img_1.jpg">
-                            </div>
-                        </td>
                         <td>
                             <div class="name">
                                 <span>@Html.DisplayFor(x => position.Pizza.Name)</span>
@@ -51,20 +50,6 @@
                             </div>
                         </td>
                     </tr>
-                    @*<tr>
-                            <td>@Html.DisplayNameFor(x => position.Pizza.Name)</td>
-                            <td>@Html.DisplayNameFor(x => position.Pizza.Recipe)</td>
-                            <td>@Html.DisplayNameFor(x => position.Pizza.Cost)</td>
-                            <td>@Html.DisplayNameFor(x => position.Count)</td>
-                            <td>@Html.DisplayNameFor(x => position.Sum)</td>
-                        </tr>
-                        <tr>
-                            <td>@Html.DisplayFor(x => position.Pizza.Name)</td>
-                            <td>@Html.DisplayFor(x => position.Pizza.Recipe)</td>
-                            <td>@Html.DisplayFor(x => position.Pizza.Cost)</td>
-                            <td>@Html.DisplayFor(x => position.Count)</td>
-                            <td>@Html.DisplayFor(x => position.Sum)</td>
-                        </tr>*@
                 }
             </tbody>
         </table>

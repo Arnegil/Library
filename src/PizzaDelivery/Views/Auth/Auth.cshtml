@@ -7,15 +7,19 @@
 {
     <table class="registration">
         <tbody>
-            <tr>
-                <td>@Html.DisplayNameFor(x => x.Login)</td>
-                <td>@Html.EditorFor(x => x.Login)</td>
-            </tr>
-            <tr>
-                <td>@Html.DisplayNameFor(x => x.Password)</td>
-                <td>@Html.EditorFor(x => x.Password)</td>
-            </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(x => x.Login)</td>
+            <td>@Html.EditorFor(x => x.Login)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(x => x.Password)</td>
+            <td>@Html.EditorFor(x => x.Password)</td>
+        </tr>
         </tbody>
     </table>
+    if (Model != null && Model.LoggedIn)
+    {
+        <p>Неправильный логин или пароль</p>
+    }
     <button class="btn btn-primary" type="submit">Вход</button>
 }

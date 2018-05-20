@@ -1,4 +1,6 @@
-﻿@using PizzaDelivery.ViewModel.ViewModels.Ordering
+﻿@using PizzaDelivery.Extensions
+@using PizzaDelivery.Services.Extensions
+@using PizzaDelivery.ViewModel.ViewModels.Ordering
 @model PizzaDelivery.ViewModel.ViewModels.PersonalPages.Operator.NewOrdersVM
 @{
     ViewData["Title"] = "OrderHistory";
@@ -12,7 +14,7 @@
 
 @foreach (OrderVM order in Model.OrderList)
 {
-    <div class="order_item">
+    <div class="order_item" id="@order.Id">
         <div class="sum_shopping_cart">
             <span class="sum_shopping_cart_title">
                 @Html.DisplayNameFor(x => order.Number):
@@ -30,11 +32,6 @@
                                     @foreach (OrderPositionVM position in order.ShoppingCart.Products)
                                     {
                                     <tr class="shopping_cart_item">
-                                        <td>
-                                            <div class="image_item_shopping_cart">
-                                                <img src="~/images/pizza_img_1.jpg">
-                                            </div>
-                                        </td>
                                         <td>
                                             <div class="name">
                                                 <span>@Html.DisplayFor(x => position.Pizza.Name)</span>
@@ -64,7 +61,7 @@
                         <div class="comment">
                             <div>
                                 <span>@Html.DisplayNameFor(x => order.PaymentInfo.PaymentType): </span>
-                                <span>@Html.DisplayFor(x => order.PaymentInfo.PaymentType)</span>
+                                <span>@order.PaymentInfo.PaymentType.GetDescription()</span>
                             </div>
                             <div>
                                 <span>@Html.DisplayNameFor(x => order.DeliveryInfo.ClientName): </span>
@@ -74,7 +71,7 @@
                                 <span>@Html.DisplayNameFor(x => order.DeliveryInfo.ClientPhoneNumber): </span>
                                 <span>@Html.DisplayFor(x => order.DeliveryInfo.ClientPhoneNumber)</span>
                             </div>
-                            @if (!string.IsNullOrEmpty(order.DeliveryInfo.CommentToOperator))
+                            @if (!order.DeliveryInfo.CommentToOperator.IsNullOrEmpty())
                             {
                                 <div>
                                     <span>Комментарий: </span>

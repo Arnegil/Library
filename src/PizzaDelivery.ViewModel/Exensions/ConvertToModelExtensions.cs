@@ -8,6 +8,7 @@ using PizzaDelivery.Domain.Models.Persons;
 using PizzaDelivery.ViewModel.ViewModels.Main.PizzaPage;
 using PizzaDelivery.ViewModel.ViewModels.Ordering;
 using PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client;
+using PaymentType = PizzaDelivery.Domain.Models.Orders.PaymentType;
 
 namespace PizzaDelivery.ViewModel.Exensions
 {
@@ -59,6 +60,7 @@ namespace PizzaDelivery.ViewModel.Exensions
         {
             return new PaymentInfo
             {
+                PaymentType = (PaymentType) paymentInfo.PaymentType,
                 CardNumber = paymentInfo.CardNumber,
                 CardOwnerName = paymentInfo.CardOwnerName,
                 DateTo = paymentInfo.DateTo

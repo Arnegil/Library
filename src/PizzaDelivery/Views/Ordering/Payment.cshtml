@@ -10,19 +10,19 @@
 @using (Html.BeginForm("SavePaymentInfo", "Payment", Model, FormMethod.Post))
 {
     <table class="delivery_info">
-        <tr>
+        <tr id="CardNumberTR">
             <td>@Html.DisplayNameFor(x => x.CardNumber)</td>
             <td>@Html.EditorFor(x => x.CardNumber)</td>
         </tr>
-        <tr>
+        <tr id="CardOwnerNameTR">
             <td>@Html.DisplayNameFor(x => x.CardOwnerName)</td>
             <td>@Html.EditorFor(x => x.CardOwnerName)</td>
         </tr>
-        <tr>
+        <tr id="DateToTR">
             <td>@Html.DisplayNameFor(x => x.DateTo)</td>
             <td>@Html.EditorFor(x => x.DateTo)</td>
         </tr>
-        <tr>@Html.DropDownListFor(x => x.PaymentType, new List<SelectListItem>(typeof(PaymentType).GetEnumValues<PaymentType>().Select(x => new SelectListItem() { Text = x.GetDescription(), Value = x.GetDescription() })))</tr>
+        <tr>@Html.DropDownListFor(x => x.PaymentType, new List<SelectListItem>(typeof(PaymentType).GetEnumValues<PaymentType>().Select(x => new SelectListItem() { Text = x.GetDescription(), Value = x.ToString() })))</tr>
     </table>
     <div class="delivery_info_btn">
         <button class="btn btn-primary" type="submit">Заказать</button>

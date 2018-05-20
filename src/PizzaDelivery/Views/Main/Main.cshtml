@@ -1,4 +1,4 @@
-﻿@model PizzaDelivery.ViewModel.ViewModels.Main.PizzaPage.PizzaPageVM
+@model PizzaDelivery.ViewModel.ViewModels.Main.PizzaPage.PizzaPageVM
 @{
     ViewData["Title"] = "Main";
 }
@@ -13,9 +13,9 @@
             @Html.HiddenFor(x => orderPosition.Pizza.Name)
             @Html.HiddenFor(x => orderPosition.Pizza.Recipe)
             @Html.HiddenFor(x => orderPosition.Pizza.Cost)
-            <div class="item" >
+            <div class="item">
                 <div class="image_item">
-                        <img src="~/images/pizza_img_1.jpg">
+                    <img src="~/images/pizza_img_1.jpg">
                     @*</a>*@
                 </div>
                 <div class="caption">
@@ -33,9 +33,19 @@
                         <div class="count">
                             @Html.EditorFor(x => orderPosition.Count)
                         </div>
+                        @if (Html.ViewContext.HttpContext.User.IsInRole("admin"))
+                        {
+                            <input type="button" class="btn btn-primary" value="Редактировать" onclick="location.href='@Url.Action("OpenEditPizzaPage", "Main", new { pizzaId = Model.PizzaList[i].Pizza.Id })'" />
+                        }
                     </div>
                 </div>
             </div>
         }
+    }
+    @if (Html.ViewContext.HttpContext.User.IsInRole("admin"))
+    {
+        <div class="item" style="vertical-align:central">
+            <input type="button" class="btn btn-primary" value="Новая пицца" onclick="location.href='@Url.Action("CreateNewPizzaPage", "Main")'" />
+        </div>
     }
 </div>

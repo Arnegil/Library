@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using PizzaDelivery.Domain;
+using PizzaDelivery.Domain.Models;
 using PizzaDelivery.Domain.Models.Orders;
 using PizzaDelivery.Services.Interfaces;
 
@@ -117,6 +118,47 @@ namespace PizzaDelivery.Services.ServicesImpl
                 .ToList();
 
             return orders;
+        }
+
+        public void SetOrderState(Guid orderId, OrderState orderState)
+        {
+            var order = _context.Orders.FirstOrDefault(x => x.Id == orderId);
+
+            if (order == null)
+                return;
+            
+            order.OrderState = orderState;
+            _context.SaveChanges();
+        }
+        
+        public void SetOrderOkStateByOperator(Guid orderId, Guid operatorId)
+        {
+            var order = _context.Orders.FirstOrDefault(x => x.Id == orderId);
+            var operatorEmployee = _context.Employees.FirstOrDefault(x => x.Id == operatorId);
+
+            if (order == null)
+                return;
+
+            var deliverymans = _context.Employees.Where(x => x.PostName == PostNames.Deliveryman).ToList();
+            var index = new Random().Next(0, deliverymans.Count);
+
+            order.OrderState = OrderState.WaitingForDeliveryman;
+            order.Deliveryman = deliverymans[index];
+            order.Operator = operatorEmployee;
+            _context.SaveChanges();
+        }
+
+        public void SetOrderCancelledStateByOperator(Guid orderId, Guid operatorId)
+        {
+            var order = _context.Orders.FirstOrDefault(x => x.Id == orderId);
+            var operatorEmployee = _context.Employees.FirstOrDefault(x => x.Id == operatorId);
+
+            if (order == null)
+                return;
+            
+            order.OrderState = OrderState.Cancelled;
+            order.Operator = operatorEmployee;
+            _context.SaveChanges();
         }
 
         private int GetNextOderNumber()

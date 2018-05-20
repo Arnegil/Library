@@ -4,9 +4,11 @@ using System.Linq;
 using PizzaDelivery.Services.Interfaces;
 using PizzaDelivery.ViewModel.Exensions;
 using PizzaDelivery.ViewModel.Interfaces;
+using PizzaDelivery.ViewModel.ViewModels.Ordering;
 using PizzaDelivery.ViewModel.ViewModels.PersonalPages.Client;
 using PizzaDelivery.ViewModel.ViewModels.PersonalPages.Deliveryman;
 using PizzaDelivery.ViewModel.ViewModels.PersonalPages.Operator;
+using OrderState = PizzaDelivery.Domain.Models.Orders.OrderState;
 
 namespace PizzaDelivery.ViewModel.ServicesImpl
 {
@@ -41,63 +43,6 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
             {
                 OrderList = orders.Select(x => x.ToOrderVM()).ToList()
             };
-
-            /*return new OrderHistoryVM
-            {
-                OrderList = new List<OrderVM>
-                {
-                    new OrderVM
-                    {
-                        Number = 052,
-                        ShoppingCart = new ShoppingCartVM
-                        {
-                            Products = new List<OrderPositionVM>
-                            {
-                                new OrderPositionVM
-                                {
-                                    Pizza = new PizzaVM()
-                                    {
-                                        Name = "Барбекю",
-                                        Recipe = "Пицца с ветчиной, беконом, пепперони, болгарским перцем и томатным соусом для ценителей мясных деликатесов",
-                                        Cost = 410
-                                    },
-                                    Count = 2
-                                },
-                                new OrderPositionVM
-                                {
-                                    Pizza = new PizzaVM()
-                                    {
-                                        Name = "Гавайская",
-                                        Recipe = "Волшебное сочетание нежного куриного мяса, ананасов и спелой груши.",
-                                        Cost = 335
-                                    },
-                                    Count = 1
-                                }
-                            }
-                        }
-                    },
-                    new OrderVM
-                    {
-                        Number = 058,
-                        ShoppingCart = new ShoppingCartVM
-                        {
-                            Products = new List<OrderPositionVM>
-                            {
-                                new OrderPositionVM
-                                {
-                                    Pizza = new PizzaVM()
-                                    {
-                                        Name = "Карбонара",
-                                        Recipe = "Итальянский колорит бекона, сыра, грибов и красного лука",
-                                        Cost = 340
-                                    },
-                                    Count = 3
-                                }
-                            }
-                        }
-                    }
-                }
-            };*/
         }
 
         public NewOrdersVM GetNewOrders()
@@ -126,6 +71,16 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
             };
         }
 
+        public void SetOrderOk(OrderPositionVM orderPosition, Guid operatorId)
+        {
+            _orderService.SetOrderOkStateByOperator(orderPosition.Pizza.Id, operatorId);
+        }
+
+        public void SetOrderCancell(OrderPositionVM orderPosition, Guid operatorId)
+        {
+            _orderService.SetOrderCancelledStateByOperator(orderPosition.Pizza.Id, operatorId);
+        }
+
         public OrdersToDeliveryVM GetOrdersToDelivery()
         {
             var orders = _orderService.GetOrdersToDelivery();
@@ -137,6 +92,11 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
                     .OrderBy(x => x.CreationDate)
                     .ToList()
             };
+        }
+
+        public void SetOrderDelivered(OrderPositionVM orderPosition)
+        {
+            _orderService.SetOrderState(orderPosition.Pizza.Id, OrderState.Paid);
         }
     }
 }

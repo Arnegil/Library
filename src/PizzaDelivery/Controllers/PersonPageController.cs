@@ -29,10 +29,9 @@ namespace PizzaDelivery.Controllers
         [Authorize(Roles = SecurityRoles.Client)]
         public IActionResult Index()
         {
-            //return View("/Views/PersonalPages/ClientPersonalPage.cshtml");
             var model = _pesonalPageVmService.GetPersonalInfo(HttpContext.User.Identity.Name);
 
-            return View("/Views/PersonalPages/Templates/PersonalInfo.cshtml", model);
+            return View("/Views/PersonalPages/PersonalInfo.cshtml", model);
         }
 
         [Authorize(Roles = SecurityRoles.Client)]
@@ -40,7 +39,7 @@ namespace PizzaDelivery.Controllers
         {
             var model = _pesonalPageVmService.GetPersonalInfo(HttpContext.User.Identity.Name);
 
-            return View("/Views/PersonalPages/Templates/PersonalInfo.cshtml", model);
+            return View("/Views/PersonalPages/PersonalInfo.cshtml", model);
         }
 
         [Authorize(Roles = SecurityRoles.Client)]
@@ -49,14 +48,14 @@ namespace PizzaDelivery.Controllers
             var clientId = HttpContext.User.GetId();
             var model = _pesonalPageVmService.GetOrderHistory(clientId);
 
-            return View("/Views/PersonalPages/Templates/OrderHistory.cshtml", model);
+            return View("/Views/PersonalPages/OrderHistory.cshtml", model);
         }
 
         [Authorize(Roles = SecurityRoles.Operator)]
         public IActionResult IndexOperator()
         {
             var model = _pesonalPageVmService.GetNewOrders();
-            return View("/Views/PersonalPages/Templates/NewOrders.cshtml", model);
+            return View("/Views/PersonalPages/NewOrders.cshtml", model);
         }
 
         [Authorize(Roles = SecurityRoles.Operator)]
@@ -64,7 +63,7 @@ namespace PizzaDelivery.Controllers
         {
             var model = _pesonalPageVmService.GetNewOrders();
             
-            return View("/Views/PersonalPages/Templates/NewOrders.cshtml", model);
+            return View("/Views/PersonalPages/NewOrders.cshtml", model);
         }
 
         [Authorize(Roles = SecurityRoles.Operator)]
@@ -73,21 +72,25 @@ namespace PizzaDelivery.Controllers
             var operatorId = HttpContext.User.GetId();
             var model = _pesonalPageVmService.GetPersonalOrders(operatorId);
 
-            return View("/Views/PersonalPages/Templates/PersonalOrders.cshtml", model);
+            return View("/Views/PersonalPages/PersonalOrders.cshtml", model);
         }
 
         [HttpPost]
+        [Authorize(Roles = SecurityRoles.Operator)]
         public JsonResult OkOrderInOrderNewAjax([FromBody] OrderPositionVM orderPosition)
         {
-            //номер заказа
+            var operatorId = HttpContext.User.GetId();
+            _pesonalPageVmService.SetOrderOk(orderPosition, operatorId);
 
             return Json(new { IsSuccess = true });
         }
 
         [HttpPost]
+        [Authorize(Roles = SecurityRoles.Operator)]
         public JsonResult DelOrderInOrderNewAjax([FromBody] OrderPositionVM orderPosition)
         {
-            //номер заказа
+            var operatorId = HttpContext.User.GetId();
+            _pesonalPageVmService.SetOrderCancell(orderPosition, operatorId);
 
             return Json(new { IsSuccess = true });
         }
@@ -99,12 +102,14 @@ namespace PizzaDelivery.Controllers
         {
             var model = _pesonalPageVmService.GetOrdersToDelivery();
 
-            return View("/Views/PersonalPages/Templates/OrdersToDelivery.cshtml", model);
+            return View("/Views/PersonalPages/OrdersToDelivery.cshtml", model);
         }
+
         [HttpPost]
+        [Authorize(Roles = SecurityRoles.Deliveryman)]
         public JsonResult ExecuteOrderInOrderToDeliveryAjax([FromBody] OrderPositionVM orderPosition)
         {
-            //номер заказа
+            _pesonalPageVmService.SetOrderDelivered(orderPosition);
 
             return Json(new { IsSuccess = true });
         }

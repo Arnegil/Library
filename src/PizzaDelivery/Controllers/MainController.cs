@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -12,6 +12,7 @@ using PizzaDelivery.Models;
 using PizzaDelivery.ViewModel;
 using PizzaDelivery.ViewModel.Interfaces;
 using PizzaDelivery.ViewModel.Interfaces.Ordering;
+using PizzaDelivery.ViewModel.ViewModels.Main.PizzaPage;
 using PizzaDelivery.ViewModel.ViewModels.Ordering;
 
 namespace PizzaDelivery.Controllers
@@ -20,16 +21,20 @@ namespace PizzaDelivery.Controllers
     {
         private readonly IPizzaPageVMService _pizzaPageVmService;
         private readonly IShoppingCardVMService _shoppingCardVmService;
+        private readonly IPizzaVMService _pizzaVMService;
 
-        public MainController(IPizzaPageVMService pizzaPageVmService, IShoppingCardVMService shoppingCardVmService)
+        public MainController(IPizzaPageVMService pizzaPageVmService, IShoppingCardVMService shoppingCardVmService, IPizzaVMService pizzaVMService)
         {
             if (pizzaPageVmService == null)
                 throw new ArgumentNullException(nameof(pizzaPageVmService));
             if (shoppingCardVmService == null)
                 throw new ArgumentNullException(nameof(shoppingCardVmService));
+            if (pizzaVMService == null)
+                throw new ArgumentNullException(nameof(pizzaVMService));
 
             _pizzaPageVmService = pizzaPageVmService;
             _shoppingCardVmService = shoppingCardVmService;
+            _pizzaVMService = pizzaVMService;
         }
 
         [HttpGet]
@@ -44,14 +49,6 @@ namespace PizzaDelivery.Controllers
         public IActionResult PizzaSection()
         {
             var model = _pizzaPageVmService.GetPizzaPage(1);
-
-            return View("Main", model);
-        }
-
-        [HttpGet]
-        public IActionResult PizzaSection(int page)
-        {
-            var model = _pizzaPageVmService.GetPizzaPage(page);
 
             return View("Main", model);
         }
@@ -76,16 +73,20 @@ namespace PizzaDelivery.Controllers
             return Json(new {IsSuccess = true});
         }
 
-        public IActionResult OpenEditPizzaPage()
+        [HttpGet]
+        [Authorize(Roles = SecurityRoles.Admin)]
+        public IActionResult OpenEditPizzaPage(Guid pizzaId)
         {
-            return View();
+            var model = _pizzaVMService.GetPizzaById(pizzaId);
+            return View("/Views/Main/EditPizza.cshtml", model);
         }
 
+        [Authorize(Roles = SecurityRoles.Admin)]
         public IActionResult CreateNewPizzaPage()
         {
-            return View();
+            return View("/Views/Main/EditPizza.cshtml", new PizzaVM());
         }
-        
+
         [Authorize]
         public IActionResult PersonalPage()
         {
@@ -117,10 +118,13 @@ namespace PizzaDelivery.Controllers
             return RedirectToAction("Index", "Registration");
         }
 
-        public IActionResult Error()
+        [Authorize]
+        [Authorize(Roles = SecurityRoles.Admin)]
+        public IActionResult EmployeeRegistration()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (HttpContext.User.IsInRole(SecurityRoles.Admin))
+                return RedirectToAction("EmployeeRegistration", "Registration");
+            return Index();
         }
-        
     }
 }

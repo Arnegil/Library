@@ -16,6 +16,7 @@ namespace PizzaDelivery.ViewModel
         public static void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IPizzaPageVMService>(provider => new PizzaPageVMService(provider.GetService<IPizzaService>()));
+            services.AddTransient<IPizzaVMService>(provider => new PizzaVMService(provider.GetService<IPizzaService>()));
             services.AddTransient<IShoppingCardVMService>(provider => new ShoppingCartVMService());
             services.AddTransient<IDeliveryVMService>(provider => new DeliveryVMService(
                 provider.GetService<IClientService>()));

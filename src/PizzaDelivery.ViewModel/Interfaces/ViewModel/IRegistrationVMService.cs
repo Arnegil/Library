@@ -8,5 +8,6 @@ namespace PizzaDelivery.ViewModel.Interfaces
     public interface IRegistrationVMService
     {
         void RegisterNewClient(RegistrationVM registrationVm);
+        void RegisterNewEmployee(RegistrationVM registrationVM, string role);
     }
 }

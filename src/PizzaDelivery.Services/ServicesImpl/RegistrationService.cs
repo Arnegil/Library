@@ -28,5 +28,32 @@ namespace PizzaDelivery.Services.ServicesImpl
             });
             _context.SaveChanges();
         }
+
+        public void RegisterEmployee(Person person, Account account, string role)
+        {
+            _context.Persons.Add(person);
+            _context.Accounts.Add(account);
+            _context.Employees.Add(new Employee
+            {
+                Person = person,
+                Account = account,
+                HireDate = DateTime.Now,
+                PostName = RoleParser(role)
+            });
+            _context.SaveChanges();
+        }
+
+        public string RoleParser(string role)
+        {
+            switch (role)
+            {
+                case "Оператор":
+                    return "Operator";
+                case "Курьер":
+                    return "Deliveryman";
+                default:
+                    throw new Exception();
+            }
+        }
     }
 }

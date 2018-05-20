@@ -23,7 +23,8 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
             _employeeRoles = new Dictionary<string, string>()
             {
                 {EmployeePosts.Operator, SecurityRoles.Operator},
-                {EmployeePosts.Deliveryman, SecurityRoles.Deliveryman}
+                {EmployeePosts.Deliveryman, SecurityRoles.Deliveryman},
+                {EmployeePosts.Admin, SecurityRoles.Admin }
             };
         }
 
@@ -41,7 +42,7 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
 
             if (user.Account.Password.Equals(pass))
             {
-                login.LoggedIn = true;
+                login.LoggedIn = false;
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.Account.Login),
@@ -70,9 +71,7 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
 
             if (user.Account.Password.Equals(pass))
             {
-                login.LoggedIn = true;
-
-
+                login.LoggedIn = false;
 
                 var claims = new List<Claim>
                 {

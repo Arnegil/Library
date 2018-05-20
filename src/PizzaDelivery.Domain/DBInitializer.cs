@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using PizzaDelivery.Domain.Models;
 using PizzaDelivery.Domain.Models.Orders;
 using PizzaDelivery.Domain.Models.Persons;
 
@@ -18,6 +19,7 @@ namespace PizzaDelivery.Domain
                 InitPizzas(context);
                 InitClients(context);
                 InitEmployees(context);
+                InitAdmins(context);
                 context.SaveChanges();
                 InitOrders(context);
                 context.SaveChanges();
@@ -117,7 +119,7 @@ namespace PizzaDelivery.Domain
                     Type = AccountType.Employee
                 },
                 HireDate = new DateTime(2010, 2, 1),
-                PostName = "Operator"
+                PostName = PostNames.Operator
             });
             context.Add(new Employee()
             {
@@ -138,7 +140,32 @@ namespace PizzaDelivery.Domain
                     Type = AccountType.Employee
                 },
                 HireDate = new DateTime(2012, 12, 1),
-                PostName = "Deliveryman"
+                PostName = PostNames.Deliveryman
+            });
+        }
+
+        private static void InitAdmins(PizzaDeliveryDBContext context)
+        {
+            context.Add(new Employee()
+            {
+                Id = Guid.Parse("00000000-0000-0000-0000-000000000010"),
+                Person = new Person
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-000000000020"),
+                    FIO = "Ivan Ivanovich",
+                    Birthday = new DateTime(1991, 1, 19),
+                    Email = "adminsaita@mail.ru",
+                    PhoneNumber = "555-35-35"
+                },
+                Account = new Account
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-000000000030"),
+                    Login = "Admin1",
+                    Password = @" ,�b�Y[�K-#Kp",
+                    Type = AccountType.Admin
+                },
+                HireDate = new DateTime(2010, 2, 1),
+                PostName = PostNames.Admin
             });
         }
 
@@ -259,7 +286,7 @@ namespace PizzaDelivery.Domain
                 Order = order3
             });
 
-            var order4 = new Order()
+            /*var order4 = new Order()
             {
                 Id = Guid.Parse("00000000-0000-2222-0000-000000000004"),
                 OrderingClient = context.Clients.First(x => x.Id == Guid.Parse("00000000-0000-0000-0000-000000000001")),
@@ -300,7 +327,7 @@ namespace PizzaDelivery.Domain
                 Pizza = context.Pizzas.First(x => x.Id == Guid.Parse("00000000-0000-1111-0000-000000000002")),
                 Count = 2,
                 Order = order4
-            });
+            });*/
         }
     }
 }

@@ -10,7 +10,8 @@ namespace PizzaDelivery.ViewModel.ViewModels.Main.PizzaPage
 
         [Display(Name = "Название")]
         public string Name { get; set; }
-
+        
+        [DataType(DataType.MultilineText)]
         [Display(Name = "Состав")]
         public string Recipe { get; set; }
 

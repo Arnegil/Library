@@ -46,7 +46,9 @@ namespace PizzaDelivery.Controllers.Ordering
         [HttpPost]
         public JsonResult DelToShoppingCardAjax([FromBody] OrderPositionVM orderPosition)
         {
-            //
+            var shoppingCart = HttpContext.Session.Get<ShoppingCartVM>(SessionKeys.ShoppingCart);
+            shoppingCart = _shoppingCardVmService.DeleteFromShoppingCard(shoppingCart, orderPosition);
+            HttpContext.Session.Set(SessionKeys.ShoppingCart, shoppingCart);
 
             return Json(new { IsSuccess = true });
         }
