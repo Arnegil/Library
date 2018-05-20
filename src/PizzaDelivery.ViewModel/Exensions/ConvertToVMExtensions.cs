@@ -77,6 +77,7 @@ namespace PizzaDelivery.ViewModel.Exensions
 
             return new PaymentInfoVM
             {
+                PaymentType = (ViewModels.Ordering.PaymentType) paymentInfo.PaymentType,
                 CardNumber = paymentInfo.CardNumber,
                 CardOwnerName = paymentInfo.CardOwnerName,
                 DateTo = paymentInfo.DateTo

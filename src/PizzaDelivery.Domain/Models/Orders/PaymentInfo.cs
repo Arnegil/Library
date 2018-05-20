@@ -9,6 +9,9 @@ namespace PizzaDelivery.Domain.Models.Orders
     {
         [Key]
         public Guid Id { get; set; }
+        
+        public PaymentType PaymentType { get; set; }
+
         [DataType(DataType.CreditCard)]
         public string CardNumber { get; set; }
 
@@ -16,5 +19,12 @@ namespace PizzaDelivery.Domain.Models.Orders
         public string CardOwnerName { get; set; }
 
         public DateTime? DateTo { get; set; }
+    }
+
+    public enum PaymentType
+    {
+        CardOnline,
+        CashToDeliveryman,
+        CardToDeliveryman
     }
 }
