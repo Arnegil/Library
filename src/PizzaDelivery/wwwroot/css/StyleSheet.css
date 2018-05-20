@@ -141,3 +141,18 @@
 .sum_shopping_cart{
     padding:10px;
 }
+.for_button{
+    display:inline-block
+}
+.add_button {
+    display: inline-block
+}
+.del_button {
+    display: inline-block
+}
+.order_element {
+    width: 100%;
+}
+.comment{
+    width:200px;
+}
