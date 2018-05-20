@@ -80,7 +80,8 @@ namespace PizzaDelivery.ViewModel.Exensions
                 PaymentType = (ViewModels.Ordering.PaymentType) paymentInfo.PaymentType,
                 CardNumber = paymentInfo.CardNumber,
                 CardOwnerName = paymentInfo.CardOwnerName,
-                DateTo = paymentInfo.DateTo
+                DateTo = paymentInfo.DateTo,
+                PayByBonuses = paymentInfo.PayByBonuses
             };
         }
 

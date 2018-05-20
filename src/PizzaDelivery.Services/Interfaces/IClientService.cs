@@ -17,5 +17,6 @@ namespace PizzaDelivery.Services.Interfaces
         IEnumerable<Order> GetAciveOrdersOfClient(Guid clientId);
         void AddBonusToClient(Guid clientId, Collection<OrderPosition> orderPositions);
         Client CreateTempClient(DeliveryInfo deliveryInfo);
+        void RemoveBonusFromClient(Guid clientId, decimal paymentInfoPayByBonuses);
     }
 }

@@ -23,6 +23,17 @@
             <td>@Html.EditorFor(x => x.DateTo)</td>
         </tr>
         <tr>@Html.DropDownListFor(x => x.PaymentType, new List<SelectListItem>(typeof(PaymentType).GetEnumValues<PaymentType>().Select(x => new SelectListItem() { Text = x.GetDescription(), Value = x.ToString() })))</tr>
+        @if (Model.Bonuses > 0)
+        {
+            <tr>
+                <td>@Html.DisplayNameFor(x => x.Bonuses)</td>
+                <td>@Html.DisplayFor(x => x.Bonuses)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(x => x.PayByBonuses)</td>
+                <td>@Html.EditorFor(x => x.PayByBonuses)</td>
+            </tr>
+        }
     </table>
     <div class="delivery_info_btn">
         <button class="btn btn-primary" type="submit">Заказать</button>

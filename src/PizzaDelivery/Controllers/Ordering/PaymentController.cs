@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PizzaDelivery.Extensions;
+using PizzaDelivery.Services.Extensions;
 using PizzaDelivery.ViewModel.ViewModels.Ordering;
 using PizzaDelivery.ViewModel.Interfaces.Ordering;
 
@@ -39,6 +40,13 @@ namespace PizzaDelivery.Controllers.Ordering
         [HttpPost]
         public IActionResult SavePaymentInfo(PaymentInfoVM paymentInfo)
         {
+            if (paymentInfo.Bonuses < paymentInfo.PayByBonuses ||
+                (paymentInfo.PaymentType == PaymentType.CardOnline &&
+                 (paymentInfo.CardNumber.IsNullOrEmpty() || paymentInfo.CardOwnerName.IsNullOrEmpty() ||
+                  !paymentInfo.DateTo.HasValue)))
+            {
+                return Index();
+            }
             /*if (!ModelState.IsValid)
             {
                 return Index();

@@ -22,11 +22,15 @@ namespace PizzaDelivery.ViewModel.ServicesImpl.Ordering
             var payment = new PaymentInfoVM();
             
             var client = _clientService.GetClientByLogin(login);
-            if (client != null && client.HaveCardInfo)
+            if (client != null)
             {
-                payment.CardNumber = client.CardNumber;
-                payment.CardOwnerName = client.CardOwnerName;
-                payment.DateTo = client.DateTo.Value;
+                if (client.HaveCardInfo)
+                {
+                    payment.CardNumber = client.CardNumber;
+                    payment.CardOwnerName = client.CardOwnerName;
+                    payment.DateTo = client.DateTo.Value;
+                }
+                payment.Bonuses = client.BonusCount;
             }
 
             return payment;

@@ -88,6 +88,15 @@
             <span>
                 @Html.DisplayFor(x => order.ShoppingCart.SumOrderPrice) ₽
             </span>
+        @if (order.PaymentInfo.PayByBonuses > 0)
+        {
+            <span class="sum_shopping_cart_title">
+                В том числе бонусов на:
+            </span>
+            <span>
+                @Html.DisplayFor(x => order.PaymentInfo.PayByBonuses) ₽
+            </span>
+        }
         </div>
     </div>
 }

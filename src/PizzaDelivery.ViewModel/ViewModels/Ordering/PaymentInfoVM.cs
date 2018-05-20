@@ -21,6 +21,12 @@ namespace PizzaDelivery.ViewModel.ViewModels.Ordering
         [DataType(DataType.Date)]
         public DateTime? DateTo { get; set; }
 
+        [Display(Name = "Количество бонусов:")]
+        public decimal Bonuses { get; set; }
+
+        [Display(Name = "Потратить бонусов:")]
+        public decimal PayByBonuses { get; set; }
+
         public bool IsEmpty =>
             string.IsNullOrEmpty(CardNumber) && string.IsNullOrEmpty(CardOwnerName) && !DateTo.HasValue;
     }

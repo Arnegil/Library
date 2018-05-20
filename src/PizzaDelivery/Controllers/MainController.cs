@@ -110,6 +110,9 @@ namespace PizzaDelivery.Controllers
         public async Task<IActionResult> LoginOut()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            HttpContext.Session.Set(SessionKeys.ShoppingCart, new ShoppingCartVM());
+            HttpContext.Session.Set(SessionKeys.DeliveryInfo, new DeliveryInfoVM());
+            HttpContext.Session.Set(SessionKeys.PaymentInfo, new PaymentInfoVM());
             return RedirectToAction("Index", "Main");
         }
 

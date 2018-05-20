@@ -104,5 +104,13 @@ namespace PizzaDelivery.Services.ServicesImpl
 
             return newClient;
         }
+
+        public void RemoveBonusFromClient(Guid clientId, decimal paymentInfoPayByBonuses)
+        {
+            var client = GetClientById(clientId);
+            client.BonusCount -= paymentInfoPayByBonuses;
+
+            _context.SaveChanges();
+        }
     }
 }

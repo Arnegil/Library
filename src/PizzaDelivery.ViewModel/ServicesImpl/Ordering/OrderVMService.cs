@@ -54,7 +54,10 @@ namespace PizzaDelivery.ViewModel.ServicesImpl.Ordering
             var createdOrderVM = createdOrder.ToOrderVM();
 
             if (!client.Account.IsTemp)
+            {
                 _clientService.AddBonusToClient(client.Id, createdOrder.OrderPositions);
+                _clientService.RemoveBonusFromClient(client.Id, createdOrder.PaymentInfo.PayByBonuses);
+            }
 
             return new OrderResultVM
             {

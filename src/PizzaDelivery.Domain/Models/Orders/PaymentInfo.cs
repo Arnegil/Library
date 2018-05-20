@@ -19,6 +19,8 @@ namespace PizzaDelivery.Domain.Models.Orders
         public string CardOwnerName { get; set; }
 
         public DateTime? DateTo { get; set; }
+
+        public decimal PayByBonuses { get; set; }
     }
 
     public enum PaymentType

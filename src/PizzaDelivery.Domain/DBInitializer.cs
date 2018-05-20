@@ -84,7 +84,7 @@ namespace PizzaDelivery.Domain
                     FIO = "Alexander",
                     Birthday = new DateTime(1990, 3, 13),
                     Email = "email1@mail.ru",
-                    PhoneNumber = "230-23-23",
+                    PhoneNumber = "+7(123) 123-1231",
                     Address = "Street 21"
                 },
                 Account = new Account
@@ -94,7 +94,7 @@ namespace PizzaDelivery.Domain
                     Password = @" ,�b�Y[�K-#Kp",
                     Type = AccountType.Client
                 },
-                BonusCount = 0
+                BonusCount = 10
             });
         }
 
