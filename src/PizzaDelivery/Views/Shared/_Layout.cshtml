@@ -46,7 +46,7 @@
                     {
                         <li><a asp-area="" asp-controller="Main" asp-action="PersonalPage">Аккаунт (@Html.ViewContext.HttpContext.User.Identity.Name)</a></li>
                         <li><a asp-area="" asp-controller="Main" asp-action="LoginOut">Выход</a></li>
-                        @if (Html.ViewContext.HttpContext.User.IsInRole("admin"))
+                        if (Html.ViewContext.HttpContext.User.IsInRole("admin"))
                         {
                             <li><a asp-area="" asp-controller="Main" asp-action="EmployeeRegistration">Регистрация сотрудников</a></li>
                         }

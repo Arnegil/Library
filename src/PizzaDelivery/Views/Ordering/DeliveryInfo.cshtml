@@ -2,11 +2,6 @@
 @{
     ViewData["Title"] = "DeliveryInfo";
 }
-<script type="text/javascript">
-    jQuery(function ($) {
-        $("#ClientPhoneNumber").mask("+7(999) 999-9999");
-    });
-</script>
 
 <h2>Доставка</h2>
 
@@ -27,7 +22,7 @@
                 @Html.ValidationMessageFor(x => x.ClientPhoneNumber)
             </td>
         </tr>
-        <tr>
+        <tr id="DeliveryAddressTR">
             <td>@Html.DisplayNameFor(x => x.DeliveryAddress)</td>
             <td class="delivery_address">@Html.EditorFor(x => x.DeliveryAddress)</td>
         </tr>

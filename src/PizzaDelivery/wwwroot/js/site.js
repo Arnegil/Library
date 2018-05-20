@@ -85,3 +85,42 @@ function executeOrderInOrderToDelivery(dataM) {
         }
     });
 }
+
+$(document).ready(function () {
+    $("#ClientPhoneNumber").mask("+7(999) 999-9999");
+});
+
+$(document).ready(function () {
+    $("#PhoneNumber").mask("+7(999) 999-9999");
+});
+
+$(document).ready(function () {
+    $('#ShipmenAtOwnExpense').change(function () {
+        if (this.checked) {
+            $('#DeliveryAddressTR').hide(500);
+            $('#DeliveryAddress').val("");
+        }
+        else {
+            $('#DeliveryAddressTR').show(500);
+        }
+    });
+});
+
+$(document).ready(function () {
+    $('#PaymentType').change(function () {
+        var asd = this.value;
+        if (this.value === 'CardOnline') {
+            $('#CardNumberTR').show(500);
+            $('#CardOwnerNameTR').show(500);
+            $('#DateToTR').show(500);
+        }
+        else {
+            $('#CardNumberTR').hide(500);
+            $('#CardOwnerNameTR').hide(500);
+            $('#DateToTR').hide(500);
+            $('#CardNumber').val("");
+            $('#CardOwnerName').val("");
+            $('#DateTo').val("");
+        }
+    });
+});

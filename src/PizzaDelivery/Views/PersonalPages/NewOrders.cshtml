@@ -1,4 +1,6 @@
-﻿@using PizzaDelivery.ViewModel.ViewModels.Ordering
+﻿@using PizzaDelivery.Extensions
+@using PizzaDelivery.Services.Extensions
+@using PizzaDelivery.ViewModel.ViewModels.Ordering
 @model PizzaDelivery.ViewModel.ViewModels.PersonalPages.Operator.NewOrdersVM
 @{
     ViewData["Title"] = "OrderHistory";
@@ -59,7 +61,7 @@
                         <div class="comment">
                             <div>
                                 <span>@Html.DisplayNameFor(x => order.PaymentInfo.PaymentType): </span>
-                                <span>@Html.DisplayFor(x => order.PaymentInfo.PaymentType)</span>
+                                <span>@order.PaymentInfo.PaymentType.GetDescription()</span>
                             </div>
                             <div>
                                 <span>@Html.DisplayNameFor(x => order.DeliveryInfo.ClientName): </span>
@@ -69,10 +71,13 @@
                                 <span>@Html.DisplayNameFor(x => order.DeliveryInfo.ClientPhoneNumber): </span>
                                 <span>@Html.DisplayFor(x => order.DeliveryInfo.ClientPhoneNumber)</span>
                             </div>
-                            <div>
-                                <span>Комментарий: </span>
-                                <span>@Html.DisplayFor(x => order.DeliveryInfo.CommentToOperator)</span>
-                            </div>
+                            @if (!order.DeliveryInfo.CommentToOperator.IsNullOrEmpty())
+                            {
+                                <div>
+                                    <span>Комментарий: </span>
+                                    <span>@Html.DisplayFor(x => order.DeliveryInfo.CommentToOperator)</span>
+                                </div>
+                            }
                         </div>
                     </td>
                     <td>

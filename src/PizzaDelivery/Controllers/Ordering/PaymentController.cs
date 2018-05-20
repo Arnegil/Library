@@ -51,6 +51,8 @@ namespace PizzaDelivery.Controllers.Ordering
             var newOrder = _orderVMService.BuildNewOrder(shoppingCart, deliveryInfo, paymentInfo);
             var model = _orderVMService.CreateOrder(newOrder, HttpContext.User.Identity.Name);
             HttpContext.Session.Set(SessionKeys.ShoppingCart, new ShoppingCartVM());
+            HttpContext.Session.Set(SessionKeys.DeliveryInfo, new DeliveryInfoVM());
+            HttpContext.Session.Set(SessionKeys.PaymentInfo, new PaymentInfoVM());
 
             return View("/Views/Ordering/OrderResult.cshtml", model);
         }

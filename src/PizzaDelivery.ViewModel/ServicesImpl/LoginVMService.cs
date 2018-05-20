@@ -42,7 +42,7 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
 
             if (user.Account.Password.Equals(pass))
             {
-                login.LoggedIn = true;
+                login.LoggedIn = false;
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.Account.Login),
@@ -71,9 +71,7 @@ namespace PizzaDelivery.ViewModel.ServicesImpl
 
             if (user.Account.Password.Equals(pass))
             {
-                login.LoggedIn = true;
-
-
+                login.LoggedIn = false;
 
                 var claims = new List<Claim>
                 {

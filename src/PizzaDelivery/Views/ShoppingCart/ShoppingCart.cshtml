@@ -65,5 +65,8 @@
             @Html.DisplayFor(x => shoppingCart.SumOrderPrice) ₽
         </span>
     </div>
-    <button class="btn btn-primary" type="submit">Доставка</button>
+    if (Model.Products.Count > 0)
+    {
+        <button class="btn btn-primary" type="submit">Доставка</button>
+    }
 }

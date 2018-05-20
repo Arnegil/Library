@@ -34,15 +34,14 @@ namespace PizzaDelivery.Controllers.Auth
             if (principal == null)
                 principal = _loginVMService.LogInEmployee(model);
             if (principal == null)
-                return Error();
-
+            {
+                model.LoggedIn = true;
+                model.Password = string.Empty;
+                return View("/Views/Auth/Auth.cshtml", model);
+            }
+            
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(principal));
             return RedirectToAction("Index", "Main");
-        }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = "Неправильный логин или пароль" });
         }
     }
 }
