@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using PizzaDelivery.Domain.Models;
 using PizzaDelivery.Domain.Models.Orders;
 using PizzaDelivery.Domain.Models.Persons;
 
@@ -118,7 +119,7 @@ namespace PizzaDelivery.Domain
                     Type = AccountType.Employee
                 },
                 HireDate = new DateTime(2010, 2, 1),
-                PostName = "Operator"
+                PostName = PostNames.Operator
             });
             context.Add(new Employee()
             {
@@ -139,7 +140,7 @@ namespace PizzaDelivery.Domain
                     Type = AccountType.Employee
                 },
                 HireDate = new DateTime(2012, 12, 1),
-                PostName = "Deliveryman"
+                PostName = PostNames.Deliveryman
             });
         }
 
@@ -159,12 +160,12 @@ namespace PizzaDelivery.Domain
                 Account = new Account
                 {
                     Id = Guid.Parse("00000000-0000-0000-0000-000000000030"),
-                    Login = "AdminSaita",
+                    Login = "Admin1",
                     Password = @" ,�b�Y[�K-#Kp",
                     Type = AccountType.Admin
                 },
                 HireDate = new DateTime(2010, 2, 1),
-                PostName = "Admin"
+                PostName = PostNames.Admin
             });
         }
 
@@ -285,7 +286,7 @@ namespace PizzaDelivery.Domain
                 Order = order3
             });
 
-            var order4 = new Order()
+            /*var order4 = new Order()
             {
                 Id = Guid.Parse("00000000-0000-2222-0000-000000000004"),
                 OrderingClient = context.Clients.First(x => x.Id == Guid.Parse("00000000-0000-0000-0000-000000000001")),
@@ -326,7 +327,7 @@ namespace PizzaDelivery.Domain
                 Pizza = context.Pizzas.First(x => x.Id == Guid.Parse("00000000-0000-1111-0000-000000000002")),
                 Count = 2,
                 Order = order4
-            });
+            });*/
         }
     }
 }

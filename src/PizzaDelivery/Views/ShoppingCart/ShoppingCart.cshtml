@@ -12,12 +12,7 @@
         <tbody>
             @for (var i = 0; i < Model.Products.Count; i++)
             {
-               @Html.HiddenFor(x => shoppingCart.Products[i].Pizza.Id)
-                @Html.HiddenFor(x => shoppingCart.Products[i].Pizza.Name)
-                @Html.HiddenFor(x => shoppingCart.Products[i].Pizza.Recipe)
-                @Html.HiddenFor(x => shoppingCart.Products[i].Pizza.Cost)
-                @Html.HiddenFor(x => shoppingCart.Products[i].Sum)
-                <tr class="shopping_cart_item">
+                <tr class="shopping_cart_item" id="@shoppingCart.Products[i].Pizza.Id">
                     <td>
                         <div class="image_item_shopping_cart">
                             <img src="~/images/pizza_img_1.jpg">
@@ -53,29 +48,15 @@
                             <button class="btn btn-primary" type="button" onclick="delPizzaInShoppingCart('@shoppingCart.Products[i].Pizza.Id.ToString()');">Удалить</button>
                         </div>
                     </td>
+                    <td>@Html.HiddenFor(x => shoppingCart.Products[i].Pizza.Id)</td>
+                    <td>@Html.HiddenFor(x => shoppingCart.Products[i].Pizza.Name)</td>
+                    <td>@Html.HiddenFor(x => shoppingCart.Products[i].Pizza.Recipe)</td>
+                    <td>@Html.HiddenFor(x => shoppingCart.Products[i].Pizza.Cost)</td>
+                    <td>@Html.HiddenFor(x => shoppingCart.Products[i].Sum)</td>
                 </tr>
-            }
+             }
         </tbody>
     </table>
-        @*<table>
-                <tbody id="@Html.IdFor(x => shoppingCart)">
-                    @for (var i = 0; i < Model.Products.Count; i++)
-                    {
-                        @Html.HiddenFor(x => shoppingCart.Products[i].Pizza.Id)
-                        @Html.HiddenFor(x => shoppingCart.Products[i].Pizza.Name)
-                        @Html.HiddenFor(x => shoppingCart.Products[i].Pizza.Recipe)
-                        @Html.HiddenFor(x => shoppingCart.Products[i].Pizza.Cost)
-                        @Html.HiddenFor(x => shoppingCart.Products[i].Sum)
-                        <tr>
-                            <td>@Html.DisplayFor(x => shoppingCart.Products[i].Pizza.Name)</td>
-                            <td>@Html.DisplayFor(x => shoppingCart.Products[i].Pizza.Recipe)</td>
-                            <td>@Html.DisplayFor(x => shoppingCart.Products[i].Pizza.Cost)</td>
-                            <td>@Html.EditorFor(x => shoppingCart.Products[i].Count)</td>
-                            <td>@Html.DisplayFor(x => shoppingCart.Products[i].Sum)</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>*@
     <div class="sum_shopping_cart">
         <span class="sum_shopping_cart_title">
             @Html.DisplayNameFor(x => shoppingCart.SumOrderPrice):

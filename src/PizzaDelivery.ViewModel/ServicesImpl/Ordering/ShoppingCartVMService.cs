@@ -32,5 +32,11 @@ namespace PizzaDelivery.ViewModel.ServicesImpl.Ordering
             
             return shoppingCart;
         }
+
+        public ShoppingCartVM DeleteFromShoppingCard(ShoppingCartVM shoppingCart, OrderPositionVM orderPosition)
+        {
+            shoppingCart.Products.RemoveAll(x => x.Pizza.Id == orderPosition.Pizza.Id);
+            return shoppingCart;
+        }
     }
 }

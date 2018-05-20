@@ -33,7 +33,7 @@ function delPizzaInShoppingCart(dataM) {
         data: dataDto,
         success: function (response) {
             if (response.isSuccess)
-                dataM.find('input[name="orderPosition.Count"]').val(1);
+                $('#' + dataM).remove();
         }
     });
 }
@@ -49,7 +49,7 @@ function okOrderInOrderNew(dataM) {
         data: dataDto,
         success: function (response) {
             if (response.isSuccess)
-                dataM.find('input[name="orderPosition.Count"]').val(1);
+                $('#' + dataM).remove();
         }
     });
 }
@@ -65,10 +65,11 @@ function delOrderInOrderNew(dataM) {
         data: dataDto,
         success: function (response) {
             if (response.isSuccess)
-                dataM.find('input[name="orderPosition.Count"]').val(1);
+                $('#' + dataM).remove();
         }
     });
 }
+
 function executeOrderInOrderToDelivery(dataM) {
     var dataDto = '{"Pizza":{"Id":"' + dataM + '"}}';
 
@@ -80,7 +81,7 @@ function executeOrderInOrderToDelivery(dataM) {
         data: dataDto,
         success: function (response) {
             if (response.isSuccess)
-                dataM.find('input[name="orderPosition.Count"]').val(1);
+                $('#' + dataM).remove();
         }
     });
 }

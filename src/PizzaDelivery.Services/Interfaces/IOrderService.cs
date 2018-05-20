@@ -15,5 +15,8 @@ namespace PizzaDelivery.Services.Interfaces
         IEnumerable<Order> GetNewOrders();
         IEnumerable<Order> GetOrdersByOperatorId(Guid operatorId);
         IEnumerable<Order> GetOrdersToDelivery();
+        void SetOrderState(Guid orderId, OrderState orderState);
+        void SetOrderOkStateByOperator(Guid orderId, Guid operatorId);
+        void SetOrderCancelledStateByOperator(Guid orderId, Guid operatorId);
     }
 }

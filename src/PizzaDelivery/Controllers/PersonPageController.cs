@@ -29,7 +29,6 @@ namespace PizzaDelivery.Controllers
         [Authorize(Roles = SecurityRoles.Client)]
         public IActionResult Index()
         {
-            //return View("/Views/PersonalPages/ClientPersonalPage.cshtml");
             var model = _pesonalPageVmService.GetPersonalInfo(HttpContext.User.Identity.Name);
 
             return View("/Views/PersonalPages/Templates/PersonalInfo.cshtml", model);
@@ -77,17 +76,21 @@ namespace PizzaDelivery.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = SecurityRoles.Operator)]
         public JsonResult OkOrderInOrderNewAjax([FromBody] OrderPositionVM orderPosition)
         {
-            //номер заказа
+            var operatorId = HttpContext.User.GetId();
+            _pesonalPageVmService.SetOrderOk(orderPosition, operatorId);
 
             return Json(new { IsSuccess = true });
         }
 
         [HttpPost]
+        [Authorize(Roles = SecurityRoles.Operator)]
         public JsonResult DelOrderInOrderNewAjax([FromBody] OrderPositionVM orderPosition)
         {
-            //номер заказа
+            var operatorId = HttpContext.User.GetId();
+            _pesonalPageVmService.SetOrderCancell(orderPosition, operatorId);
 
             return Json(new { IsSuccess = true });
         }
@@ -101,10 +104,12 @@ namespace PizzaDelivery.Controllers
 
             return View("/Views/PersonalPages/Templates/OrdersToDelivery.cshtml", model);
         }
+
         [HttpPost]
+        [Authorize(Roles = SecurityRoles.Deliveryman)]
         public JsonResult ExecuteOrderInOrderToDeliveryAjax([FromBody] OrderPositionVM orderPosition)
         {
-            //номер заказа
+            _pesonalPageVmService.SetOrderDelivered(orderPosition);
 
             return Json(new { IsSuccess = true });
         }
