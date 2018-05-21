@@ -81,16 +81,16 @@ namespace PizzaDelivery.Domain
                 Person = new Person
                 {
                     Id = Guid.Parse("00000000-0000-0000-0000-000000000009"),
-                    FIO = "Alexander",
+                    FIO = "Александр",
                     Birthday = new DateTime(1990, 3, 13),
                     Email = "email1@mail.ru",
                     PhoneNumber = "+7(123) 123-1231",
-                    Address = "Street 21"
+                    Address = "Ул. Космонавтов, 28-12"
                 },
                 Account = new Account
                 {
                     Id = Guid.Parse("00000000-0000-0000-0000-000000000004"),
-                    Login = "client1",
+                    Login = "Client1",
                     Password = @" ,�b�Y[�K-#Kp",
                     Type = AccountType.Client
                 },
@@ -106,15 +106,15 @@ namespace PizzaDelivery.Domain
                 Person = new Person
                 {
                     Id = Guid.Parse("00000000-0000-0000-0000-000000000002"),
-                    FIO = "Vladislav",
+                    FIO = "Владислав",
                     Birthday = new DateTime(1995, 5, 13),
                     Email = "email3@mail.ru",
-                    PhoneNumber = "563-23-32"
+                    PhoneNumber = "+7(343) 232-5343"
                 },
                 Account = new Account
                 {
                     Id = Guid.Parse("00000000-0000-0000-0000-000000000003"),
-                    Login = "operator1",
+                    Login = "Operator1",
                     Password = @" ,�b�Y[�K-#Kp",
                     Type = AccountType.Employee
                 },
@@ -127,15 +127,15 @@ namespace PizzaDelivery.Domain
                 Person = new Person
                 {
                     Id = Guid.Parse("00000000-0000-0000-0000-000000000005"),
-                    FIO = "Alexander",
+                    FIO = "Дмитрий",
                     Birthday = new DateTime(1998, 1, 9),
                     Email = "email4@mail.ru",
-                    PhoneNumber = "123-54-65"
+                    PhoneNumber = "+7(656) 231-4532"
                 },
                 Account = new Account
                 {
                     Id = Guid.Parse("00000000-0000-0000-0000-000000000006"),
-                    Login = "deliveryman1",
+                    Login = "Deliveryman1",
                     Password = @" ,�b�Y[�K-#Kp",
                     Type = AccountType.Employee
                 },
@@ -152,10 +152,10 @@ namespace PizzaDelivery.Domain
                 Person = new Person
                 {
                     Id = Guid.Parse("00000000-0000-0000-0000-000000000020"),
-                    FIO = "Ivan Ivanovich",
+                    FIO = "Иван",
                     Birthday = new DateTime(1991, 1, 19),
                     Email = "adminsaita@mail.ru",
-                    PhoneNumber = "555-35-35"
+                    PhoneNumber = "+7(656) 345-1231"
                 },
                 Account = new Account
                 {
@@ -175,23 +175,24 @@ namespace PizzaDelivery.Domain
             {
                 Id = Guid.Parse("00000000-0000-2222-0000-000000000001"),
                 OrderingClient = context.Clients.First(x => x.Id == Guid.Parse("00000000-0000-0000-0000-000000000001")),
-                CommentToOperator = "comment to operator",
+                CommentToOperator = "Без сыра",
                 CreationDate = DateTime.Parse("01.05.2018"),
                 OrderNumber = 1,
                 OrderState = OrderState.Created,
                 DeliveryInfo = new DeliveryInfo
                 {
                     Id = Guid.Parse("00000000-0000-3333-0000-000000000001"),
-                    DeliveryAddress = "Street 123",
-                    ClientName = "Client1",
-                    ClientPhoneNumber = "3123123123"
+                    DeliveryAddress = "Ул. Космонавтов, 28-12",
+                    ClientName = "Александр",
+                    ClientPhoneNumber = "+7(123) 123-1231"
                 },
                 PaymentInfo = new PaymentInfo
                 {
                     Id = Guid.Parse("00000000-0000-4444-0000-000000000001"),
-                    CardOwnerName = "Name",
-                    CardNumber = "123123",
-                    DateTo = DateTime.Parse("01.02.2018")
+                    CardOwnerName = "Alexandr",
+                    CardNumber = "3212-4343-1545-1354",
+                    DateTo = DateTime.Parse("01.02.2018"),
+                    PaymentType = PaymentType.CardOnline
                 }
             };
             context.Add(order1);
@@ -208,23 +209,24 @@ namespace PizzaDelivery.Domain
             {
                 Id = Guid.Parse("00000000-0000-2222-0000-000000000002"),
                 OrderingClient = context.Clients.First(x => x.Id == Guid.Parse("00000000-0000-0000-0000-000000000001")),
-                CommentToOperator = "comment to operator",
+                CommentToOperator = null,
                 CreationDate = DateTime.Parse("02.05.2018"),
                 OrderNumber = 2,
                 OrderState = OrderState.WaitingForDeliveryman,
                 DeliveryInfo = new DeliveryInfo
                 {
                     Id = Guid.Parse("00000000-0000-3333-0000-000000000002"),
-                    DeliveryAddress = "Street 123",
-                    ClientName = "Client1",
-                    ClientPhoneNumber = "3123123123"
+                    DeliveryAddress = "Ул. Ленина, 34-102",
+                    ClientName = "Александр",
+                    ClientPhoneNumber = "+7(123) 123-1231"
                 },
                 PaymentInfo = new PaymentInfo
                 {
                     Id = Guid.Parse("00000000-0000-4444-0000-000000000002"),
-                    CardOwnerName = "Name",
-                    CardNumber = "123123",
-                    DateTo = DateTime.Parse("01.02.2018")
+                    CardOwnerName = "Alexandr",
+                    CardNumber = "3212-4343-1545-1354",
+                    DateTo = DateTime.Parse("01.02.2018"),
+                    PaymentType = PaymentType.CardOnline
                 },
                 Operator = context.Employees.First(x => x.Id == Guid.Parse("00000000-0000-0000-0000-000000000007"))
             };
@@ -249,23 +251,24 @@ namespace PizzaDelivery.Domain
             {
                 Id = Guid.Parse("00000000-0000-2222-0000-000000000003"),
                 OrderingClient = context.Clients.First(x => x.Id == Guid.Parse("00000000-0000-0000-0000-000000000001")),
-                CommentToOperator = "comment to operator",
+                CommentToOperator = null,
                 CreationDate = DateTime.Parse("04.05.2018"),
                 OrderNumber = 3,
                 OrderState = OrderState.Paid,
                 DeliveryInfo = new DeliveryInfo
                 {
                     Id = Guid.Parse("00000000-0000-3333-0000-000000000003"),
-                    DeliveryAddress = "Street 123",
-                    ClientName = "Client1",
-                    ClientPhoneNumber = "3123123123"
+                    DeliveryAddress = "Ул. Космонавтов, 28-12",
+                    ClientName = "Александр",
+                    ClientPhoneNumber = "+7(123) 123-1231"
                 },
                 PaymentInfo = new PaymentInfo
                 {
                     Id = Guid.Parse("00000000-0000-4444-0000-000000000003"),
-                    CardOwnerName = "Name",
-                    CardNumber = "123123",
-                    DateTo = DateTime.Parse("01.02.2018")
+                    CardOwnerName = null,
+                    CardNumber = null,
+                    DateTo = null,
+                    PaymentType = PaymentType.CashToDeliveryman
                 },
                 Operator = context.Employees.First(x => x.Id == Guid.Parse("00000000-0000-0000-0000-000000000007"))
             };
