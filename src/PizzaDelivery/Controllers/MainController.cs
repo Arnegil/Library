@@ -121,6 +121,11 @@ namespace PizzaDelivery.Controllers
             return RedirectToAction("Index", "Registration");
         }
 
+        public IActionResult Contact()
+        {
+            return View("/Views/Main/Contact.cshtml");
+        }
+
         [Authorize]
         [Authorize(Roles = SecurityRoles.Admin)]
         public IActionResult EmployeeRegistration()

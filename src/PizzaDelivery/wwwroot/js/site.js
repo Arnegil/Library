@@ -108,7 +108,6 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('#PaymentType').change(function () {
-        var asd = this.value;
         if (this.value === 'CardOnline') {
             $('#CardNumberTR').show(500);
             $('#CardOwnerNameTR').show(500);

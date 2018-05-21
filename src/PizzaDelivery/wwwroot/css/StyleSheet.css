@@ -208,3 +208,15 @@ fieldset[disabled] .btn-primary.focus {
     background-color: #891B08;
     border-color: #891B08;
 }
+.contact {
+    padding: 10px;
+}
+.contact_image {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+}
+.adress {
+    width: 500px;
+}
